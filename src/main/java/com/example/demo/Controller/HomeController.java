@@ -20,8 +20,12 @@ public class HomeController {
     }
     @PostMapping("/createCustomer")
     public String createCustomer(@ModelAttribute Customer c){
-        customerService.addCustomer(c);
-        return null;
-    }
+        boolean success = customerService.addCustomer(c);
 
+        if(success){
+            return "home/success";
+        }else{
+            return "home/failure";
+        }
+    }
 }

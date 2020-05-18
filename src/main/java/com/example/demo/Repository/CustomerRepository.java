@@ -21,10 +21,14 @@ public class CustomerRepository {
         return null;
     }
 
-    public Customer addCustomer(Customer c){
-        String sql = "INSERT INTO customers() VALUES (DEFAULT, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        template.update(sql, c.getName(), c.getAge(), c.getEmail(), c.getCpr(), c.getPhone(), c.getAddress(), c.getZip_code(), c.getDriver_license_number(), c.getDriver_license_date());
-        return null;
+    public boolean addCustomer(Customer c){
+        try{
+            String sql = "INSERT INTO customers() VALUES (DEFAULT, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            template.update(sql, c.getName(), c.getAge(), c.getEmail(), c.getCpr(), c.getPhone(), c.getAddress(), c.getZip_code(), c.getDriver_license_number(), c.getDriver_license_date());
+            return true;
+        }catch(Exception e){
+            return false;
+        }
     }
 
     public Customer updateCustomer(Customer c){

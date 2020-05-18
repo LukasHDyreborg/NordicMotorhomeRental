@@ -6,7 +6,7 @@ USE nordicMotorhome;
 CREATE TABLE customers
 (
 	id INT PRIMARY KEY AUTO_INCREMENT,
-    customer_name VARCHAR(45) NOT NULL,
+    `name` VARCHAR(45) NOT NULL,
     age INT NOT NULL,
     email VARCHAR(45) NOT NULL,
     cpr VARCHAR(20) NOT NULL UNIQUE,

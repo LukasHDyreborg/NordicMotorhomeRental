@@ -21,7 +21,7 @@ public class CustomerService {
         return customerRepository.findCustomerById(id);
     }
 
-    public Customer addCustomer(Customer c){
+    public boolean addCustomer(Customer c){
         return customerRepository.addCustomer(c);
     }
 
