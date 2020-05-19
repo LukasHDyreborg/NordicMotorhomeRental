@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>update customer</title>
+    <link rel="stylesheet" type="text/css" href="MyCSS.css">
+</head>
+<body>
+<form action="/updateCustomer" method="post" class="btn-update">
+    <input hidden type="text" name="id" th:value="${customer.id}">
+    <label>Navn</label>
+    <input type="text" name="name" th:value="${customer.name}" required>
+    <label>Alder</label>
+    <input type="text" name="age" th:value="${customer.age}" required>
+    <label>CPR-Nummer</label>
+    <input type="text" name="cpr" th:value="${customer.cpr}" required>
+    <label>Email</label>
+    <input type="text" name="email" th:value="${customer.email}" required>
+    <label>Tlf.</label>
+    <input type="text" name="phone" th:value="${customer.phone}" required>
+    <label>Adresse</label>
+    <input type="text" name="address" th:value="${customer.address}"required>
+    <label>Postnummer</label>
+    <input type="text" name="zip_code" th:value="${customer.zip_code}" required>
+    <label>Kørekortnummer</label>
+    <input type="text" name="driver_license_number" th:value="${customer.driver_license_number}" required>
+    <label>Udstedelsesdato</label>
+    <input type="text" name="driver_license_date" th:value="${customer.driver_license_date}"required>
+
+    <input type="submit" value="update customer">
+</form>
+</body>
+</html>

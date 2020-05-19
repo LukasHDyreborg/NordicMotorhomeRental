@@ -20,7 +20,10 @@
 <span th:text="${customer.driver_license_date}"/>
 
 <a th:href="@{'/deleteCustomer/'+${customer.id}}">
-    <button class="btn.delete">Delete</button>
+    <button class="btn-delete">Delete</button>
+</a>
+<a th:href="@{'/updateCustomer/'+${customer.id}}">
+    <button class="btn-update">update</button>
 </a>
 </body>
 </html>

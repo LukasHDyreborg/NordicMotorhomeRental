@@ -46,6 +46,17 @@ public class HomeController {
         return "home/viewCustomer";
     }
 
+    @GetMapping("/updateCustomer/{id}")
+    public String updateCustomer(@PathVariable("id") int id, Model model){
+        model.addAttribute("customer", customerService.findCustomerById(id));
+        return "home/updateCustomer";
+    }
+    @PostMapping("/updateCustomer")
+    public String updateCustomer(@ModelAttribute Customer c){
+        customerService.updateCustomer(c);
+        return "redirect:/customer";
+    }
+
     @GetMapping("/deleteCustomer/{id}")
     public String deleteCustomer(@PathVariable("id") int id, Model model){
         boolean success = customerService.deleteCustumer(id);
