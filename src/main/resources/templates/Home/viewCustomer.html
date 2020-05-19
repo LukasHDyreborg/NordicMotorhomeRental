@@ -1,10 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>View customer</title>
+    <link rel="stylesheet" type="text/css" href="MyCSS.css">
 </head>
 <body>
+<h1>View Customer</h1>
 
+<span th:text="${customer.id}"/>
+<span th:text="${customer.name}"/>
+<span th:text="${customer.age}"/>
+<span th:text="${customer.cpr}"/>
+<span th:text="${customer.phone}"/>
+<span th:text="${customer.email}"/>
+<span th:text="${customer.address}"/>
+<span th:text="${customer.zip_code}"/>
+<span th:text="${customer.driver_license_number}"/>
+<span th:text="${customer.driver_license_date}"/>
+
+<a th:href="@{'/deleteCustomer/'+${customer.id}}">
+    <button class="btn.delete">Delete</button>
+</a>
 </body>
 </html>

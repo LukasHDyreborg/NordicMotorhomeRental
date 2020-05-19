@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
@@ -39,5 +40,21 @@ public class HomeController {
         }
     }
 
-  //  @GetMapping("/viewCustomer/{id}")
+    @GetMapping("/viewCustomer/{id}")
+    public String viewCustomer(@PathVariable("id") int id, Model model){
+        model.addAttribute("customer", customerService.findCustomerById(id));
+        return "home/viewCustomer";
+    }
+
+    @GetMapping("/deleteCustomer/{id}")
+    public String deleteCustomer(@PathVariable("id") int id, Model model){
+        boolean success = customerService.deleteCustumer(id);
+
+        if(success){
+            return "home/success";
+        }
+        else{
+            return "home/failure";
+        }
+    }
 }

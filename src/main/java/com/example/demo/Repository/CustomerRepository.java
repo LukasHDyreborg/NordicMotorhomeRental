@@ -22,7 +22,10 @@ public class CustomerRepository {
     }
 
     public Customer findCustomerById(int id){
-        return null;
+        String sql = "SELECT * FROM customers WHERE id = ?";
+        RowMapper<Customer> rowMapper = new BeanPropertyRowMapper<>(Customer.class);
+        Customer c = template.queryForObject(sql, rowMapper, id);
+        return c;
     }
 
     public boolean addCustomer(Customer c){
@@ -39,7 +42,15 @@ public class CustomerRepository {
         return null;
     }
 
-    public Customer deleteCustumer(int id){
-        return null;
+    public Boolean deleteCustumer(int id){
+        try{
+            String sql = "DELETE FROM customers WHERE id = ?";
+            template.update(sql, id);
+            return true;
+        }
+        catch(Exception e){
+            return false;
+        }
     }
+
 }
