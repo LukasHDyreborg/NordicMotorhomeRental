@@ -49,12 +49,12 @@ CREATE TABLE standard
     licensePlate VARCHAR(45) PRIMARY KEY,
     fridge BOOLEAN NOT NULL,
     toilet BOOLEAN NOT NULL,
-    elStove VARCHAR(45) NOT NULL,
+    shower BOOLEAN NOT NULL,
+    elStove BOOLEAN NOT NULL,
     awning BOOLEAN NOT NULL,
-    model VARCHAR(45) NOT NULL,
-    model VARCHAR(45) NOT NULL,
-    model VARCHAR(45) NOT NULL,
-
+    tv BOOLEAN NOT NULL,
+    rearViewCamera BOOLEAN NOT NULL,
+    FOREIGN KEY (licensePlate) REFERENCES motorhomes(licensePlate)
 );
 
 DROP USER IF EXISTS 'user'@'localhost';

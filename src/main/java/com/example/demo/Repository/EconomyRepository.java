@@ -30,7 +30,7 @@ public class EconomyRepository {
     }
 
     public Economy findEconomyById(int id) {
-        String sql = "SELECT * FROM motorhomes m JOIN economy e ON m.licensePlate = f.licensePlate WHERE c.licensePlate = ?";
+        String sql = "SELECT * FROM motorhomes m JOIN economy e ON m.licensePlate = f.licensePlate WHERE m.licensePlate = ?";
         RowMapper<Economy> rowMapper = new BeanPropertyRowMapper<>(Economy.class);
         Economy e = template.queryForObject(sql, rowMapper, id);
         return e;
