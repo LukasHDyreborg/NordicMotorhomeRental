@@ -13,9 +13,9 @@ public class Economy extends Motorhome {
     }
 
     public Economy(String licensePlate, String brand, String model, int pricePerDay, int seats, int beds,
-                   String fuelType, int odometer, String registrationDate, String lengthAndHeight, String type,
+                   String fuelType, String gear, int odometer, String registrationDate, String lengthAndHeight, String type,
                    boolean fridge, boolean toilet, int gasBurners, boolean awning) {
-        super(licensePlate, brand, model, pricePerDay, seats, beds, fuelType, odometer, registrationDate, lengthAndHeight, type);
+        super(licensePlate, brand, model, pricePerDay, seats, beds, fuelType, gear, odometer, registrationDate, lengthAndHeight, type);
         this.fridge = fridge;
         this.toilet = toilet;
         this.gasBurners = gasBurners;

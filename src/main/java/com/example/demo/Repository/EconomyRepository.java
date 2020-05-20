@@ -21,8 +21,8 @@ public class EconomyRepository {
     }
 
     public Economy addEconomy(Economy e) {
-        String morhomeSql = "INSERT INTO motorhomes(licensePlate, brand, model, pricePerDay, seats, beds, fuelType, odometer, registrationDate, lengthAndHeight, `type`) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        template.update(morhomeSql, e.getLicensePlate(), e.getBeds(), e.getModel(), e.getPricePerDay(), e.getSeats(), e.getBeds(), e.getFuelType(), e.getOdometer(), e.getRegistrationDate(), e.getLengthAndHeight(), e.getType());
+        String morhomeSql = "INSERT INTO motorhomes(licensePlate, brand, model, pricePerDay, seats, beds, fuelType, gear, odometer, registrationDate, lengthAndHeight, `type`) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        template.update(morhomeSql, e.getLicensePlate(), e.getBeds(), e.getModel(), e.getPricePerDay(), e.getSeats(), e.getBeds(), e.getFuelType(), e.getGear(), e.getOdometer(), e.getRegistrationDate(), e.getLengthAndHeight(), e.getType());
 
         String sql = "INSERT INTO economy(licensePlate, fridge, toilet, gasBurners, awning) VALUES (?, ?, ?, ?, ?)";
         template.update(sql, e.getLicensePlate(), e.isFridge(), e.isToilet(), e.getGasBurners(), e.isAwning());
@@ -48,8 +48,8 @@ public class EconomyRepository {
         String sql = "UPDATE economy SET fridge = ?, toilet = ?, gasBurners = ?, awning = ? WHERE licensePlate = ?";
         template.update(sql, e.isFridge(), e.isToilet(), e.getGasBurners(), e.isAwning(), e.getLicensePlate());
 
-        sql = "UPDATE motorhomes SET brand = ?, model = ?, pricePerDay = ?, seats = ?, beds = ?, fuelType = ?, odometer = ?, registrationDate = ?, lengthAndHeight = ?, `type` = ? WHERE licensePlate = ?";
-        template.update(sql, e.getBeds(), e.getModel(), e.getPricePerDay(), e.getSeats(), e.getBeds(), e.getFuelType(), e.getOdometer(), e.getRegistrationDate(), e.getLengthAndHeight(), e.getType(), e.getLicensePlate());
+        sql = "UPDATE motorhomes SET brand = ?, model = ?, pricePerDay = ?, seats = ?, beds = ?, fuelType = ?, gear = ?, odometer = ?, registrationDate = ?, lengthAndHeight = ?, `type` = ? WHERE licensePlate = ?";
+        template.update(sql, e.getBeds(), e.getModel(), e.getPricePerDay(), e.getSeats(), e.getBeds(), e.getFuelType(), e.getGear(), e.getOdometer(), e.getRegistrationDate(), e.getLengthAndHeight(), e.getType(), e.getLicensePlate());
         return null;
     }
 }

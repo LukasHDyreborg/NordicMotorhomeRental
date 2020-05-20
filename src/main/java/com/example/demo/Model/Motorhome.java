@@ -13,6 +13,7 @@ public class Motorhome {
     private int seats;
     private int beds;
     private String fuelType;
+    private String gear;
     private int odometer;
     private String registrationDate;
     private String lengthAndHeight;
@@ -22,7 +23,7 @@ public class Motorhome {
     }
 
     public Motorhome(String licensePlate, String brand, String model, int pricePerDay, int seats, int beds,
-                     String fuelType, int odometer, String registrationDate, String lengthAndHeight, String type) {
+                     String fuelType, String gear, int odometer, String registrationDate, String lengthAndHeight, String type) {
         this.licensePlate = licensePlate;
         this.brand = brand;
         this.model = model;
@@ -30,6 +31,7 @@ public class Motorhome {
         this.seats = seats;
         this.beds = beds;
         this.fuelType = fuelType;
+        this.gear = gear;
         this.odometer = odometer;
         this.registrationDate = registrationDate;
         this.lengthAndHeight = lengthAndHeight;
@@ -90,6 +92,14 @@ public class Motorhome {
 
     public void setFuelType(String fuelType) {
         this.fuelType = fuelType;
+    }
+
+    public String getGear() {
+        return gear;
+    }
+
+    public void setGear(String gear) {
+        this.gear = gear;
     }
 
     public int getOdometer() {
