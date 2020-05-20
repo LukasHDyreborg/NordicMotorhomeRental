@@ -28,6 +28,14 @@ td, th{
     padding: 4px;
 }
 
+tr:nth-child(even) {
+    background-color: lightgrey;
+}
+
+tr:hover{
+    background-color: gray;
+}
+
 .btn-create{
     background-color: greenyellow;
     margin-bottom: 10px;

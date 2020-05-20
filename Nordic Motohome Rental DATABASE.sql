@@ -29,9 +29,9 @@ CREATE TABLE motorhomes
     fuelType VARCHAR(45) NOT NULL,
     gear VARCHAR(45) NOT NULL,
     odometer INT NOT NULL,
-    registrationDate VARCHAR(45) NOT NULL,
+    registrationDate DATE NOT NULL,
     lengthAndHeight VARCHAR(45) NOT NULL,
-    type DATE NOT NULL
+    type VARCHAR(45) NOT NULL
 );
 
 CREATE TABLE economy
@@ -45,6 +45,19 @@ CREATE TABLE economy
 );
 
 CREATE TABLE standard
+(
+    licensePlate VARCHAR(45) PRIMARY KEY,
+    fridge BOOLEAN NOT NULL,
+    toilet BOOLEAN NOT NULL,
+    shower BOOLEAN NOT NULL,
+    elStove BOOLEAN NOT NULL,
+    awning BOOLEAN NOT NULL,
+    tv BOOLEAN NOT NULL,
+    rearViewCamera BOOLEAN NOT NULL,
+    FOREIGN KEY (licensePlate) REFERENCES motorhomes(licensePlate)
+);
+
+CREATE TABLE luxury
 (
     licensePlate VARCHAR(45) PRIMARY KEY,
     fridge BOOLEAN NOT NULL,
