@@ -70,6 +70,19 @@ CREATE TABLE luxury
     FOREIGN KEY (licensePlate) REFERENCES motorhomes(licensePlate)
 );
 
+CREATE TABLE contract
+(
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    fromDate DATETIME NOT NULL,
+    toDate DATETIME NOT NULL,
+    carId VARCHAR(45) NOT NULL,
+    customerId INT NOT NULL,
+    odometer INT NOT NULL,
+    maxKM INT NOT NULL,
+    FOREIGN KEY (carId) REFERENCES motorhomes(licensePlate),
+    FOREIGN KEY (customerId) REFERENCES customers(id)
+);
+
 DROP USER IF EXISTS 'user'@'localhost';
 CREATE USER 'user'@'localhost' IDENTIFIED BY '1234567890';
 GRANT ALL PRIVILEGES ON nordicMotorhome.* TO 'user'@'localhost';
