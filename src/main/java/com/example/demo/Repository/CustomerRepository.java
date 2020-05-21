@@ -21,14 +21,13 @@ public class CustomerRepository {
         return template.query(sql, rowMapper);
     }
 
-    public Customer findCustomerById(int id){
+    public Customer findById(int id){
         String sql = "SELECT * FROM customers WHERE id = ?";
         RowMapper<Customer> rowMapper = new BeanPropertyRowMapper<>(Customer.class);
-        Customer c = template.queryForObject(sql, rowMapper, id);
-        return c;
+        return template.queryForObject(sql, rowMapper, id);
     }
 
-    public boolean addCustomer(Customer c){
+    public boolean add(Customer c){
         try{
             String sql = "INSERT INTO customers() VALUES (DEFAULT, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             template.update(sql, c.getName(), c.getAge(), c.getCpr(), c.getEmail(), c.getPhone(), c.getAddress(), c.getZip_code(), c.getDriverLicenseNumber(), c.getDriverLicenseDate());
@@ -38,13 +37,13 @@ public class CustomerRepository {
         }
     }
 
-    public Customer updateCustomer(Customer c){
+    public Customer update(Customer c){
         String sql = "UPDATE customers SET `name` = ?, age = ?, email = ?, cpr = ?, phone = ?, address = ?, zip_code = ?, driver_license_number = ?, driver_license_date = ? WHERE id = ?";
         template.update(sql, c.getName(), c.getAge(), c.getEmail(), c.getCpr(), c.getPhone(), c.getAddress(), c.getZip_code(), c.getDriverLicenseNumber(), c.getDriverLicenseDate(), c.getId());
         return null;
     }
 
-    public Boolean deleteCustumer(int id){
+    public Boolean delete(int id){
         try{
             String sql = "DELETE FROM customers WHERE id = ?";
             template.update(sql, id);

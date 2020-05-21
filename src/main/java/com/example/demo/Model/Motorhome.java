@@ -18,12 +18,16 @@ public class Motorhome {
     private String registrationDate;
     private String lengthAndHeight;
     private String type;
+    private boolean fridge;
+    private boolean toilet;
+    private boolean awning;
 
     public Motorhome() {
     }
 
     public Motorhome(String licensePlate, String brand, String model, int pricePerDay, int seats, int beds,
-                     String fuelType, String gear, int odometer, String registrationDate, String lengthAndHeight, String type) {
+                     String fuelType, String gear, int odometer, String registrationDate, String lengthAndHeight, String type,
+                     boolean fridge, boolean toilet, boolean awning) {
         this.licensePlate = licensePlate;
         this.brand = brand;
         this.model = model;
@@ -36,6 +40,9 @@ public class Motorhome {
         this.registrationDate = registrationDate;
         this.lengthAndHeight = lengthAndHeight;
         this.type = type;
+        this.fridge = fridge;
+        this.toilet = toilet;
+        this.awning = awning;
     }
 
     public String getLicensePlate() {
@@ -51,7 +58,7 @@ public class Motorhome {
     }
 
     public void setBrand(String brand) {
-        brand = brand;
+        this.brand = brand;
     }
 
     public String getModel() {
@@ -59,7 +66,7 @@ public class Motorhome {
     }
 
     public void setModel(String model) {
-        model = model;
+        this.model = model;
     }
 
     public double getPricePerDay() {
@@ -123,7 +130,7 @@ public class Motorhome {
     }
 
     public void setLengthAndHeight(String lengthAndHeight) {
-        lengthAndHeight = lengthAndHeight;
+        this.lengthAndHeight = lengthAndHeight;
     }
 
     public String getType() {
@@ -132,5 +139,29 @@ public class Motorhome {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public boolean isFridge() {
+        return fridge;
+    }
+
+    public void setFridge(boolean fridge) {
+        this.fridge = fridge;
+    }
+
+    public boolean isToilet() {
+        return toilet;
+    }
+
+    public void setToilet(boolean toilet) {
+        this.toilet = toilet;
+    }
+
+    public boolean isAwning() {
+        return awning;
+    }
+
+    public void setAwning(boolean awning) {
+        this.awning = awning;
     }
 }

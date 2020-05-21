@@ -17,19 +17,19 @@ public class CustomerService {
         return customerRepository.fetchAll();
     }
 
-    public Customer findCustomerById(int id){
-        return customerRepository.findCustomerById(id);
+    public Customer findById(int id){
+        return customerRepository.findById(id);
     }
 
-    public boolean addCustomer(Customer c){
-        return customerRepository.addCustomer(c);
+    public boolean add(Customer c){
+        return customerRepository.add(c);
     }
 
-    public Customer updateCustomer(Customer c){
-        return customerRepository.updateCustomer(c);
+    public Customer update(Customer c){
+        return customerRepository.update(c);
     }
 
-    public Boolean deleteCustumer(int id){
-        return customerRepository.deleteCustumer(id);
+    public Boolean delete(int id){
+        return customerRepository.delete(id);
     }
 }

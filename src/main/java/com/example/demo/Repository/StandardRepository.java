@@ -1,6 +1,5 @@
 package com.example.demo.Repository;
 
-import com.example.demo.Model.Economy;
 import com.example.demo.Model.Standard;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -16,28 +15,30 @@ public class StandardRepository {
     JdbcTemplate template;
 
     public List<Standard> fetchAll() {
-        String sql = "SELECT * FROM motorhomes m JOIN standard s ON m.licensePlate = s.licensePlate)";
+        //Luxury og standard deler table for standard information. Derfor sikrer vi at vi ikke tage en luxyry med i fetchall ved at sige license plate not in licenseplates i luxury
+        String sql = "SELECT * FROM motorhomes m JOIN standard s ON m.licensePlate = s.licensePlate WHERE m.licensePlate NOT IN (SELECT licensePlate FROM luxury)";
         RowMapper<Standard> rowMapper = new BeanPropertyRowMapper<>(Standard.class);
         return template.query(sql, rowMapper);
     }
 
-    public Standard addStandard(Standard s) {
-        String morhomeSql = "INSERT INTO motorhomes(licensePlate, brand, model, pricePerDay, seats, beds, fuelType, gear, odometer, registrationDate, lengthAndHeight, `type`) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        template.update(morhomeSql, s.getLicensePlate(), s.getBeds(), s.getModel(), s.getPricePerDay(), s.getSeats(), s.getBeds(), s.getFuelType(), s.getGear(), s.getOdometer(), s.getRegistrationDate(), s.getLengthAndHeight(), s.getType());
+    public Standard add(Standard s) {
+        String morhomeSql = "INSERT INTO motorhomes(licensePlate, brand, model, pricePerDay, seats, beds, fuelType, gear, odometer, " +
+                "registrationDate, lengthAndHeight, `type`, fridge, toilet, awning) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        template.update(morhomeSql, s.getLicensePlate(), s.getBrand(), s.getModel(), s.getPricePerDay(), s.getSeats(), s.getBeds(),
+                s.getFuelType(), s.getGear(), s.getOdometer(), s.getRegistrationDate(), s.getLengthAndHeight(), s.getType(), s.isFridge(), s.isToilet(), s.isAwning());
 
-        String sql = "INSERT INTO standard(licensePlate, fridge, toilet, shower, elStove, awning, tv, rearViewCamera) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-        template.update(sql, s.getLicensePlate(), s.isFridge(), s.isToilet(), s.isShower(), s.isElStove(), s.isAwning(), s.isTv(), s.isRearViewCamera());
+        String sql = "INSERT INTO standard(licensePlate, shower, elStove) VALUES (?, ?, ?)";
+        template.update(sql, s.getLicensePlate(), s.isShower(), s.isElStove());
         return null;
     }
 
-    public Standard findStandardById(int id) {
-        String sql = "SELECT * FROM motorhomes m JOIN standard s ON m.licensePlate = s.licensePlate WHERE m.licensePlate = ?";
+    public Standard findById(int id) {
+        String sql = "SELECT * FROM motorhomes m JOIN standard s ON m.licensePlate = s.licensePlate WHERE m.licensePlate = ? AND m.licensePlate NOT IN (SELECT licensePlate FROM luxury)";
         RowMapper<Standard> rowMapper = new BeanPropertyRowMapper<>(Standard.class);
-        Standard s = template.queryForObject(sql, rowMapper, id);
-        return s;
+        return template.queryForObject(sql, rowMapper, id);
     }
 
-    public Boolean deleteStandard(int id) {
+    public Boolean delete(int id) {
         String sql = "DELETE FROM standard WHERE licensePlate = ?";
         template.update(sql, id);
 
@@ -45,12 +46,14 @@ public class StandardRepository {
         return template.update(sql, id) < 0;
     }
 
-    public Standard updateStandard(Standard s) {
-        String sql = "UPDATE standard SET fridge = ?, toilet = ?, shower = ?, elStove, awning = ?, tv = ?, rearViewCamera = ? WHERE licensePlate = ?";
-        template.update(sql, s.isFridge(), s.isToilet(), s.isShower(), s.isElStove(), s.isAwning(), s.isTv(), s.isRearViewCamera(), s.getLicensePlate());
+    public Standard update(Standard s) {
+        String sql = "UPDATE standard SET shower = ?, elStove = ? WHERE licensePlate = ?";
+        template.update(sql, s.isShower(), s.isElStove(), s.getLicensePlate());
 
-        sql = "UPDATE motorhomes SET brand = ?, model = ?, pricePerDay = ?, seats = ?, beds = ?, fuelType = ?, gear = ?, odometer = ?, registrationDate = ?, lengthAndHeight = ?, `type` = ? WHERE licensePlate = ?";
-        template.update(sql, s.getBeds(), s.getModel(), s.getPricePerDay(), s.getSeats(), s.getBeds(), s.getFuelType(), s.getGear(), s.getOdometer(), s.getRegistrationDate(), s.getLengthAndHeight(), s.getType(), s.getLicensePlate());
+        sql = "UPDATE motorhomes SET brand = ?, model = ?, pricePerDay = ?, seats = ?, beds = ?, fuelType = ?, gear = ?, odometer = ?, " +
+                "registrationDate = ?, lengthAndHeight = ?, `type` = ?, fridge = ?, toilet = ?, awning = ? WHERE licensePlate = ?";
+        template.update(sql, s.getBrand(), s.getModel(), s.getPricePerDay(), s.getSeats(), s.getBeds(), s.getFuelType(), s.getGear(), s.getOdometer(),
+                s.getRegistrationDate(), s.getLengthAndHeight(), s.getType(), s.isFridge(), s.isToilet(), s.isAwning(), s.getLicensePlate());
         return null;
     }
 }

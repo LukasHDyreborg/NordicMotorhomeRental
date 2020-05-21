@@ -16,19 +16,19 @@ public class EconomyService {
         return economyRepository.fetchAll();
     }
 
-    public Economy addEconomy(Economy e) {
-        return economyRepository.addEconomy(e);
+    public Economy add(Economy e) {
+        return economyRepository.add(e);
     }
 
-    public Economy findEconomyById(int id) {
-        return economyRepository.findEconomyById(id);
+    public Economy findById(int id) {
+        return economyRepository.findById(id);
     }
 
-    public Boolean deleteEconomy(int id) {
-        return economyRepository.deleteEconomy(id);
+    public Boolean delete(int id) {
+        return economyRepository.delete(id);
     }
 
-    public Economy updateEconomy(Economy e) {
-        return economyRepository.updateEconomy(e);
+    public Economy update(Economy e) {
+        return economyRepository.update(e);
     }
 }

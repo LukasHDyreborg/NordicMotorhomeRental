@@ -14,8 +14,7 @@ CREATE TABLE customers
     address VARCHAR(45) NOT NULL,
     zip_code VARCHAR(45) NOT NULL,
     driverLicenseNumber VARCHAR(45) NOT NULL,
-    driverLicenseDate DATE NOT NULL/*,
-    FOREIGN KEY (zip_code) REFERENCES city(zip_code)*/
+    driverLicenseDate DATE NOT NULL
 );
 
 CREATE TABLE motorhomes
@@ -31,43 +30,33 @@ CREATE TABLE motorhomes
     odometer INT NOT NULL,
     registrationDate DATE NOT NULL,
     lengthAndHeight VARCHAR(45) NOT NULL,
-    type VARCHAR(45) NOT NULL
+    type VARCHAR(45) NOT NULL,
+    fridge BOOLEAN NOT NULL,
+    toilet BOOLEAN NOT NULL,
+    awning BOOLEAN NOT NULL
 );
 
 CREATE TABLE economy
 (
     licensePlate VARCHAR(45) PRIMARY KEY,
-    fridge BOOLEAN NOT NULL,
-    toilet BOOLEAN NOT NULL,
     gasBurners INT NOT NULL,
-    awning BOOLEAN NOT NULL,
     FOREIGN KEY (licensePlate) REFERENCES motorhomes(licensePlate)
 );
 
 CREATE TABLE standard
 (
     licensePlate VARCHAR(45) PRIMARY KEY,
-    fridge BOOLEAN NOT NULL,
-    toilet BOOLEAN NOT NULL,
     shower BOOLEAN NOT NULL,
     elStove BOOLEAN NOT NULL,
-    awning BOOLEAN NOT NULL,
-    tv BOOLEAN NOT NULL,
-    rearViewCamera BOOLEAN NOT NULL,
     FOREIGN KEY (licensePlate) REFERENCES motorhomes(licensePlate)
 );
 
 CREATE TABLE luxury
 (
     licensePlate VARCHAR(45) PRIMARY KEY,
-    fridge BOOLEAN NOT NULL,
-    toilet BOOLEAN NOT NULL,
-    shower BOOLEAN NOT NULL,
-    elStove BOOLEAN NOT NULL,
-    awning BOOLEAN NOT NULL,
     tv BOOLEAN NOT NULL,
     rearViewCamera BOOLEAN NOT NULL,
-    FOREIGN KEY (licensePlate) REFERENCES motorhomes(licensePlate)
+    FOREIGN KEY (licensePlate) REFERENCES standard(licensePlate)
 );
 
 CREATE TABLE contract

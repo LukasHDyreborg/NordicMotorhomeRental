@@ -16,19 +16,19 @@ public class LuxuryService {
         return luxuryRepository.fetchAll();
     }
 
-    public Luxury addLuxury(Luxury l) {
-        return luxuryRepository.addLuxury(l);
+    public Luxury add(Luxury l) {
+        return luxuryRepository.add(l);
     }
 
-    public Luxury findLuxuryById(int id) {
-        return luxuryRepository.findLuxuryById(id);
+    public Luxury findById(int id) {
+        return luxuryRepository.findById(id);
     }
 
-    public Boolean deleteLuxury(int id) {
-        return luxuryRepository.deleteLuxury(id);
+    public Boolean delete(int id) {
+        return luxuryRepository.delete(id);
     }
 
-    public Luxury updateLuxury(Luxury l) {
-        return luxuryRepository.updateLuxury(l);
+    public Luxury update(Luxury l) {
+        return luxuryRepository.update(l);
     }
 }

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Motorhomes</title>
+    <link rel="stylesheet" type="text/css" href="/MyCSS.css">
+</head>
+<body>
+<a href="/createLuxury">
+    <button class="btn-create">Registrer et luksus køretøj!</button>
+</a>
+
+<a href="/createStandard">
+    <button class="btn-create">Registrer et standard køretøj!</button>
+</a>
+
+<a href="/createEconomy">
+    <button class="btn-create">Registrer et økonomi køretøj!</button>
+</a>
+
+<table>
+    <thead>
+    <tr>
+        <th>Nummerplade</th>
+        <th>Mærke</th>
+        <th>Model</th>
+        <th>Pris per dag</th>
+        <th>Sæder</th>
+        <th>Senge</th>
+        <th>Brændstoftype</th>
+        <th>Gear</th>
+        <th>Odometer</th>
+        <th>Registrations dato</th>
+        <th>Længde og Højde</th>
+        <th>Type</th>
+        <th>Køleskab</th>
+        <th>Toilet</th>
+        <th>Markise</th>
+        <th>Vælg</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="luxury: ${luxuries}"> <!--th:each means it will loop through the customers list -->
+        <td th:text="${luxury.licensePlate}" />
+        <td th:text="${luxury.brand}" />
+        <td th:text="${luxury.model}" />
+        <td th:text="${luxury.pricePerDay}" />
+        <td th:text="${luxury.seats}" />
+        <td th:text="${luxury.beds}" />
+        <td th:text="${luxury.fuelType}" />
+        <td th:text="${luxury.gear}" />
+        <td th:text="${luxury.odometer}" />
+        <td th:text="${luxury.registrationDate}" />
+        <td th:text="${luxury.lengthAndHeight}" />
+        <td th:text="${luxury.type}" />
+        <td th:text="${luxury.fridge}"/>
+        <td th:text="${luxury.toilet}"/>
+        <td th:text="${luxury.awning}"/>
+        <td>
+            <a th:href="@{'/viewMotorhome/'+${luxury.licensePlate}}">
+                <button class="btn-show">Show</button>
+            </a>
+        </td>
+    </tr>
+    <tr th:each="standard: ${standards}"> <!--th:each means it will loop through the customers list -->
+        <td th:text="${standard.licensePlate}" />
+        <td th:text="${standard.brand}" />
+        <td th:text="${standard.model}" />
+        <td th:text="${standard.pricePerDay}" />
+        <td th:text="${standard.seats}" />
+        <td th:text="${standard.beds}" />
+        <td th:text="${standard.fuelType}" />
+        <td th:text="${standard.gear}" />
+        <td th:text="${standard.odometer}" />
+        <td th:text="${standard.registrationDate}" />
+        <td th:text="${standard.lengthAndHeight}" />
+        <td th:text="${standard.type}" />
+        <td th:text="${standard.fridge}"/>
+        <td th:text="${standard.toilet}"/>
+        <td th:text="${standard.awning}"/>
+        <td>
+            <a th:href="@{'/viewMotorhome/'+${standard.licensePlate}}">
+                <button class="btn-show">Show</button>
+            </a>
+        </td>
+    </tr>
+    <tr th:each="economy: ${economies}"> <!--th:each means it will loop through the customers list -->
+        <td th:text="${economy.licensePlate}" />
+        <td th:text="${economy.brand}" />
+        <td th:text="${economy.model}" />
+        <td th:text="${economy.pricePerDay}" />
+        <td th:text="${economy.seats}" />
+        <td th:text="${economy.beds}" />
+        <td th:text="${economy.fuelType}" />
+        <td th:text="${economy.gear}" />
+        <td th:text="${economy.odometer}" />
+        <td th:text="${economy.registrationDate}" />
+        <td th:text="${economy.lengthAndHeight}" />
+        <td th:text="${economy.type}" />
+        <td th:text="${economy.fridge}"/>
+        <td th:text="${economy.toilet}"/>
+        <td th:text="${economy.awning}"/>
+        <td>
+            <a th:href="@{'/viewMotorhome/'+${economy.licensePlate}}">
+                <button class="btn-show">Show</button>
+            </a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

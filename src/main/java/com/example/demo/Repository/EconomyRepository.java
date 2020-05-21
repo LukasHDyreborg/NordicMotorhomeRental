@@ -15,28 +15,27 @@ public class EconomyRepository {
     JdbcTemplate template;
 
     public List<Economy> fetchAll() {
-        String sql = "SELECT * FROM motorhomes m JOIN economy e ON m.licensePlate = e.licensePlate)";
+        String sql = "SELECT * FROM motorhomes m JOIN economy e ON m.licensePlate = e.licensePlate";
         RowMapper<Economy> rowMapper = new BeanPropertyRowMapper<>(Economy.class);
         return template.query(sql, rowMapper);
     }
 
-    public Economy addEconomy(Economy e) {
-        String morhomeSql = "INSERT INTO motorhomes(licensePlate, brand, model, pricePerDay, seats, beds, fuelType, gear, odometer, registrationDate, lengthAndHeight, `type`) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        template.update(morhomeSql, e.getLicensePlate(), e.getBeds(), e.getModel(), e.getPricePerDay(), e.getSeats(), e.getBeds(), e.getFuelType(), e.getGear(), e.getOdometer(), e.getRegistrationDate(), e.getLengthAndHeight(), e.getType());
+    public Economy add(Economy e) {
+        String morhomeSql = "INSERT INTO motorhomes(licensePlate, brand, model, pricePerDay, seats, beds, fuelType, gear, odometer, registrationDate, lengthAndHeight, `type`, fridge, toilet, awning) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        template.update(morhomeSql, e.getLicensePlate(), e.getBrand(), e.getModel(), e.getPricePerDay(), e.getSeats(), e.getBeds(), e.getFuelType(), e.getGear(), e.getOdometer(), e.getRegistrationDate(), e.getLengthAndHeight(), e.getType(), e.isFridge(), e.isToilet(), e.isAwning());
 
-        String sql = "INSERT INTO economy(licensePlate, fridge, toilet, gasBurners, awning) VALUES (?, ?, ?, ?, ?)";
-        template.update(sql, e.getLicensePlate(), e.isFridge(), e.isToilet(), e.getGasBurners(), e.isAwning());
+        String sql = "INSERT INTO economy(licensePlate, gasBurners) VALUES (?, ?)";
+        template.update(sql, e.getLicensePlate(), e.getGasBurners());
         return null;
     }
 
-    public Economy findEconomyById(int id) {
+    public Economy findById(int id) {
         String sql = "SELECT * FROM motorhomes m JOIN economy e ON m.licensePlate = f.licensePlate WHERE m.licensePlate = ?";
         RowMapper<Economy> rowMapper = new BeanPropertyRowMapper<>(Economy.class);
-        Economy e = template.queryForObject(sql, rowMapper, id);
-        return e;
+        return template.queryForObject(sql, rowMapper, id);
     }
 
-    public Boolean deleteEconomy(int id) {
+    public Boolean delete(int id) {
         String sql = "DELETE FROM economy WHERE licensePlate = ?";
         template.update(sql, id);
 
@@ -44,12 +43,12 @@ public class EconomyRepository {
         return template.update(sql, id) < 0;
     }
 
-    public Economy updateEconomy(Economy e) {
-        String sql = "UPDATE economy SET fridge = ?, toilet = ?, gasBurners = ?, awning = ? WHERE licensePlate = ?";
+    public Economy update(Economy e) {
+        String sql = "UPDATE economy SET gasBurners = ? WHERE licensePlate = ?";
         template.update(sql, e.isFridge(), e.isToilet(), e.getGasBurners(), e.isAwning(), e.getLicensePlate());
 
-        sql = "UPDATE motorhomes SET brand = ?, model = ?, pricePerDay = ?, seats = ?, beds = ?, fuelType = ?, gear = ?, odometer = ?, registrationDate = ?, lengthAndHeight = ?, `type` = ? WHERE licensePlate = ?";
-        template.update(sql, e.getBeds(), e.getModel(), e.getPricePerDay(), e.getSeats(), e.getBeds(), e.getFuelType(), e.getGear(), e.getOdometer(), e.getRegistrationDate(), e.getLengthAndHeight(), e.getType(), e.getLicensePlate());
+        sql = "UPDATE motorhomes SET brand = ?, model = ?, pricePerDay = ?, seats = ?, beds = ?, fuelType = ?, gear = ?, odometer = ?, registrationDate = ?, lengthAndHeight = ?, `type` = ?, fridge = ?, toilet = ?, awning = ? WHERE licensePlate = ?";
+        template.update(sql, e.getBrand(), e.getModel(), e.getPricePerDay(), e.getSeats(), e.getBeds(), e.getFuelType(), e.getGear(), e.getOdometer(), e.getRegistrationDate(), e.getLengthAndHeight(), e.getType(), e.isFridge(), e.isToilet(), e.isAwning(), e.getLicensePlate());
         return null;
     }
 }

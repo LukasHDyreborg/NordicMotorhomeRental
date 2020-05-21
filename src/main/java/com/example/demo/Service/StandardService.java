@@ -16,19 +16,19 @@ public class StandardService {
         return standardRepository.fetchAll();
     }
 
-    public Standard addStandard(Standard s) {
-        return standardRepository.addStandard(s);
+    public Standard add(Standard s) {
+        return standardRepository.add(s);
     }
 
-    public Standard findStandardById(int id) {
-        return standardRepository.findStandardById(id);
+    public Standard findById(int id) {
+        return standardRepository.findById(id);
     }
 
-    public Boolean deleteStandard(int id) {
-        return standardRepository.deleteStandard(id);
+    public Boolean delete(int id) {
+        return standardRepository.delete(id);
     }
 
-    public Standard updateStandard(Standard s) {
-        return standardRepository.updateStandard(s);
+    public Standard update(Standard s) {
+        return standardRepository.update(s);
     }
 }

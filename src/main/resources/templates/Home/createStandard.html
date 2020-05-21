@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Autocamper registration</title>
+    <link rel="stylesheet" type="text/css" href="/MyCSS.css">
+</head>
+<body>
+<form action="/createStandard" method="post">
+    <label>Brand</label>
+    <input type="text" name="brand" required>
+
+    <label>Model</label>
+    <input type="text" name="model" required>
+
+    <label>Nummerplade</label>
+    <input type="text" name="licensePlate" required>
+
+    <label>Pris</label>
+    <input type="text" name="pricePerDay" required>
+
+    <label>Sæder</label>
+    <input type="text" name="seats" required>
+
+    <label>Senge</label>
+    <input type="text" name="beds" required>
+
+    <label>Brændstof</label>
+    <select name="fuelType">
+        <option value="Benzin">Benzin</option>
+        <option value="Diesel">Diesel</option>
+        <option value="Elektrisk">Elektrisk</option>
+    </select>
+
+    <label>Gear</label>
+    <select name="gear">
+        <option value="Automat">Automat</option>
+        <option value="Manuel">Manuel</option>
+    </select>
+
+    <label>Odometer</label>
+    <input type="text" name="odometer" required>
+
+    <label>Registrations Dato</label>
+    <input type="text" name="registrationDate" placeholder="YYYY-MM-DD" required>
+
+    <label>Længde & Højde</label>
+    <input type="text" name="lengthAndHeight" required>
+
+    <!-- <label>Type</label> -->
+    <select name="type" hidden> <!-- see luxury comment -->
+        <option value="standard">Standard</option>
+        <option value="luxury">Luxury</option>
+        <option value="economy">Økonomi</option>
+    </select>
+
+    <label>Køleskab</label>
+    <input type="checkbox" name="fridge">
+
+    <label>Toilet</label>
+    <input type="checkbox" name="toilet">
+
+    <label>Markise</label>
+    <input type="checkbox" name="awning">
+
+    <label>Bad</label>
+    <input type="checkbox" name="shower">
+
+    <label>Elstove</label>
+    <input type="checkbox" name="elStove">
+
+    <input type="submit" value="Save motorhome">
+</form>
+</body>
+</html>
