@@ -16,8 +16,8 @@
 <span th:text="${customer.email}"/>
 <span th:text="${customer.address}"/>
 <span th:text="${customer.zip_code}"/>
-<span th:text="${customer.driver_license_number}"/>
-<span th:text="${customer.driver_license_date}"/>
+<span th:text="${customer.driverLicenseNumber}"/>
+<span th:text="${customer.driverLicenseDate}"/>
 
 <a th:href="@{'/deleteCustomer/'+${customer.id}}">
     <button class="btn-delete">Delete</button>

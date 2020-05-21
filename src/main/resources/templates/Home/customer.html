@@ -40,8 +40,8 @@
         <td th:text="${customer.phone}" />
         <td th:text="${customer.address}" />
         <td th:text="${customer.zip_code}" />
-        <td th:text="${customer.driver_license_number}" />
-        <td th:text="${customer.driver_license_date}" />
+        <td th:text="${customer.driverLicenseNumber}" />
+        <td th:text="${customer.driverLicenseDate}" />
         <td>
             <a th:href="@{'/viewCustomer/'+${customer.id}}">
                 <button class="btn-show">Show</button>

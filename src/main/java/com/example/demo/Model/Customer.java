@@ -14,13 +14,13 @@ public class Customer {
     private String phone;
     private String address;
     private String zip_code;
-    private String driver_license_number;
-    private String driver_license_date;
+    private String driverLicenseNumber;
+    private String driverLicenseDate;
 
     public Customer() {
     }
 
-    public Customer(int id, String name, int age, String cpr, String email, String phone, String address, String zip_code, String driver_license_number, String driver_license_date) {
+    public Customer(int id, String name, int age, String cpr, String email, String phone, String address, String zip_code, String driverLicenseNumber, String driverLicenseDate) {
         this.id = id;
         this.name = name;
         this.age = age;
@@ -29,8 +29,8 @@ public class Customer {
         this.phone = phone;
         this.address = address;
         this.zip_code = zip_code;
-        this.driver_license_number = driver_license_number;
-        this.driver_license_date = driver_license_date;
+        this.driverLicenseNumber = driverLicenseNumber;
+        this.driverLicenseDate = driverLicenseDate;
     }
 
     public int getId() {
@@ -97,19 +97,19 @@ public class Customer {
         this.zip_code = zip_code;
     }
 
-    public String getDriver_license_number() {
-        return driver_license_number;
+    public String getDriverLicenseNumber() {
+        return driverLicenseNumber;
     }
 
-    public void setDriver_license_number(String driver_license_number) {
-        this.driver_license_number = driver_license_number;
+    public void setDriverLicenseNumber(String driverLicenseNumber) {
+        this.driverLicenseNumber = driverLicenseNumber;
     }
 
-    public String getDriver_license_date() {
-        return driver_license_date;
+    public String getDriverLicenseDate() {
+        return driverLicenseDate;
     }
 
-    public void setDriver_license_date(String driver_license_date) {
-        this.driver_license_date = driver_license_date;
+    public void setDriverLicenseDate(String driverLicenseDate) {
+        this.driverLicenseDate = driverLicenseDate;
     }
 }

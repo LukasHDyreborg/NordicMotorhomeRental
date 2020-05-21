@@ -13,8 +13,8 @@ CREATE TABLE customers
     phone VARCHAR(45) NOT NULL,
     address VARCHAR(45) NOT NULL,
     zip_code VARCHAR(45) NOT NULL,
-    driver_license_number VARCHAR(45) NOT NULL,
-    driver_license_date DATE NOT NULL/*,
+    driverLicenseNumber VARCHAR(45) NOT NULL,
+    driverLicenseDate DATE NOT NULL/*,
     FOREIGN KEY (zip_code) REFERENCES city(zip_code)*/
 );
 
