@@ -77,7 +77,6 @@ CREATE TABLE contract
     toDate DATETIME NOT NULL,
     carId VARCHAR(45) NOT NULL,
     customerId INT NOT NULL,
-    odometer INT NOT NULL,
     maxKM INT NOT NULL,
     FOREIGN KEY (carId) REFERENCES motorhomes(licensePlate),
     FOREIGN KEY (customerId) REFERENCES customers(id)
