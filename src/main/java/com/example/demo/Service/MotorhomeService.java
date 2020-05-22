@@ -1,0 +1,35 @@
+package com.example.demo.Service;
+
+import com.example.demo.Model.Luxury;
+import com.example.demo.Model.Motorhome;
+import com.example.demo.Repository.MotorhomeRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public class MotorhomeService {
+    @Autowired
+    MotorhomeRepository motorhomeRepository;
+
+    public List<Motorhome> fetchAll() {
+        return motorhomeRepository.fetchAll();
+    }
+
+    public Motorhome add(Motorhome m) {
+        return motorhomeRepository.add(m);
+    }
+
+    public Motorhome findById(int id) {
+        return motorhomeRepository.findById(id);
+    }
+
+    public Boolean delete(int id) {
+        return motorhomeRepository.delete(id);
+    }
+
+    public Motorhome update(Motorhome m) {
+        return motorhomeRepository.update(m);
+    }
+}
