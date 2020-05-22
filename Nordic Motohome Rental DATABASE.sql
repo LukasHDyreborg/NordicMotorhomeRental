@@ -59,7 +59,7 @@ CREATE TABLE luxury
     FOREIGN KEY (licensePlate) REFERENCES standard(licensePlate)
 );
 
-CREATE TABLE contract
+CREATE TABLE contracts
 (
     id INT PRIMARY KEY AUTO_INCREMENT,
     fromDate DATETIME NOT NULL,
