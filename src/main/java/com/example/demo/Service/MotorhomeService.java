@@ -1,6 +1,5 @@
 package com.example.demo.Service;
 
-import com.example.demo.Model.Luxury;
 import com.example.demo.Model.Motorhome;
 import com.example.demo.Repository.MotorhomeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +20,7 @@ public class MotorhomeService {
         return motorhomeRepository.add(m);
     }
 
-    public Motorhome findById(int id) {
+    public Motorhome findById(String id) {
         return motorhomeRepository.findById(id);
     }
 

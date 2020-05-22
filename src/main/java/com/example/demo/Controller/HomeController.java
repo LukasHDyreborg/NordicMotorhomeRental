@@ -10,9 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 @Controller
 public class HomeController {
@@ -138,11 +136,16 @@ public class HomeController {
     @GetMapping("/contract")
     public String contract(Model model){
         List<Contract> contractList = contractService.fetchAll();
-        List<Motorhome> motorhomeList = motorhomeService.fetchAll();
-        List<Customer> customerList = customerService.fetchAll();
+
+        for(int i = 0; i < contractList.size(); i++){
+            contractList.get(i).setCustomer(customerService.findById(contractList.get(i).getCustomId()));
+        }
+
+        for(int i = 0; i < contractList.size(); i++){
+            contractList.get(i).setMotorhome(motorhomeService.findById(contractList.get(i).getCarId()));
+        }
         model.addAttribute("contracts", contractList);
-        model.addAttribute("motorhomes", motorhomeList);
-        model.addAttribute("customers", customerList);
+
         return "home/contract";
     }
 }

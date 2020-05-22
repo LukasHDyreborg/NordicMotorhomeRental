@@ -12,42 +12,43 @@
 <a href="/createCustomer">
     <button class="btn-create">Register new Customer!</button>
 </a>
+
 <table>
     <thead>
-    <tr>
-        <th>ID</th>
-        <th>Navn</th>
-        <th>Alder</th>
-        <th>CPR-Nummer</th>
-        <th>Email</th>
-        <th>Tlf. nr.</th>
-        <th>Adresse</th>
-        <th>Postnummer</th>
-        <!-- <th>City</th>
-        <th>Country</th> -->
-        <th>Kørekortnummer</th>
-        <th>Udstedelsesdato</th>
-        <th>Options</th>
-    </tr>
+        <tr>
+            <th>ID</th>
+            <th>Navn</th>
+            <th>Alder</th>
+            <th>CPR-Nummer</th>
+            <th>Email</th>
+            <th>Tlf. nr.</th>
+            <th>Adresse</th>
+            <th>Postnummer</th>
+            <!-- <th>City</th>
+            <th>Country</th> -->
+            <th>Kørekortnummer</th>
+            <th>Udstedelsesdato</th>
+            <th>Options</th>
+        </tr>
     </thead>
     <tbody>
-    <tr th:each="customer: ${customers}"> <!--th:each means it will loop through the customers list -->
-        <td th:text="${customer.id}" />
-        <td th:text="${customer.name}" />
-        <td th:text="${customer.age}" />
-        <td th:text="${customer.cpr}" />
-        <td th:text="${customer.email}" />
-        <td th:text="${customer.phone}" />
-        <td th:text="${customer.address}" />
-        <td th:text="${customer.zip_code}" />
-        <td th:text="${customer.driverLicenseNumber}" />
-        <td th:text="${customer.driverLicenseDate}" />
-        <td>
-            <a th:href="@{'/viewCustomer/'+${customer.id}}">
-                <button class="btn-show">Show</button>
-            </a>
-        </td>
-    </tr>
+        <tr th:each="customer: ${customers}"> <!--th:each means it will loop through the customers list -->
+            <td th:text="${customer.id}" />
+            <td th:text="${customer.name}" />
+            <td th:text="${customer.age}" />
+            <td th:text="${customer.cpr}" />
+            <td th:text="${customer.email}" />
+            <td th:text="${customer.phone}" />
+            <td th:text="${customer.address}" />
+            <td th:text="${customer.zip_code}" />
+            <td th:text="${customer.driverLicenseNumber}" />
+            <td th:text="${customer.driverLicenseDate}" />
+            <td>
+                <a th:href="@{'/viewCustomer/'+${customer.id}}">
+                    <button class="btn-show">Show</button>
+                </a>
+            </td>
+        </tr>
     </tbody>
 </table>
 </body>

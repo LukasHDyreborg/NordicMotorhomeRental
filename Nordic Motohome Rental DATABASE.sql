@@ -65,11 +65,11 @@ CREATE TABLE contracts
     fromDate DATE NOT NULL,
     toDate DATE NOT NULL,
     carId VARCHAR(45) NOT NULL,
-    customerId INT NOT NULL,
+    customId INT NOT NULL,
     maxKM INT NOT NULL,
     price INT NOT NULL,
     FOREIGN KEY (carId) REFERENCES motorhomes(licensePlate),
-    FOREIGN KEY (customerId) REFERENCES customers(id)
+    FOREIGN KEY (customId) REFERENCES customers(id)
 );
 
 DROP USER IF EXISTS 'user'@'localhost';

@@ -22,15 +22,15 @@
             </tr>
         </thead>
         <tbody>
-            <tr th:each="object: ${allInfo}">
+            <tr th:each="contract: ${contracts}">
 
-                <td th:text="${Arraylist.contract.id}"></td>
+                <td th:text="${contract.id}"></td>
                 <td th:text="${contract.fromDate}"></td>
-                <td th:text="${customer.name}"></td>
-                <td th:text="${customer.phone}"></td>
-                <td th:text="${customer.email}"></td>
-                <td th:text="${motorhome.brand}"></td>
-                <td th:text="${motorhome.licensePlate}"></td>
+                <td th:text="${contract.customer.name}"></td>
+                <td th:text="${contract.customer.phone}"></td>
+                <td th:text="${contract.customer.email}"></td>
+                <td th:text="${contract.motorhome.brand}"></td>
+                <td th:text="${contract.motorhome.licensePlate}"></td>
                 <td th:text="${contract.price}"></td>
                 <td th:text="${contract.maxKM}"></td>
             </tr>

@@ -29,7 +29,7 @@ public class MotorhomeRepository {
         return null;
     }
 
-    public Motorhome findById(int id) {
+    public Motorhome findById(String id) {
         String sql = "SELECT * FROM motorhomes WHERE licensePlate = ?";
         RowMapper<Motorhome> rowMapper = new BeanPropertyRowMapper<>(Motorhome.class);
         return template.queryForObject(sql, rowMapper, id);
