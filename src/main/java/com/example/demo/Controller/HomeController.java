@@ -1,13 +1,7 @@
 package com.example.demo.Controller;
 
-import com.example.demo.Model.Customer;
-import com.example.demo.Model.Economy;
-import com.example.demo.Model.Luxury;
-import com.example.demo.Model.Standard;
-import com.example.demo.Service.CustomerService;
-import com.example.demo.Service.EconomyService;
-import com.example.demo.Service.LuxuryService;
-import com.example.demo.Service.StandardService;
+import com.example.demo.Model.*;
+import com.example.demo.Service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,7 +10,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class HomeController {
@@ -29,9 +25,11 @@ public class HomeController {
     StandardService standardService;
     @Autowired
     LuxuryService luxuryService;
-    /*@Autowired
+    @Autowired
     ContractService contractService;
-     */
+    @Autowired
+    MotorhomeService motorhomeService;
+
 
     @GetMapping("/")
     public String index(){
@@ -135,5 +133,16 @@ public class HomeController {
     public String createEconomy(@ModelAttribute Economy economy){
         economyService.add(economy);
         return "redirect:/motorhome";
+    }
+
+    @GetMapping("/contract")
+    public String contract(Model model){
+        List<Contract> contractList = contractService.fetchAll();
+        List<Motorhome> motorhomeList = motorhomeService.fetchAll();
+        List<Customer> customerList = customerService.fetchAll();
+        model.addAttribute("contracts", contractList);
+        model.addAttribute("motorhomes", motorhomeList);
+        model.addAttribute("customers", customerList);
+        return "home/contract";
     }
 }

@@ -5,7 +5,7 @@ USE nordicMotorhome;
 
 CREATE TABLE customers
 (
-	id INT PRIMARY KEY AUTO_INCREMENT,
+    id INT PRIMARY KEY AUTO_INCREMENT,
     `name` VARCHAR(45) NOT NULL,
     age INT NOT NULL,
     email VARCHAR(45) NOT NULL,
@@ -62,11 +62,12 @@ CREATE TABLE luxury
 CREATE TABLE contracts
 (
     id INT PRIMARY KEY AUTO_INCREMENT,
-    fromDate DATETIME NOT NULL,
-    toDate DATETIME NOT NULL,
+    fromDate DATE NOT NULL,
+    toDate DATE NOT NULL,
     carId VARCHAR(45) NOT NULL,
     customerId INT NOT NULL,
     maxKM INT NOT NULL,
+    price INT NOT NULL,
     FOREIGN KEY (carId) REFERENCES motorhomes(licensePlate),
     FOREIGN KEY (customerId) REFERENCES customers(id)
 );

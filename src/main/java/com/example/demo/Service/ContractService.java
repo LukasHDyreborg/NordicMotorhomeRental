@@ -5,12 +5,14 @@ import com.example.demo.Repository.ContractRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ContractService {
     @Autowired
     ContractRepository contractRepository;
 
-    public Contract fetchAll() {
+    public List<Contract> fetchAll() {
         return contractRepository.fetchAll();
     }
 

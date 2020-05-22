@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Contract</title>
+    <link rel="stylesheet" type="text/css" href="/MyCSS.css">
+</head>
+<body>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Contract ID</th>
+                <th>Fra og til</th>
+                <th>Kunde</th>
+                <th>Tlf</th>
+                <th>Email</th>
+                <th>AutoCamper (Brand og model)</th>
+                <th>Nummerplade</th>
+                <th>Pris</th>
+                <th>Max KM</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="object: ${allInfo}">
+
+                <td th:text="${Arraylist.contract.id}"></td>
+                <td th:text="${contract.fromDate}"></td>
+                <td th:text="${customer.name}"></td>
+                <td th:text="${customer.phone}"></td>
+                <td th:text="${customer.email}"></td>
+                <td th:text="${motorhome.brand}"></td>
+                <td th:text="${motorhome.licensePlate}"></td>
+                <td th:text="${contract.price}"></td>
+                <td th:text="${contract.maxKM}"></td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>
