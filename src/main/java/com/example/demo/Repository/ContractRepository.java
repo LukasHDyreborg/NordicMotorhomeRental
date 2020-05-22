@@ -7,12 +7,14 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public class ContractRepository {
     @Autowired
     JdbcTemplate template;
 
-    public Contract fetchAll() {
+    public List<Contract> fetchAll() {
         String sql = "SELECT * FROM contracts contract JOIN customers customer ON customer.id = contract.id JOIN motorhomes motorhome ON motorhome.licensePlate = contract.id";
         RowMapper<Contract> rowMapper = new BeanPropertyRowMapper<>(Contract.class);
         return template.query(sql, rowMapper);
