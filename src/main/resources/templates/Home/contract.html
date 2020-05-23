@@ -6,12 +6,16 @@
     <link rel="stylesheet" type="text/css" href="/MyCSS.css">
 </head>
 <body>
+    <a href="/createContract">
+        <button class="btn-create">Register new Contract!</button>
+    </a>
 
     <table>
         <thead>
             <tr>
                 <th>Contract ID</th>
-                <th>Fra og til</th>
+                <th>Fra</th>
+                <th>Til</th>
                 <th>Kunde</th>
                 <th>Tlf</th>
                 <th>Email</th>
@@ -19,6 +23,7 @@
                 <th>Nummerplade</th>
                 <th>Pris</th>
                 <th>Max KM</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -26,6 +31,7 @@
 
                 <td th:text="${contract.id}"></td>
                 <td th:text="${contract.fromDate}"></td>
+                <td th:text="${contract.toDate}"></td>
                 <td th:text="${contract.customer.name}"></td>
                 <td th:text="${contract.customer.phone}"></td>
                 <td th:text="${contract.customer.email}"></td>
@@ -33,6 +39,11 @@
                 <td th:text="${contract.motorhome.licensePlate}"></td>
                 <td th:text="${contract.price}"></td>
                 <td th:text="${contract.maxKM}"></td>
+                <td>
+                    <a th:href="@{'/viewContract/'+${contract.id}}">
+                        <button class="btn-show">Show</button>
+                    </a>
+                </td>
             </tr>
         </tbody>
     </table>

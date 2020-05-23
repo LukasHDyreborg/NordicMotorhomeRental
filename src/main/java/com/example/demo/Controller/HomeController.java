@@ -5,10 +5,7 @@ import com.example.demo.Service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -147,5 +144,68 @@ public class HomeController {
         model.addAttribute("contracts", contractList);
 
         return "home/contract";
+    }
+
+    @GetMapping("/createContract")
+    public String createContract(Model model) {
+        List<Customer> customerList = customerService.fetchAll();
+        List<Economy> economyList = economyService.fetchAll();
+        List<Standard> standardList = standardService.fetchAll();
+        List<Luxury> luxuryList = luxuryService.fetchAll();
+
+        model.addAttribute("customers", customerList);
+        model.addAttribute("economies", economyList);
+        model.addAttribute("standards", standardList);
+        model.addAttribute("luxuries", luxuryList);
+        return "home/createContract";
+    }
+
+    @PostMapping("/createContract")
+    public String createContract(@ModelAttribute Contract contract/*, @RequestParam("customId") int id, @R*/){
+        contractService.add(contract);
+        return "redirect:/contract";
+    }
+
+    @GetMapping("/viewContract/{id}")
+    public String viewContract(@PathVariable("id") int id, Model model) {
+        Contract contract = contractService.findById(id);
+        contract.setCustomer(customerService.findById(contract.getCustomId()));
+        contract.setMotorhome(motorhomeService.findById(contract.getCarId()));
+        model.addAttribute("contract", contract);
+        return "home/viewContract";
+    }
+
+    @GetMapping("/deleteContract/{id}")
+    public String deleteContract(@PathVariable("id") int id) {
+        boolean success = contractService.delete(id);
+
+        if(success){
+            return "home/success";
+        }
+        else{
+            return "home/failure";
+        }
+    }
+
+    @GetMapping("/updateContract/'{id}")
+    public String updateContract(@PathVariable("id") int id, Model model) {
+        model.addAttribute("contract", contractService.findById(id));
+
+        List<Customer> customerList = customerService.fetchAll();
+        List<Economy> economyList = economyService.fetchAll();
+        List<Standard> standardList = standardService.fetchAll();
+        List<Luxury> luxuryList = luxuryService.fetchAll();
+
+        model.addAttribute("customers", customerList);
+        model.addAttribute("economies", economyList);
+        model.addAttribute("standards", standardList);
+        model.addAttribute("luxuries", luxuryList);
+        return "home/updateContract";
+    }
+
+    @PostMapping("/updateContract")
+    public String updateContract(@ModelAttribute Contract c) {
+        contractService.update(c);
+        return "redirect:/contract";
     }
 }

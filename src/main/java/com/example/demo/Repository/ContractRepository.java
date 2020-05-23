@@ -15,25 +15,41 @@ public class ContractRepository {
     JdbcTemplate template;
 
     public List<Contract> fetchAll() {
-        String sql = "SELECT * FROM contracts c JOIN customers cust ON c.customId = cust.id JOIN motorhomes m ON c.carId = m.licensePlate";
+        String sql = "SELECT c.id, fromDate, toDate, carId, customId, maxKM, price FROM contracts c JOIN customers cust ON c.customId = cust.id JOIN motorhomes m ON c.carId = m.licensePlate ORDER BY c.id";
         RowMapper<Contract> rowMapper = new BeanPropertyRowMapper<>(Contract.class);
         return template.query(sql, rowMapper);
     }
 
     public Contract add(Contract c) {
-        return null;
+        /*try{*/
+            String sql = "INSERT INTO contracts() VALUES (DEFAULT, ?, ?, ?, ?, ?, ?)";
+            template.update(sql, c.getFromDate(), c.getToDate(), c.getCarId(), c.getCustomId(), c.getMaxKM(), c.getPrice());
+            return null;
+        /*} catch(Exception e) {
+
+        }*/
     }
 
     public Contract findById(int id) {
-        return null;
+        String sql = "SELECT c.id, fromDate, toDate, carId, customId, maxKM, price FROM contracts c JOIN customers cust ON c.customId = cust.id JOIN motorhomes m ON c.carId = m.licensePlate WHERE c.id = ?";
+        RowMapper<Contract> rowMapper = new BeanPropertyRowMapper<>(Contract.class);
+        return template.queryForObject(sql, rowMapper, id);
     }
 
     public Boolean delete(int id) {
-        String sql = "DELETE FROM contract WHERE id = ?";
-        return template.update(sql, id) < 0;
+        try{
+            String sql = "DELETE FROM contracts WHERE id = ?";
+            template.update(sql, id);
+            return true;
+        }
+        catch(Exception e){
+            return false;
+        }
     }
 
     public Contract update(Contract c) {
+        String sql = "UPDATE contracts c SET fromDate = ?, toDate = ?, carId = ?, customId = ?, maxKM = ?, price = ? WHERE id = ?";
+        template.update(sql, c.getFromDate(), c.getToDate(), c.getCarId(), c.getCustomId(), c.getMaxKM(), c.getPrice(), c.getId());
         return null;
     }
 }

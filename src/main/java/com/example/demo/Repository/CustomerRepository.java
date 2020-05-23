@@ -28,13 +28,13 @@ public class CustomerRepository {
     }
 
     public boolean add(Customer c){
-        try{
+        /*try{*/
             String sql = "INSERT INTO customers() VALUES (DEFAULT, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             template.update(sql, c.getName(), c.getAge(), c.getCpr(), c.getEmail(), c.getPhone(), c.getAddress(), c.getZip_code(), c.getDriverLicenseNumber(), c.getDriverLicenseDate());
             return true;
-        }catch(Exception e){
+        /*}catch(Exception e){
             return false;
-        }
+        }*/
     }
 
     public Customer update(Customer c){

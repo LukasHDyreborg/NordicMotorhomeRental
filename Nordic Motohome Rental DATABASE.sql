@@ -65,11 +65,11 @@ CREATE TABLE contracts
     fromDate DATE NOT NULL,
     toDate DATE NOT NULL,
     carId VARCHAR(45) NOT NULL,
-    customId INT NOT NULL,
+    customerId INT NOT NULL,
     maxKM INT NOT NULL,
     price INT NOT NULL,
     FOREIGN KEY (carId) REFERENCES motorhomes(licensePlate),
-    FOREIGN KEY (customId) REFERENCES customers(id)
+    FOREIGN KEY (customerId) REFERENCES customers(id)
 );
 
 CREATE TABLE accessories
