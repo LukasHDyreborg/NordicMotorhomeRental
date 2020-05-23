@@ -72,6 +72,15 @@ CREATE TABLE contracts
     FOREIGN KEY (customId) REFERENCES customers(id)
 );
 
+CREATE TABLE accessories
+(
+id INT PRIMARY KEY AUTO_INCREMENT,
+`name` VARCHAR(45) NOT NULL,
+amount_available INT NOT NULL,
+amount_total INT NOT NULL,
+price INT NOT NULL,
+)
+
 DROP USER IF EXISTS 'user'@'localhost';
 CREATE USER 'user'@'localhost' IDENTIFIED BY '1234567890';
 GRANT ALL PRIVILEGES ON nordicMotorhome.* TO 'user'@'localhost';
