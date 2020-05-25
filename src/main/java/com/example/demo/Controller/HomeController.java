@@ -45,6 +45,7 @@ public class HomeController {
     public String createCustomer(){
         return "home/createCustomer";
     }
+
     @PostMapping("/createCustomer")
     public String createCustomer(@ModelAttribute Customer c){
         boolean success = customerService.add(c);

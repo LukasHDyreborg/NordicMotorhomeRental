@@ -17,13 +17,13 @@
     <input type="text" name="licensePlate" required>
 
     <label>Pris</label>
-    <input type="text" name="pricePerDay" required>
+    <input type="number" name="pricePerDay" required>
 
     <label>Sæder</label>
-    <input type="text" name="seats" required>
+    <input type="number" name="seats" required>
 
     <label>Senge</label>
-    <input type="text" name="beds" required>
+    <input type="number" name="beds" required>
 
     <label>Brændstof</label>
     <select name="fuelType">
@@ -39,19 +39,19 @@
     </select>
 
     <label>Odometer</label>
-    <input type="text" name="odometer" required>
+    <input type="number" name="odometer" required>
 
     <label>Registrations Dato</label>
-    <input type="text" name="registrationDate" placeholder="YYYY-MM-DD" required>
+    <input type="date" name="registrationDate" required>
 
     <label>Længde & Højde</label>
     <input type="text" name="lengthAndHeight" required>
 
     <!-- <label>Type</label> -->
     <select name="type" hidden> <!-- see luxury comment -->
-        <option value="standard">Standard</option>
-        <option value="luxury">Luxury</option>
-        <option value="economy">Økonomi</option>
+        <option value="Standard">Standard</option>
+        <option value="Luxury">Luxury</option>
+        <option value="Economy">Økonomi</option>
     </select>
 
     <label>Køleskab</label>

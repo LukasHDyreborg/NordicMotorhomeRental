@@ -38,4 +38,4 @@ INSERT INTO luxury() VALUES ('CN MS 123', true, true);
 -- Contract
 /*INSERT INTO contracts() VALUES (id, fromDate, toDate, carId, customerId, maxKM, price);*/
 
-INSERT INTO contracts() VALUES (DEFAULT, '2020-05-22', '2020-05-31', 'BG 23 432', 1, '3600', '9000');
+INSERT INTO contracts() VALUES (DEFAULT, '2020-05-22', '2020-05-31', '9', 'BG 23 432', 1, '3600', '9000');

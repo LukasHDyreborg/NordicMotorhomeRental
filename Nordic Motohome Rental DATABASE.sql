@@ -12,7 +12,7 @@ CREATE TABLE customers
     cpr VARCHAR(20) NOT NULL UNIQUE,
     phone VARCHAR(45) NOT NULL,
     address VARCHAR(45) NOT NULL,
-    zip_code VARCHAR(45) NOT NULL,
+    zipCode VARCHAR(45) NOT NULL,
     driverLicenseNumber VARCHAR(45) NOT NULL,
     driverLicenseDate DATE NOT NULL
 );
@@ -64,12 +64,13 @@ CREATE TABLE contracts
     id INT PRIMARY KEY AUTO_INCREMENT,
     fromDate DATE NOT NULL,
     toDate DATE NOT NULL,
+    numberOfDays INT NOT NULL,
     carId VARCHAR(45) NOT NULL,
-    customerId INT NOT NULL,
+    customId INT NOT NULL,
     maxKM INT NOT NULL,
     price INT NOT NULL,
     FOREIGN KEY (carId) REFERENCES motorhomes(licensePlate),
-    FOREIGN KEY (customerId) REFERENCES customers(id)
+    FOREIGN KEY (customId) REFERENCES customers(id)
 );
 
 CREATE TABLE accessories

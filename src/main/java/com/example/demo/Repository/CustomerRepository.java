@@ -30,7 +30,7 @@ public class CustomerRepository {
     public boolean add(Customer c){
         /*try{*/
             String sql = "INSERT INTO customers() VALUES (DEFAULT, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-            template.update(sql, c.getName(), c.getAge(), c.getEmail(), c.getCpr(), c.getPhone(), c.getAddress(), c.getZip_code(), c.getDriverLicenseNumber(), c.getDriverLicenseDate());
+            template.update(sql, c.getName(), c.getAge(), c.getEmail(), c.getCpr(), c.getPhone(), c.getAddress(), c.getZipCode(), c.getDriverLicenseNumber(), c.getDriverLicenseDate());
             return true;
         /*}catch(Exception e){
             return false;
@@ -38,8 +38,8 @@ public class CustomerRepository {
     }
 
     public Customer update(Customer c){
-        String sql = "UPDATE customers SET `name` = ?, age = ?, email = ?, cpr = ?, phone = ?, address = ?, zip_code = ?, driver_license_number = ?, driver_license_date = ? WHERE id = ?";
-        template.update(sql, c.getName(), c.getAge(), c.getEmail(), c.getCpr(), c.getPhone(), c.getAddress(), c.getZip_code(), c.getDriverLicenseNumber(), c.getDriverLicenseDate(), c.getId());
+        String sql = "UPDATE customers SET `name` = ?, age = ?, email = ?, cpr = ?, phone = ?, address = ?, zipCode = ?, driverLicenseNumber = ?, driverLicenseDate = ? WHERE id = ?";
+        template.update(sql, c.getName(), c.getAge(), c.getEmail(), c.getCpr(), c.getPhone(), c.getAddress(), c.getZipCode(), c.getDriverLicenseNumber(), c.getDriverLicenseDate(), c.getId());
         return null;
     }
 

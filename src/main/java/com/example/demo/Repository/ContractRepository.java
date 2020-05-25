@@ -15,15 +15,15 @@ public class ContractRepository {
     JdbcTemplate template;
 
     public List<Contract> fetchAll() {
-        String sql = "SELECT c.id, fromDate, toDate, carId, customId, maxKM, price FROM contracts c JOIN customers cust ON c.customId = cust.id JOIN motorhomes m ON c.carId = m.licensePlate ORDER BY c.id";
+        String sql = "SELECT c.id, fromDate, toDate, numberOfDays, carId, customId, maxKM, price FROM contracts c JOIN customers cust ON c.customId = cust.id JOIN motorhomes m ON c.carId = m.licensePlate ORDER BY c.id";
         RowMapper<Contract> rowMapper = new BeanPropertyRowMapper<>(Contract.class);
         return template.query(sql, rowMapper);
     }
 
     public Contract add(Contract c) {
         /*try{*/
-            String sql = "INSERT INTO contracts() VALUES (DEFAULT, ?, ?, ?, ?, ?, ?)";
-            template.update(sql, c.getFromDate(), c.getToDate(), c.getCarId(), c.getCustomId(), c.getMaxKM(), c.getPrice());
+            String sql = "INSERT INTO contracts() VALUES (DEFAULT, ?, ?, ?, ?, ?, ?, ?)";
+            template.update(sql, c.getFromDate(), c.getToDate(), c.getNumberOfDays(), c.getCarId(), c.getCustomId(), c.getMaxKM(), c.getPrice());
             return null;
         /*} catch(Exception e) {
 
@@ -31,7 +31,7 @@ public class ContractRepository {
     }
 
     public Contract findById(int id) {
-        String sql = "SELECT c.id, fromDate, toDate, carId, customId, maxKM, price FROM contracts c JOIN customers cust ON c.customId = cust.id JOIN motorhomes m ON c.carId = m.licensePlate WHERE c.id = ?";
+        String sql = "SELECT c.id, fromDate, toDate, numberOfDays, carId, customId, maxKM, price FROM contracts c JOIN customers cust ON c.customId = cust.id JOIN motorhomes m ON c.carId = m.licensePlate WHERE c.id = ?";
         RowMapper<Contract> rowMapper = new BeanPropertyRowMapper<>(Contract.class);
         return template.queryForObject(sql, rowMapper, id);
     }
@@ -48,8 +48,8 @@ public class ContractRepository {
     }
 
     public Contract update(Contract c) {
-        String sql = "UPDATE contracts c SET fromDate = ?, toDate = ?, carId = ?, customId = ?, maxKM = ?, price = ? WHERE id = ?";
-        template.update(sql, c.getFromDate(), c.getToDate(), c.getCarId(), c.getCustomId(), c.getMaxKM(), c.getPrice(), c.getId());
+        String sql = "UPDATE contracts c SET fromDate = ?, toDate = ?, numberOfDays = ?, carId = ?, customId = ?, maxKM = ?, price = ? WHERE id = ?";
+        template.update(sql, c.getFromDate(), c.getToDate(), c.getNumberOfDays(), c.getCarId(), c.getCustomId(), c.getMaxKM(), c.getPrice(), c.getId());
         return null;
     }
 }

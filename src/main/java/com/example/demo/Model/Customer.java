@@ -13,14 +13,14 @@ public class Customer {
     private String email;
     private String phone;
     private String address;
-    private String zip_code;
+    private String zipCode;
     private String driverLicenseNumber;
     private String driverLicenseDate;
 
     public Customer() {
     }
 
-    public Customer(int id, String name, int age, String cpr, String email, String phone, String address, String zip_code, String driverLicenseNumber, String driverLicenseDate) {
+    public Customer(int id, String name, int age, String cpr, String email, String phone, String address, String zipCode, String driverLicenseNumber, String driverLicenseDate) {
         this.id = id;
         this.name = name;
         this.age = age;
@@ -28,7 +28,7 @@ public class Customer {
         this.email = email;
         this.phone = phone;
         this.address = address;
-        this.zip_code = zip_code;
+        this.zipCode = zipCode;
         this.driverLicenseNumber = driverLicenseNumber;
         this.driverLicenseDate = driverLicenseDate;
     }
@@ -89,12 +89,12 @@ public class Customer {
         this.address = address;
     }
 
-    public String getZip_code() {
-        return zip_code;
+    public String getZipCode() {
+        return zipCode;
     }
 
-    public void setZip_code(String zip_code) {
-        this.zip_code = zip_code;
+    public void setZipCode(String zipCode) {
+        this.zipCode = zipCode;
     }
 
     public String getDriverLicenseNumber() {

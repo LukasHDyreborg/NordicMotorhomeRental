@@ -3,34 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <title>Season Test</title>
+    <link rel="stylesheet" type="text/css" href="/MyCSS.css">
 </head>
 <body>
     <h1>Seasons:</h1>
     <a href="/createSeason">
         <button class="btn-create">Register new Season!</button>
     </a>
-    <table>
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Startdato</th>
-            <th>Slutdato</th>
-            <th>Type</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="season: ${seasons}"> <!--th:each means it will loop through the season list -->
-            <td th:text="${season.id}" />
-            <td th:text="${season.start_date}" />
-            <td th:text="${season.end_date}" />
-            <td th:text="${season.type}" />
-            <td>
-                <a th:href="@{'/viewSeason/'+${season.id}}">
-                    <button class="btn-show">Show</button>
-                </a>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+
+    <div class="wrapper-table">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Startdato</th>
+                    <th>Slutdato</th>
+                    <th>Type</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="season: ${seasons}"> <!--th:each means it will loop through the season list -->
+                    <td th:text="${season.id}" />
+                    <td th:text="${season.start_date}" />
+                    <td th:text="${season.end_date}" />
+                    <td th:text="${season.type}" />
+                    <td>
+                        <a th:href="@{'/viewSeason/'+${season.id}}">
+                            <button class="btn-show">Show</button>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>

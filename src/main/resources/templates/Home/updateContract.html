@@ -34,7 +34,7 @@
             <td th:text="${customer.email}" />
             <td th:text="${customer.phone}" />
             <td th:text="${customer.address}" />
-            <td th:text="${customer.zip_code}" />
+            <td th:text="${customer.zipCode}" />
             <td th:text="${customer.driverLicenseNumber}" />
             <td th:text="${customer.driverLicenseDate}" />
             <td>
@@ -47,9 +47,20 @@
     <input hidden type="text" name="id" th:value="${contract.id}">
 
     <label>Rental start</label>
-    <input type="text" name="fromDate" th:value="${contract.fromDate}" required>
+    <input type="date" name="fromDate" th:value="${contract.fromDate}" required>
     <label> Rental end</label>
-    <input type="text" name="toDate" th:value="${contract.toDate}" required>
+    <input type="date" name="toDate" th:value="${contract.toDate}" required>
+
+
+    <div>
+        <label>Start Date :</label>
+        <input type="date" id="startDate" th:value="${contract.fromDate}" onchange="time()" required>
+        <label>End Date :</label>
+        <input type="date" id="endDate" th:value="${contract.toDate}" onchange="time()" required>
+
+        <input type="text" name="totalDays" id="totalDays" readonly><br><br>
+    </div>
+
 
     <table>
         <thead>

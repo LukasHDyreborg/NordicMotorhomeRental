@@ -8,6 +8,7 @@ public class Contract {
     private int id;
     private String fromDate;
     private String toDate;
+    private int numberOfDays;
     @ManyToOne
     private Customer customer;
     private int customId;
@@ -20,10 +21,11 @@ public class Contract {
     public Contract() {
     }
 
-    public Contract(int id, String fromDate, String toDate, int customId, String carId, int maxKM, int price, Customer customer, Motorhome motorhome) {
+    public Contract(int id, String fromDate, String toDate,int numberOfDays, int customId, String carId, int maxKM, int price, Customer customer, Motorhome motorhome) {
         this.id = id;
         this.fromDate = fromDate;
         this.toDate = toDate;
+        this.numberOfDays = numberOfDays;
         this.customId = customId;
         this.carId = carId;
         this.maxKM = maxKM;
@@ -54,6 +56,14 @@ public class Contract {
 
     public void setToDate(String toDate) {
         this.toDate = toDate;
+    }
+
+    public int getNumberOfDays() {
+        return numberOfDays;
+    }
+
+    public void setNumberOfDays(int numberOfDays) {
+        this.numberOfDays = numberOfDays;
     }
 
     public Customer getCustomer() {
