@@ -190,7 +190,7 @@ public class HomeController {
         }
     }
 
-    @GetMapping("/updateContract/'{id}")
+    @GetMapping("/updateContract/{id}")
     public String updateContract(@PathVariable("id") int id, Model model) {
         model.addAttribute("contract", contractService.findById(id));
 
