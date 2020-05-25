@@ -78,8 +78,15 @@ id INT PRIMARY KEY AUTO_INCREMENT,
 `name` VARCHAR(45) NOT NULL,
 amount_available INT NOT NULL,
 amount_total INT NOT NULL,
-price INT NOT NULL,
-)
+price INT NOT NULL
+);
+
+CREATE TABLE seasons (
+	id INT PRIMARY KEY AUTO_INCREMENT,
+    start_date DATE ,
+    end_date DATE,
+    `type` VARCHAR(10)
+);
 
 DROP USER IF EXISTS 'user'@'localhost';
 CREATE USER 'user'@'localhost' IDENTIFIED BY '1234567890';

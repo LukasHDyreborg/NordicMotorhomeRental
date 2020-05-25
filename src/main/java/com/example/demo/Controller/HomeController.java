@@ -24,6 +24,8 @@ public class HomeController {
     ContractService contractService;
     @Autowired
     MotorhomeService motorhomeService;
+    @Autowired
+    SeasonService seasonService;
 
 
     @GetMapping("/")
@@ -207,5 +209,57 @@ public class HomeController {
     public String updateContract(@ModelAttribute Contract c) {
         contractService.update(c);
         return "redirect:/contract";
+    }
+
+    @GetMapping("/season")
+    public String season(Model model){
+        List<Season> seasonList = seasonService.fetchAll();
+        model.addAttribute("seasons", seasonService.fetchAll());
+        return "home/season";
+    }
+
+    @GetMapping("/createSeason")
+    public String createSeason(Model model) {
+        return "home/createSeason";
+    }
+
+    @PostMapping("/createSeason")
+    public String createSeason(@ModelAttribute Season s){
+        boolean success = seasonService.add(s);
+
+        if(success){
+            return "home/success";
+        }else{
+            return "home/failure";
+        }
+    }
+
+    @GetMapping("/viewSeason/{id}")
+    public String viewSeason(@PathVariable("id") int id, Model model){
+        model.addAttribute("season", seasonService.findById(id));
+        return "home/viewSeason";
+    }
+
+    @GetMapping("/updateSeason/{id}")
+    public String updateSeason(@PathVariable("id") int id, Model model){
+        model.addAttribute("season", seasonService.findById(id));
+        return "home/updateSeason";
+    }
+    @PostMapping("/updateSeason")
+    public String updateSeason(@ModelAttribute Season c){
+        seasonService.update(c);
+        return "redirect:/Season";
+    }
+
+    @GetMapping("/deleteSeason/{id}")
+    public String deleteSeason(@PathVariable("id") int id){
+        boolean success = seasonService.delete(id);
+
+        if(success){
+            return "home/success";
+        }
+        else{
+            return "home/failure";
+        }
     }
 }
