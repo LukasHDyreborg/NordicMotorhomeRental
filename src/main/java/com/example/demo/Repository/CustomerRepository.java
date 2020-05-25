@@ -30,7 +30,7 @@ public class CustomerRepository {
     public boolean add(Customer c){
         /*try{*/
             String sql = "INSERT INTO customers() VALUES (DEFAULT, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-            template.update(sql, c.getName(), c.getAge(), c.getCpr(), c.getEmail(), c.getPhone(), c.getAddress(), c.getZip_code(), c.getDriverLicenseNumber(), c.getDriverLicenseDate());
+            template.update(sql, c.getName(), c.getAge(), c.getEmail(), c.getCpr(), c.getPhone(), c.getAddress(), c.getZip_code(), c.getDriverLicenseNumber(), c.getDriverLicenseDate());
             return true;
         /*}catch(Exception e){
             return false;
