@@ -26,6 +26,8 @@ public class HomeController {
     MotorhomeService motorhomeService;
     @Autowired
     SeasonService seasonService;
+    @Autowired
+    AccessoryService accessoryService;
 
 
     @GetMapping("/")
@@ -215,7 +217,7 @@ public class HomeController {
     @GetMapping("/season")
     public String season(Model model){
         List<Season> seasonList = seasonService.fetchAll();
-        model.addAttribute("seasons", seasonService.fetchAll());
+        model.addAttribute("seasons", seasonList);
         return "home/season";
     }
 
@@ -255,6 +257,58 @@ public class HomeController {
     @GetMapping("/deleteSeason/{id}")
     public String deleteSeason(@PathVariable("id") int id){
         boolean success = seasonService.delete(id);
+
+        if(success){
+            return "home/success";
+        }
+        else{
+            return "home/failure";
+        }
+    }
+
+    @GetMapping("/accessory")
+    public String accessory(Model model){
+        List<Accessory> accessoryList = accessoryService.fetchAll();
+        model.addAttribute("accessories",accessoryList);
+        return "home/accessory";
+    }
+
+    @GetMapping("/createAccessory")
+    public String createAccessory(Model model) {
+        return "home/createAccessory";
+    }
+    @PostMapping("/createAccessory")
+    public String createAccessory(@ModelAttribute Accessory a){
+        boolean success = accessoryService.add(a);
+
+        if(success){
+            return "home/success";
+        }else{
+            return "home/failure";
+        }
+    }
+
+    @GetMapping("/viewAccessory/{id}")
+    public String viewAccessory(@PathVariable("id") int id, Model model){
+        model.addAttribute("accessory", accessoryService.findById(id));
+        return "home/viewAccessory";
+    }
+
+    @GetMapping("/updateAccessory/{id}")
+    public String updateAccessory(@PathVariable("id") int id, Model model){
+        model.addAttribute("Accessory", accessoryService.findById(id));
+        return "home/updateAccessory";
+    }
+    @PostMapping("/updateAccessory")
+    public String updateAccessory(@ModelAttribute Accessory a){
+        accessoryService.update(a);
+        return "redirect:/accessory";
+    }
+
+    @GetMapping("/deleteAccessory/{id}")
+    public String deleteAccessory(@PathVariable("id") int id){
+        boolean success = accessoryService.delete(id);
+        Accessory accessory = new Accessory();
 
         if(success){
             return "home/success";

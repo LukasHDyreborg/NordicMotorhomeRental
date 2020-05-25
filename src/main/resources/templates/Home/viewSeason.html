@@ -6,18 +6,18 @@
     <link rel="stylesheet" type="text/css" href="/MyCSS.css">
 </head>
 <body>
-<h1>View Season</h1>
+    <h1>View Season</h1>
 
-<span th:text="${season.id}"/>
-<span th:text="${season.start_date}"/>
-<span th:text="${season.end_date}"/>
-<span th:text="${season.type}"/>
+    <span th:text="${season.id}"/>
+    <span th:text="${season.start_date}"/>
+    <span th:text="${season.end_date}"/>
+    <span th:text="${season.type}"/>
 
-<a th:href="@{'/deleteSeason/'+${season.id}}">
-    <button class="btn-delete">Delete</button>
-</a>
-<a th:href="@{'/updateSeason/'+${season.id}}">
-    <button class="btn-update">update</button>
-</a>
+    <a th:href="@{'/deleteSeason/'+${season.id}}">
+        <button class="btn-delete">Delete</button>
+    </a>
+    <a th:href="@{'/updateSeason/'+${season.id}}">
+        <button class="btn-update">update</button>
+    </a>
 </body>
 </html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>update season</title>
+    <link rel="stylesheet" type="text/css" href="/MyCSS.css">
+</head>
+<body>
+<form action="/updateAccessory" method="post" class="btn-update">
+    <input hidden type="text" name="id" th:value="${Accessory.id}">
+    <label>Start dato</label>
+    <input type="text" name="Amount available" th:value="${Accessory.amount_available}" required>
+    <label>Slut dato</label>
+    <input type="text" name="end_date" th:value="${Accessory.amount_total}" required>
+    <label>Type</label>
+    <input type="text" name="type" th:value="${Accessory.price}" required>
+
+    <input type="submit" value="update Accessory">
+</form>
+</body>
+</html>

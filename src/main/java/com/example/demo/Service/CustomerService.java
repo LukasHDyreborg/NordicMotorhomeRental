@@ -29,7 +29,7 @@ public class CustomerService {
         return customerRepository.update(c);
     }
 
-    public Boolean delete(int id){
+    public boolean delete(int id){
         return customerRepository.delete(id);
     }
 }

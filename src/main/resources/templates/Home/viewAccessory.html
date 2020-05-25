@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>View accessories</title>
+    <link rel="stylesheet" type="text/css" href="/MyCSS.css">
+</head>
+<body>
+    <h1>View accessories</h1>
+
+    <span th:text="${accessory.id}"/>
+    <span th:text="${accessory.amountAvailable}"/>
+    <span th:text="${accessory.amountTotal}"/>
+    <span th:text="${accessory.price}"/>
+
+    <a th:href="@{'/deleteAccessory/'+${accessory.id}}">
+        <button class="btn-delete">Delete</button>
+    </a>
+    <a th:href="@{'/updateAccessory/'+${accessory.id}}">
+        <button class="btn-update">update</button>
+    </a>
+</body>
+</html>
