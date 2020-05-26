@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Staff</title>
+    <link rel="stylesheet" type="text/css" href="/MyCSS.css">
+</head>
+<body>
+<h1>Staff members:</h1>
+<a href="/createStaff">
+    <button class="btn-create">Register new Staff member!</button>
+</a>
+
+<div class="wrapper-table">
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Initials</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="staff: ${staffs}"> <!--th:each means it will loop through the season list -->
+            <td th:text="${staff.id}" />
+            <td th:text="${staff.name}" />
+            <td th:text="${staff.initials}" />
+            <td>
+                <a th:href="@{'/viewStaff/'+${staff.id}}">
+                    <button class="btn-show">Show</button>
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

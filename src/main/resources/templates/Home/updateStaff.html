@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>update staff</title>
+    <link rel="stylesheet" type="text/css" href="/MyCSS.css">
+</head>
+<body>
+<form action="/updateStaff" method="post" class="btn-update">
+    <input hidden type="text" name="id" th:value="${staff.id}">
+    <label>Navn</label>
+    <input type="text" name="name" th:value="${staff.name}" required>
+    <label>Initialer</label>
+    <input type="text" name="initials" th:value="${staff.initials}" required>
+
+    <input type="submit" value="update staff">
+</form>
+</body>
+</html>

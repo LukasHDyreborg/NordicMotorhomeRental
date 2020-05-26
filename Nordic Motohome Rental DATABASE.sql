@@ -89,6 +89,12 @@ CREATE TABLE seasons (
     `type` VARCHAR(10)
 );
 
+CREATE TABLE staffs (
+	id INT PRIMARY KEY AUTO_INCREMENT,
+    `name` VARCHAR(45),
+    initials VARCHAR(5)
+);
+
 DROP USER IF EXISTS 'user'@'localhost';
 CREATE USER 'user'@'localhost' IDENTIFIED BY '1234567890';
 GRANT ALL PRIVILEGES ON nordicMotorhome.* TO 'user'@'localhost';

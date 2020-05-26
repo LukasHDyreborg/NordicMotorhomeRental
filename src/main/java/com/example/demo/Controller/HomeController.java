@@ -28,6 +28,8 @@ public class HomeController {
     SeasonService seasonService;
     @Autowired
     AccessoryService accessoryService;
+    @Autowired
+    StaffService staffService;
 
 
     @GetMapping("/")
@@ -213,7 +215,7 @@ public class HomeController {
         contractService.update(c);
         return "redirect:/contract";
     }
-
+    //season
     @GetMapping("/season")
     public String season(Model model){
         List<Season> seasonList = seasonService.fetchAll();
@@ -251,7 +253,7 @@ public class HomeController {
     @PostMapping("/updateSeason")
     public String updateSeason(@ModelAttribute Season c){
         seasonService.update(c);
-        return "redirect:/Season";
+        return "redirect:/season";
     }
 
     @GetMapping("/deleteSeason/{id}")
@@ -265,7 +267,7 @@ public class HomeController {
             return "home/failure";
         }
     }
-
+    //accessory
     @GetMapping("/accessory")
     public String accessory(Model model){
         List<Accessory> accessoryList = accessoryService.fetchAll();
@@ -309,6 +311,59 @@ public class HomeController {
     public String deleteAccessory(@PathVariable("id") int id){
         boolean success = accessoryService.delete(id);
         Accessory accessory = new Accessory();
+
+        if(success){
+            return "home/success";
+        }
+        else{
+            return "home/failure";
+        }
+    }
+
+    //staff
+    @GetMapping("/staff")
+    public String staff(Model model){
+        List<Staff> staffList = staffService.fetchAll();
+        model.addAttribute("staffs", staffList);
+        return "home/staff";
+    }
+
+    @GetMapping("/createStaff")
+    public String createStaff(Model model) {
+        return "home/createStaff";
+    }
+    @PostMapping("/createStaff")
+    public String createStaff(@ModelAttribute Staff s){
+        boolean success = staffService.add(s);
+
+        if(success){
+            return "home/success";
+        }else{
+            return "home/failure";
+        }
+    }
+
+    @GetMapping("/viewStaff/{id}")
+    public String viewStaff(@PathVariable("id") int id, Model model){
+        model.addAttribute("staff", staffService.findById(id));
+        return "home/viewStaff";
+    }
+
+    @GetMapping("/updateStaff/{id}")
+    public String updateStaff(@PathVariable("id") int id, Model model){
+        model.addAttribute("staff", staffService.findById(id));
+        return "home/updateStaff";
+    }
+    @PostMapping("/updateStaff")
+    public String updateStaff(@ModelAttribute Staff s){
+        staffService.update(s);
+        return "redirect:/staff";
+    }
+
+    @GetMapping("/deleteStaff/{id}")
+    public String deleteStaff(@PathVariable("id") int id){
+        boolean success = staffService.delete(id);
+        Staff staff = new Staff();
 
         if(success){
             return "home/success";

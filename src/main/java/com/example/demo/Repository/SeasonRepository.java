@@ -38,7 +38,7 @@ public class SeasonRepository {
     }
 
     public Season update(Season s){
-        String sql = "UPDATE seasons SET start_date = ?, end_date = ?, 'type' = ? WHERE id = ?";
+        String sql = "UPDATE seasons SET start_date = ?, end_date = ?, `type` = ? WHERE id = ?";
         template.update(sql, s.getStart_date(), s.getEnd_date(), s.getType(), s.getId());
         return null;
     }
