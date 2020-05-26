@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Motorhome information</title>
+</head>
+<body>
+    <label>LicensePlate</label>
+    <span th:text="${motorhome.licensePlate}"/>
+    <label>Brand</label>
+    <span th:text="${motorhome.brand}"/>
+    <label>Model</label>
+    <span th:text="${motorhome.model}"/>
+    <label>Price Per Day</label>
+    <span th:text="${motorhome.pricePerDay}"/>
+    <label>Seats</label>
+    <span th:text="${motorhome.seats}"/>
+    <label>Beds</label>
+    <span th:text="${motorhome.beds}"/>
+    <label>FuelType</label>
+    <span th:text="${motorhome.fuelType}"/>
+    <label>Gear</label>
+    <span th:text="${motorhome.gear}"/>
+    <label>Odometer</label>
+    <span th:text="${motorhome.odometer}"/>
+    <label>Registration Date</label>
+    <span th:text="${motorhome.registrationDate}"/>
+    <label>Length and Height</label>
+    <span th:text="${motorhome.lengthAndHeight}"/>
+    <label>Type</label>
+    <span th:text="${motorhome.type}"/>
+    <label>Fridge</label>
+    <span th:text="${motorhome.fridge}"/>
+    <label>Toilet</label>
+    <span th:text="${motorhome.toilet}"/>
+    <label>Awning</label>
+    <span th:text="${motorhome.awning}"/>
+
+
+    <span th:if="${motorhome.type == 'Luxury'}">
+        <label>Shower</label>
+        <span th:text="${luxury.shower}"></span>
+        <label>Elstove</label>
+        <span th:text="${luxury.elStove}"></span>
+        <label>TV</label>
+        <span th:text="${luxury.tv}"></span>
+        <label>Rear View Camera</label>
+        <span th:text="${luxury.rearViewCamera}"></span>
+
+        <a th:href="@{'/updateLuxury/'+${luxury.licensePlate}}">
+            <button class="btn-update">update</button>
+        </a>
+
+        <a th:href="@{'/deleteLuxury/'+${luxury.licensePlate}}">
+            <button class="btn-delete">Delete</button>
+        </a>
+    </span>
+
+    <span th:if="${motorhome.type == 'Standard'}">
+        <label>Shower</label>
+        <span th:text="${standard.shower}"></span>
+        <label>Elstove</label>
+        <span th:text="${standard.elStove}"></span>
+
+        <a th:href="@{'/updateStandard/'+${standard.licensePlate}}">
+            <button class="btn-update">update</button>
+        </a>
+
+        <a th:href="@{'/deleteStandard/'+${standard.licensePlate}}">
+            <button class="btn-delete">Delete</button>
+        </a>
+    </span>
+
+    <span th:if="${motorhome.type == 'Economy'}">
+        <label>Gas Burners</label>
+        <span th:if="${motorhome.type == 'Economy'}" th:text="${economy.gasBurners}"/>
+
+        <a th:href="@{'/updateEconomy/'+${economy.licensePlate}}">
+            <button class="btn-update">update</button>
+        </a>
+
+        <a th:href="@{'/deleteEconomy/'+${economy.licensePlate}}">
+            <button class="btn-delete">Delete</button>
+        </a>
+    </span>
+
+
+    <!--<a th:href="@{'/deleteMotorhome/'+${motorhome.licensePlate}}">
+        <button class="btn-delete">Delete</button>
+    </a>
+    <a th:href="@{'/updateMotorhome/'+${motorhome.licensePlate}}">
+        <button class="btn-update">update</button>
+    </a> -->
+</body>
+</html>

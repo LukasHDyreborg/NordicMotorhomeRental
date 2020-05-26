@@ -24,7 +24,7 @@ public class MotorhomeService {
         return motorhomeRepository.findById(id);
     }
 
-    public Boolean delete(int id) {
+    public Boolean delete(String id) {
         return motorhomeRepository.delete(id);
     }
 

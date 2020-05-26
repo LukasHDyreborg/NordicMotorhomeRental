@@ -20,8 +20,6 @@
                 <th>Tlf. nr.</th>
                 <th>Adresse</th>
                 <th>Postnummer</th>
-                <!-- <th>City</th>
-                <th>Country</th> -->
                 <th>Kørekortnummer</th>
                 <th>Udstedelsesdato</th>
                 <th>Options</th>
@@ -43,7 +41,7 @@
 
                 <td>
                     <label>
-                        <input type="radio" name="customId" th:value="${customer.id}">
+                        <input type="radio" name="customId" th:value="${customer.id}" required>
                     </label>
                 </td>
             </tr>
@@ -55,11 +53,17 @@
 
     <div>
         <label>Start Date :</label>
-        <input type="date" name="fromDate" id="startDate" onchange="time()">
+        <input type="date" name="fromDate" id="startDate" onchange="time()" th:value="${contract.fromDate}">
         <label>End Date :</label>
-        <input type="date" name="toDate" id="endDate" onchange="time()">
+        <input type="date" name="toDate" id="endDate" onchange="time()" th:value="${contract.toDate}">
 
         <input type="text" name="totalDays" id="totalDays" readonly>
+
+        <label>Price:</label>
+        <input type="number" name="price" th:value="${contract.price}" required>
+
+        <label>Max KM:</label>
+        <input type="number" name="maxKM" th:value="${contract.maxKM}" required>
     </div>
 
     <div class="wrapper-table">
@@ -102,7 +106,7 @@
                 <td th:text="${luxury.toilet}"></td>
                 <td th:text="${luxury.awning}"></td>
                 <td>
-                    <input type="radio" name="carId" th:value="${luxury.licensePlate}">
+                    <input type="radio" name="carId" th:value="${luxury.licensePlate}" required>
                 </td>
             </tr>
             <tr th:each="standard: ${standards}"> <!--th:each means it will loop through the customers list -->
@@ -122,7 +126,7 @@
                 <td th:text="${standard.toilet}"></td>
                 <td th:text="${standard.awning}"></td>
                 <td>
-                    <input type="radio" name="carId" th:value="${standard.licensePlate}">
+                    <input type="radio" name="carId" th:value="${standard.licensePlate}" required>
                 </td>
             </tr>
             <tr th:each="economy: ${economies}"> <!--th:each means it will loop through the customers list -->
@@ -142,7 +146,7 @@
                 <td th:text="${economy.toilet}"></td>
                 <td th:text="${economy.awning}"></td>
                 <td>
-                    <input type="radio" name="carId" th:value="${economy.licensePlate}">
+                    <input type="radio" name="carId" th:value="${economy.licensePlate}" required>
                 </td>
             </tr>
             </tbody>

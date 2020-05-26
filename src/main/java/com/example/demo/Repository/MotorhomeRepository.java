@@ -35,7 +35,7 @@ public class MotorhomeRepository {
         return template.queryForObject(sql, rowMapper, id);
     }
 
-    public Boolean delete(int id) {
+    public Boolean delete(String id) {
         String sql = "DELETE FROM motorhomes WHERE licensePlate = ?";
         return template.update(sql, id) < 0;
     }

@@ -32,18 +32,23 @@ public class StandardRepository {
         return null;
     }
 
-    public Standard findById(int id) {
+    public Standard findById(String id) {
         String sql = "SELECT * FROM motorhomes m JOIN standard s ON m.licensePlate = s.licensePlate WHERE m.licensePlate = ? AND m.licensePlate NOT IN (SELECT licensePlate FROM luxury)";
         RowMapper<Standard> rowMapper = new BeanPropertyRowMapper<>(Standard.class);
         return template.queryForObject(sql, rowMapper, id);
     }
 
-    public Boolean delete(int id) {
-        String sql = "DELETE FROM standard WHERE licensePlate = ?";
-        template.update(sql, id);
+    public Boolean delete(String id) {
+        try{
+            String sql = "DELETE FROM standard WHERE licensePlate = ?";
+            template.update(sql, id);
 
-        sql = "DELETE FROM motorhomes WHERE licensePlate = ?";
-        return template.update(sql, id) < 0;
+            sql = "DELETE FROM motorhomes WHERE licensePlate = ?";
+            template.update(sql, id);
+            return true;
+        }catch(Exception e){
+            return false;
+        }
     }
 
     public Standard update(Standard s) {

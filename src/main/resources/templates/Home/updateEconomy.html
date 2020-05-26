@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Economy - Update</title>
+    <link rel="stylesheet" type="text/css" href="/MyCSS.css">
+</head>
+<body>
+<form action="/updateEconomy" method="post" class="btn-update">
+    <input hidden type="text" name="id" th:value="${economy.licensePlate}">
+
+    <label>License Plate</label>
+    <input type="text" name="licensePlate" th:value="${economy.licensePlate}" required>
+    <label>Brand</label>
+    <input type="text" name="brand" th:value="${economy.brand}" required>
+    <label>Model</label>
+    <input type="text" name="model" th:value="${economy.model}" required>
+    <label>Pris</label>
+    <input type="number" name="pricePerDay" th:value="${economy.pricePerDay}" required>
+    <label>Seats</label>
+    <input type="number" name="seats" th:value="${economy.seats}" required>
+    <label>beds</label>
+    <input type="number" name="beds" th:value="${economy.beds}"required>
+    <label>fuelType</label>
+    <input type="text" name="fuelType" th:value="${economy.fuelType}" required>
+
+    <label>gear</label>
+    <select name="gear" th:value="${economy.gear}">
+        <option value="Automat">Automat</option>
+        <option value="Manuel">Manuel</option>
+    </select>
+    <!--<input type="text" name="gear" th:value="${}" required>
+    -->
+    <label>odometer</label>
+    <input type="number" name="odometer" th:value="${economy.odometer}"required>
+    <label>Registration Date</label>
+    <input type="date" name="registrationDate" th:value="${economy.registrationDate}"required>
+    <label>LengthAndHeight</label>
+    <input type="text" name="lengthAndHeight" th:value="${economy.lengthAndHeight}"required>
+
+    <input type="text" name="type" th:value="${economy.type}"hidden required>
+
+    <label>fridge</label>
+    <input type="checkbox" name="fridge" th:checked="${economy.fridge}">
+    <label>toilet</label>
+    <input type="checkbox" name="toilet" th:checked="${economy.toilet}">
+    <label>awning</label>
+    <input type="checkbox" name="awning" th:checked="${economy.awning}">
+    <label>Gas blus</label>
+    <input type="number" name="gasBurners" th:value="${economy.gasBurners}">
+
+    <input type="submit" value="Update Motorhome">
+</form>
+</body>
+</html>

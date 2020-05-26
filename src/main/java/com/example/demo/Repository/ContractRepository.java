@@ -13,15 +13,27 @@ import java.util.List;
 public class ContractRepository {
     @Autowired
     JdbcTemplate template;
+    @Autowired
+    CustomerRepository customerRepository;
+    @Autowired
+    MotorhomeRepository motorhomeRepository;
 
     public List<Contract> fetchAll() {
         String sql = "SELECT c.id, fromDate, toDate, numberOfDays, carId, customId, maxKM, price FROM contracts c JOIN customers cust ON c.customId = cust.id JOIN motorhomes m ON c.carId = m.licensePlate ORDER BY c.id";
         RowMapper<Contract> rowMapper = new BeanPropertyRowMapper<>(Contract.class);
-        return template.query(sql, rowMapper);
+        List<Contract> contractList = template.query(sql, rowMapper);
+
+        //assigns customer and vehicle to contract
+        for(int i = 0; i < contractList.size(); i++){
+            assignContract(contractList.get(i));
+        }
+        return contractList;
     }
 
     public Contract add(Contract c) {
         /*try{*/
+            assignPriceDistance(c); //assigns distance and price based on amount of days
+
             String sql = "INSERT INTO contracts() VALUES (DEFAULT, ?, ?, ?, ?, ?, ?, ?)";
             template.update(sql, c.getFromDate(), c.getToDate(), c.getNumberOfDays(), c.getCarId(), c.getCustomId(), c.getMaxKM(), c.getPrice());
             return null;
@@ -33,7 +45,11 @@ public class ContractRepository {
     public Contract findById(int id) {
         String sql = "SELECT c.id, fromDate, toDate, numberOfDays, carId, customId, maxKM, price FROM contracts c JOIN customers cust ON c.customId = cust.id JOIN motorhomes m ON c.carId = m.licensePlate WHERE c.id = ?";
         RowMapper<Contract> rowMapper = new BeanPropertyRowMapper<>(Contract.class);
-        return template.queryForObject(sql, rowMapper, id);
+        Contract contract = template.queryForObject(sql, rowMapper, id);
+
+        assignContract(contract); //Assigns the contract we just retrieved a customer and vehicle.
+
+        return contract;
     }
 
     public Boolean delete(int id) {
@@ -51,5 +67,20 @@ public class ContractRepository {
         String sql = "UPDATE contracts c SET fromDate = ?, toDate = ?, numberOfDays = ?, carId = ?, customId = ?, maxKM = ?, price = ? WHERE id = ?";
         template.update(sql, c.getFromDate(), c.getToDate(), c.getNumberOfDays(), c.getCarId(), c.getCustomId(), c.getMaxKM(), c.getPrice(), c.getId());
         return null;
+    }
+
+    public void assignContract(Contract contract){
+        contract.setCustomer(customerRepository.findById(contract.getCustomId()));
+        contract.setMotorhome(motorhomeRepository.findById(contract.getCarId()));
+    }
+
+    public void assignPriceDistance(Contract contract){
+        if(contract.getMaxKM() == 0) {
+            contract.setMaxKM(contract.getNumberOfDays() * 400);
+        }
+
+        if(contract.getPrice() == 0){
+            contract.setPrice((int)contract.getMotorhome().getPricePerDay() * contract.getNumberOfDays());
+        }
     }
 }

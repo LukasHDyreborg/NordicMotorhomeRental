@@ -29,23 +29,29 @@ public class EconomyRepository {
         return null;
     }
 
-    public Economy findById(int id) {
-        String sql = "SELECT * FROM motorhomes m JOIN economy e ON m.licensePlate = f.licensePlate WHERE m.licensePlate = ?";
+    public Economy findById(String id) {
+        String sql = "SELECT * FROM motorhomes m JOIN economy e ON m.licensePlate = e.licensePlate WHERE m.licensePlate = ?";
         RowMapper<Economy> rowMapper = new BeanPropertyRowMapper<>(Economy.class);
         return template.queryForObject(sql, rowMapper, id);
     }
 
-    public Boolean delete(int id) {
-        String sql = "DELETE FROM economy WHERE licensePlate = ?";
-        template.update(sql, id);
+    public Boolean delete(String id) {
+        try{
+            String sql = "DELETE FROM economy WHERE licensePlate = ?";
+            template.update(sql, id);
 
-        sql = "DELETE FROM motorhomes WHERE licensePlate = ?";
-        return template.update(sql, id) < 0;
+            sql = "DELETE FROM motorhomes WHERE licensePlate = ?";
+            template.update(sql, id);
+            return true;
+        }catch(Exception e){
+            System.out.println(e);
+            return false;
+        }
     }
 
     public Economy update(Economy e) {
         String sql = "UPDATE economy SET gasBurners = ? WHERE licensePlate = ?";
-        template.update(sql, e.isFridge(), e.isToilet(), e.getGasBurners(), e.isAwning(), e.getLicensePlate());
+        template.update(sql, e.getGasBurners(), e.getLicensePlate());
 
         sql = "UPDATE motorhomes SET brand = ?, model = ?, pricePerDay = ?, seats = ?, beds = ?, fuelType = ?, gear = ?, odometer = ?, registrationDate = ?, lengthAndHeight = ?, `type` = ?, fridge = ?, toilet = ?, awning = ? WHERE licensePlate = ?";
         template.update(sql, e.getBrand(), e.getModel(), e.getPricePerDay(), e.getSeats(), e.getBeds(), e.getFuelType(), e.getGear(), e.getOdometer(), e.getRegistrationDate(), e.getLengthAndHeight(), e.getType(), e.isFridge(), e.isToilet(), e.isAwning(), e.getLicensePlate());

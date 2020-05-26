@@ -20,11 +20,11 @@ public class LuxuryService {
         return luxuryRepository.add(l);
     }
 
-    public Luxury findById(int id) {
+    public Luxury findById(String id) {
         return luxuryRepository.findById(id);
     }
 
-    public Boolean delete(int id) {
+    public Boolean delete(String id) {
         return luxuryRepository.delete(id);
     }
 

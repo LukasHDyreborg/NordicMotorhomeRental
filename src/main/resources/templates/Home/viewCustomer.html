@@ -7,16 +7,25 @@
 </head>
 <body>
 <h1>View Customer</h1>
-
+<label>ID</label>
 <span th:text="${customer.id}"/>
+<label>Name</label>
 <span th:text="${customer.name}"/>
+<label>Age</label>
 <span th:text="${customer.age}"/>
+<label>CPR</label>
 <span th:text="${customer.cpr}"/>
+<label>Phone</label>
 <span th:text="${customer.phone}"/>
+<label>Email</label>
 <span th:text="${customer.email}"/>
+<label>Address</label>
 <span th:text="${customer.address}"/>
+<label>Zip</label>
 <span th:text="${customer.zipCode}"/>
+<label>DriverLicenseNumber</label>
 <span th:text="${customer.driverLicenseNumber}"/>
+<label>DriverLicenseDate</label>
 <span th:text="${customer.driverLicenseDate}"/>
 
 <a th:href="@{'/deleteCustomer/'+${customer.id}}">

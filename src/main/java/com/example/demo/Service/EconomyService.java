@@ -20,11 +20,11 @@ public class EconomyService {
         return economyRepository.add(e);
     }
 
-    public Economy findById(int id) {
+    public Economy findById(String id) {
         return economyRepository.findById(id);
     }
 
-    public Boolean delete(int id) {
+    public Boolean delete(String id) {
         return economyRepository.delete(id);
     }
 

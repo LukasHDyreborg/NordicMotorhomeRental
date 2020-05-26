@@ -8,8 +8,11 @@
 <body>
 <h1>View Staff</h1>
 
+<label>ID</label>
 <span th:text="${staff.id}"/>
+<label>Navn</label>
 <span th:text="${staff.name}"/>
+<label>Initialer</label>
 <span th:text="${staff.initials}"/>
 
 <a th:href="@{'/deleteStaff/'+${staff.id}}">

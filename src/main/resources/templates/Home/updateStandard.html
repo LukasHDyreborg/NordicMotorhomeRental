@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Standard - Update</title>
+</head>
+<body>
+<form action="/updateStandard" method="post" class="btn-update">
+    <input hidden type="text" name="id" th:value="${standard.licensePlate}">
+
+    <label>License Plate</label>
+    <input type="text" name="licensePlate" th:value="${standard.licensePlate}" required>
+    <label>Brand</label>
+    <input type="text" name="brand" th:value="${standard.brand}" required>
+    <label>Model</label>
+    <input type="text" name="model" th:value="${standard.model}" required>
+    <label>Pris</label>
+    <input type="text" name="pricePerDay" th:value="${standard.pricePerDay}" required>
+    <label>Seats</label>
+    <input type="number" name="seats" th:value="${standard.seats}" required>
+    <label>beds</label>
+    <input type="number" name="beds" th:value="${standard.beds}"required>
+    <label>fuelType</label>
+    <input type="text" name="fuelType" th:value="${standard.fuelType}" required>
+
+    <label>gear</label>
+    <select name="gear" th:value="${standard.gear}">
+        <option value="Automat">Automat</option>
+        <option value="Manuel">Manuel</option>
+    </select>
+    <!--<input type="text" name="gear" th:value="${}" required>
+    -->
+    <label>odometer</label>
+    <input type="number" name="odometer" th:value="${standard.odometer}"required>
+    <label>Registration Date</label>
+    <input type="date" name="registrationDate" th:value="${standard.registrationDate}"required>
+    <label>LengthAndHeight</label>
+    <input type="text" name="lengthAndHeight" th:value="${standard.lengthAndHeight}"required>
+
+    <input type="text" name="type" th:value="${standard.type}"hidden required>
+
+    <label>fridge</label>
+    <input type="checkbox" name="fridge" th:checked="${standard.fridge}">
+    <label>toilet</label>
+    <input type="checkbox" name="toilet" th:checked="${standard.toilet}">
+    <label>awning</label>
+    <input type="checkbox" name="awning" th:checked="${standard.awning}">
+    <label>Bad</label>
+    <input type="checkbox" name="shower" th:checked="${standard.shower}">
+    <label>ElStove</label>
+    <input type="checkbox" name="elStove" th:checked="${standard.elStove}">
+
+    <input type="submit" value="Update Motorhome">
+</form>
+</body>
+</html>

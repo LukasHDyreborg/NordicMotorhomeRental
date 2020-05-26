@@ -1,13 +1,15 @@
 package com.example.demo.Model;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
 @Entity
 public class Contract {
     @Id
     private int id;
-    private String fromDate;
-    private String toDate;
+    private LocalDate fromDate;
+    private LocalDate toDate;
     private int numberOfDays;
     @ManyToOne
     private Customer customer;
@@ -21,10 +23,10 @@ public class Contract {
     public Contract() {
     }
 
-    public Contract(int id, String fromDate, String toDate,int numberOfDays, int customId, String carId, int maxKM, int price, Customer customer, Motorhome motorhome) {
+    /*public Contract(int id, String fromDate, String toDate,int numberOfDays, int customId, String carId, int maxKM, int price, Customer customer, Motorhome motorhome) {
         this.id = id;
-        this.fromDate = fromDate;
-        this.toDate = toDate;
+        this.fromDate = LocalDate.parse(fromDate);
+        this.toDate = LocalDate.parse(toDate);
         this.numberOfDays = numberOfDays;
         this.customId = customId;
         this.carId = carId;
@@ -32,7 +34,7 @@ public class Contract {
         this.price = price;
         this.customer = customer;
         this.motorhome = motorhome;
-    }
+    }*/
 
     public int getId() {
         return id;
@@ -43,19 +45,19 @@ public class Contract {
     }
 
     public String getFromDate() {
-        return fromDate;
+        return String.valueOf(fromDate); // returns the localdate as a string for our browser - BG
     }
 
     public void setFromDate(String fromDate) {
-        this.fromDate = fromDate;
+        this.fromDate = LocalDate.parse(fromDate);
     }
 
     public String getToDate() {
-        return toDate;
+        return String.valueOf(toDate);
     }
 
     public void setToDate(String toDate) {
-        this.toDate = toDate;
+        this.toDate = LocalDate.parse(toDate);
     }
 
     public int getNumberOfDays() {
@@ -63,7 +65,8 @@ public class Contract {
     }
 
     public void setNumberOfDays(int numberOfDays) {
-        this.numberOfDays = numberOfDays;
+      //  this.numberOfDays = numberOfDays;
+        this.numberOfDays = (int) ChronoUnit.DAYS.between(fromDate, toDate);
     }
 
     public Customer getCustomer() {

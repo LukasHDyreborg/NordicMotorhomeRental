@@ -63,7 +63,7 @@
                 </a>
             </td>
         </tr>
-        <tr th:each="standard: ${standards}"> <!--th:each means it will loop through the customers list -->
+        <tr th:each="standard: ${standards}">
             <td th:text="${standard.licensePlate}" />
             <td th:text="${standard.brand}" />
             <td th:text="${standard.model}" />
@@ -85,7 +85,7 @@
                 </a>
             </td>
         </tr>
-        <tr th:each="economy: ${economies}"> <!--th:each means it will loop through the customers list -->
+        <tr th:each="economy: ${economies}">
             <td th:text="${economy.licensePlate}" />
             <td th:text="${economy.brand}" />
             <td th:text="${economy.model}" />

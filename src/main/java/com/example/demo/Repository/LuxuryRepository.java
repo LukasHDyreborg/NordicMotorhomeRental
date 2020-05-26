@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import java.sql.SQLException;
 import java.util.List;
 
 @Repository
@@ -34,21 +35,26 @@ public class LuxuryRepository {
         return null;
     }
 
-    public Luxury findById(int id) {
-        String sql = "SELECT * FROM motorhomes m JOIN standard s ON m.licensePlate = s.licensePlate JOIN luxury l ON m.licensePlate = l.licensePlate WHERE licensePlate = ?";
+    public Luxury findById(String id) {
+        String sql = "SELECT * FROM motorhomes m JOIN standard s ON m.licensePlate = s.licensePlate JOIN luxury l ON m.licensePlate = l.licensePlate WHERE m.licensePlate = ?";
         RowMapper<Luxury> rowMapper = new BeanPropertyRowMapper<>(Luxury.class);
         return template.queryForObject(sql, rowMapper, id);
     }
 
-    public Boolean delete(int id) {
-        String sql = "DELETE FROM luxury WHERE licensePlate = ?";
-        template.update(sql, id);
+    public Boolean delete(String id) {
+        try {
+            String sql = "DELETE FROM luxury WHERE licensePlate = ?";
+            template.update(sql, id);
 
-        sql = "DELETE FROM standard WHERE licensePlate = ?";
-        template.update(sql, id);
+            sql = "DELETE FROM standard WHERE licensePlate = ?";
+            template.update(sql, id);
 
-        sql = "DELETE FROM motorhomes WHERE licensePlate = ?";
-        return template.update(sql, id) < 0;
+            sql = "DELETE FROM motorhomes WHERE licensePlate = ?";
+            template.update(sql, id);
+            return true;
+        }catch (Exception e){
+            return false;
+        }
     }
 
     public Luxury update(Luxury l) {

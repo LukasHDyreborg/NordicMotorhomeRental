@@ -20,11 +20,11 @@ public class StandardService {
         return standardRepository.add(s);
     }
 
-    public Standard findById(int id) {
+    public Standard findById(String id) {
         return standardRepository.findById(id);
     }
 
-    public Boolean delete(int id) {
+    public Boolean delete(String id) {
         return standardRepository.delete(id);
     }
 

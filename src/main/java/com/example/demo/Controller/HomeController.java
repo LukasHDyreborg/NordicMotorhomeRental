@@ -81,7 +81,6 @@ public class HomeController {
     @GetMapping("/deleteCustomer/{id}")
     public String deleteCustomer(@PathVariable("id") int id){
         boolean success = customerService.delete(id);
-        Luxury luxury = new Luxury();
 
         if(success){
             return "home/success";
@@ -137,17 +136,90 @@ public class HomeController {
         return "redirect:/motorhome";
     }
 
+    @GetMapping("/viewMotorhome/{id}")
+    public String viewMotorhome(@PathVariable("id") String id, Model model){
+        Motorhome motorhome = motorhomeService.findById(id);
+        model.addAttribute(motorhome);
+
+        if(motorhome.getType().equals("Luxury")){
+            model.addAttribute(luxuryService.findById(id));
+        }else if(motorhome.getType().equals("Standard")){
+            model.addAttribute(standardService.findById(id));
+        }else{
+            model.addAttribute(economyService.findById(id));
+        }
+        return "home/viewMotorhome";
+    }
+
+    @GetMapping("/deleteLuxury/{id}")
+    public String deleteLuxury(@PathVariable("id") String id) {
+        boolean success = luxuryService.delete(id);
+
+        if(success){
+            return "home/success";
+        } else{
+            return "home/failure";
+        }
+    }
+
+    @GetMapping("/deleteStandard/{id}")
+    public String deleteStandard(@PathVariable("id") String id) {
+        boolean success = standardService.delete(id);
+
+        if(success){
+            return "home/success";
+        } else{
+            return "home/failure";
+        }
+    }
+
+    @GetMapping("/deleteEconomy/{id}")
+    public String deleteMotorhome(@PathVariable("id") String id) {
+        boolean success = economyService.delete(id);
+
+        if(success){
+            return "home/success";
+        } else{
+            return "home/failure";
+        }
+    }
+
+    @GetMapping("/updateEconomy/{id}")
+    public String updateEconomy(@PathVariable("id") String id, Model model){
+        model.addAttribute("economy", economyService.findById(id));
+        return "home/updateEconomy";
+    }
+    @PostMapping("/updateEconomy")
+    public String updateEconomy(@ModelAttribute Economy e){
+        economyService.update(e);
+        return "redirect:/motorhome";
+    }
+    @GetMapping("/updateStandard/{id}")
+    public String updateStandard(@PathVariable("id") String id, Model model){
+        model.addAttribute("standard", standardService.findById(id));
+        return "home/updateStandard";
+    }
+    @PostMapping("/updateStandard")
+    public String updateLuxury(@ModelAttribute Standard s){
+        standardService.update(s);
+        return "redirect:/motorhome";
+    }
+    @GetMapping("/updateLuxury/{id}")
+    public String updateLuxury(@PathVariable("id") String id, Model model){
+        model.addAttribute("luxury", luxuryService.findById(id));
+        return "home/updateLuxury";
+    }
+    @PostMapping("/updateLuxury")
+    public String updateLuxury(@ModelAttribute Luxury l){
+        luxuryService.update(l);
+        return "redirect:/motorhome";
+    }
+
+
+    //Contracts
     @GetMapping("/contract")
     public String contract(Model model){
         List<Contract> contractList = contractService.fetchAll();
-
-        for(int i = 0; i < contractList.size(); i++){
-            contractList.get(i).setCustomer(customerService.findById(contractList.get(i).getCustomId()));
-        }
-
-        for(int i = 0; i < contractList.size(); i++){
-            contractList.get(i).setMotorhome(motorhomeService.findById(contractList.get(i).getCarId()));
-        }
         model.addAttribute("contracts", contractList);
 
         return "home/contract";
@@ -168,7 +240,7 @@ public class HomeController {
     }
 
     @PostMapping("/createContract")
-    public String createContract(@ModelAttribute Contract contract/*, @RequestParam("customId") int id, @R*/){
+    public String createContract(@ModelAttribute Contract contract){
         contractService.add(contract);
         return "redirect:/contract";
     }
@@ -202,6 +274,7 @@ public class HomeController {
         List<Economy> economyList = economyService.fetchAll();
         List<Standard> standardList = standardService.fetchAll();
         List<Luxury> luxuryList = luxuryService.fetchAll();
+
 
         model.addAttribute("customers", customerList);
         model.addAttribute("economies", economyList);

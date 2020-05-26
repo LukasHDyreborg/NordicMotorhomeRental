@@ -5,19 +5,33 @@
     <title>Show Contract</title>
 </head>
 <body>
+    <label>id</label>
     <span th:text="${contract.id}"></span>
+    <label>From Date</label>
     <span th:text="${contract.fromDate}"></span>
+    <label>To Date</label>
     <span th:text="${contract.toDate}"></span>
+    <label>Name</label>
     <span th:text="${contract.customer.name}"></span>
+    <label>Driver license number</label>
     <span th:text="${contract.customer.driverLicenseNumber}"></span>
+    <label>CPR</label>
     <span th:text="${contract.customer.cpr}"></span>
+    <label>Address</label>
     <span th:text="${contract.customer.address}"></span>
+    <label>Phone</label>
     <span th:text="${contract.customer.phone}"></span>
+    <label>Email</label>
     <span th:text="${contract.customer.email}"></span>
+    <label>Nummerplade</label>
     <span th:text="${contract.motorhome.licensePlate}"></span>
+    <label>Brand</label>
     <span th:text="${contract.motorhome.brand}"></span>
+    <label>Model</label>
     <span th:text="${contract.motorhome.model}"></span>
+    <label>Max KM</label>
     <span th:text="${contract.maxKM}"></span>
+    <label>Price</label>
     <span th:text="${contract.price}"></span>
 
     <a th:href="@{'/deleteContract/'+${contract.id}}">
