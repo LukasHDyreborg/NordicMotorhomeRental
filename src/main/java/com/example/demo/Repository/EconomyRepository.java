@@ -49,12 +49,12 @@ public class EconomyRepository {
         }
     }
 
-    public Economy update(Economy e) {
+    public Economy update(Economy e, String licensePlate) {
         String sql = "UPDATE economy SET gasBurners = ? WHERE licensePlate = ?";
         template.update(sql, e.getGasBurners(), e.getLicensePlate());
 
-        sql = "UPDATE motorhomes SET brand = ?, model = ?, pricePerDay = ?, seats = ?, beds = ?, fuelType = ?, gear = ?, odometer = ?, registrationDate = ?, lengthAndHeight = ?, `type` = ?, fridge = ?, toilet = ?, awning = ? WHERE licensePlate = ?";
-        template.update(sql, e.getBrand(), e.getModel(), e.getPricePerDay(), e.getSeats(), e.getBeds(), e.getFuelType(), e.getGear(), e.getOdometer(), e.getRegistrationDate(), e.getLengthAndHeight(), e.getType(), e.isFridge(), e.isToilet(), e.isAwning(), e.getLicensePlate());
+        sql = "UPDATE motorhomes SET licensePlate = ?, brand = ?, model = ?, pricePerDay = ?, seats = ?, beds = ?, fuelType = ?, gear = ?, odometer = ?, registrationDate = ?, lengthAndHeight = ?, `type` = ?, fridge = ?, toilet = ?, awning = ? WHERE licensePlate = ?";
+        template.update(sql, e.getLicensePlate(), e.getBrand(), e.getModel(), e.getPricePerDay(), e.getSeats(), e.getBeds(), e.getFuelType(), e.getGear(), e.getOdometer(), e.getRegistrationDate(), e.getLengthAndHeight(), e.getType(), e.isFridge(), e.isToilet(), e.isAwning(), licensePlate);
         return null;
     }
 }

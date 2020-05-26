@@ -39,3 +39,10 @@ INSERT INTO luxury() VALUES ('CN MS 123', true, true);
 /*INSERT INTO contracts() VALUES (id, fromDate, toDate, carId, customerId, maxKM, price);*/
 
 INSERT INTO contracts() VALUES (DEFAULT, '2020-05-22', '2020-05-31', '9', 'BG 23 432', 1, '3600', '9000');
+
+
+-- Staff
+-- INSERT INTO staffs() VALUES (id, `name`, initials);
+INSERT INTO staffs() VALUES (DEFAULT, 'Steve Jobs', 'SJ');
+INSERT INTO staffs() VALUES (DEFAULT, 'Chris Anderson', 'CA');
+INSERT INTO staffs() VALUES (DEFAULT, 'James Raynor', 'JR');

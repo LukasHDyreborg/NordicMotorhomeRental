@@ -57,17 +57,17 @@ public class LuxuryRepository {
         }
     }
 
-    public Luxury update(Luxury l) {
+    public Luxury update(Luxury l, String licensePlate) {
         String sql = "UPDATE luxury SET tv = ?, rearViewCamera = ? WHERE licensePlate = ?";
         template.update(sql, l.isTv(), l.isRearViewCamera(), l.getLicensePlate());
 
         sql = "UPDATE standard SET shower = ?, elStove = ? WHERE licensePlate = ?";
         template.update(sql, l.isShower(), l.isElStove(), l.getLicensePlate());
 
-        sql = "UPDATE motorhomes SET brand = ?, model = ?, pricePerDay = ?, seats = ?, beds = ?, fuelType = ?, gear = ?, odometer = ?, " +
+        sql = "UPDATE motorhomes SET licensePlate = ?, brand = ?, model = ?, pricePerDay = ?, seats = ?, beds = ?, fuelType = ?, gear = ?, odometer = ?, " +
                 "registrationDate = ?, lengthAndHeight = ?, `type` = ?, fridge = ?, toilet = ?, awning = ? WHERE licensePlate = ?";
-        template.update(sql, l.getBrand(), l.getModel(), l.getPricePerDay(), l.getSeats(), l.getBeds(), l.getFuelType(), l.getGear(), l.getOdometer(),
-                l.getRegistrationDate(), l.getLengthAndHeight(), l.getType(), l.isFridge(), l.isToilet(), l.isAwning(), l.getLicensePlate());
+        template.update(sql, l.getLicensePlate(), l.getBrand(), l.getModel(), l.getPricePerDay(), l.getSeats(), l.getBeds(), l.getFuelType(), l.getGear(), l.getOdometer(),
+                l.getRegistrationDate(), l.getLengthAndHeight(), l.getType(), l.isFridge(), l.isToilet(), l.isAwning(), licensePlate);
         return null;
     }
 }

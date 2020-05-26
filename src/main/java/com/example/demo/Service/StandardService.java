@@ -28,7 +28,7 @@ public class StandardService {
         return standardRepository.delete(id);
     }
 
-    public Standard update(Standard s) {
-        return standardRepository.update(s);
+    public Standard update(Standard s, String licenseId) {
+        return standardRepository.update(s, licenseId);
     }
 }

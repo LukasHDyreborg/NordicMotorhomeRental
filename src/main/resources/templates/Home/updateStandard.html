@@ -6,7 +6,7 @@
 </head>
 <body>
 <form action="/updateStandard" method="post" class="btn-update">
-    <input hidden type="text" name="id" th:value="${standard.licensePlate}">
+    <input hidden type="text" name="licenseId" th:value="${standard.licensePlate}">
 
     <label>License Plate</label>
     <input type="text" name="licensePlate" th:value="${standard.licensePlate}" required>
@@ -20,11 +20,16 @@
     <input type="number" name="seats" th:value="${standard.seats}" required>
     <label>beds</label>
     <input type="number" name="beds" th:value="${standard.beds}"required>
-    <label>fuelType</label>
-    <input type="text" name="fuelType" th:value="${standard.fuelType}" required>
+
+    <label>Fuel Type</label>
+    <select name="fuelType" th:field="${standard.fuelType}">
+        <option value="Benzin">Benzin</option>
+        <option value="Diesel">Diesel</option>
+        <option value="Elektrisk">Elektrisk</option>
+    </select>
 
     <label>gear</label>
-    <select name="gear" th:value="${standard.gear}">
+    <select name="gear" th:field="${standard.gear}">
         <option value="Automat">Automat</option>
         <option value="Manuel">Manuel</option>
     </select>

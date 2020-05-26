@@ -41,6 +41,7 @@ CREATE TABLE economy
     licensePlate VARCHAR(45) PRIMARY KEY,
     gasBurners INT NOT NULL,
     FOREIGN KEY (licensePlate) REFERENCES motorhomes(licensePlate)
+    ON UPDATE CASCADE
 );
 
 CREATE TABLE standard
@@ -49,6 +50,7 @@ CREATE TABLE standard
     shower BOOLEAN NOT NULL,
     elStove BOOLEAN NOT NULL,
     FOREIGN KEY (licensePlate) REFERENCES motorhomes(licensePlate)
+    ON UPDATE CASCADE
 );
 
 CREATE TABLE luxury
@@ -57,6 +59,7 @@ CREATE TABLE luxury
     tv BOOLEAN NOT NULL,
     rearViewCamera BOOLEAN NOT NULL,
     FOREIGN KEY (licensePlate) REFERENCES standard(licensePlate)
+    ON UPDATE CASCADE
 );
 
 CREATE TABLE contracts
@@ -69,7 +72,7 @@ CREATE TABLE contracts
     customId INT NOT NULL,
     maxKM INT NOT NULL,
     price INT NOT NULL,
-    FOREIGN KEY (carId) REFERENCES motorhomes(licensePlate),
+    FOREIGN KEY (carId) REFERENCES motorhomes(licensePlate) ON UPDATE CASCADE,
     FOREIGN KEY (customId) REFERENCES customers(id)
 );
 

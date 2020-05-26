@@ -141,6 +141,13 @@
         </table>
     </div>
 
+    <div> <!-- Does nothing yet -->
+        <label>Sales assistent</label>
+        <select name="staff">
+            <option th:each="staff : ${staffs}" th:value="${staff.id}" th:text="${staff.name}"/>
+        </select>
+    </div>
+
     <input type="submit" value="Register" class="btn-create">
 </form>
 

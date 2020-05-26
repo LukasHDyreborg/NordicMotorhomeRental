@@ -28,7 +28,7 @@ public class EconomyService {
         return economyRepository.delete(id);
     }
 
-    public Economy update(Economy e) {
-        return economyRepository.update(e);
+    public Economy update(Economy e, String licenseId) {
+        return economyRepository.update(e, licenseId);
     }
 }

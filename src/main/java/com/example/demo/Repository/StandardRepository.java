@@ -51,14 +51,14 @@ public class StandardRepository {
         }
     }
 
-    public Standard update(Standard s) {
+    public Standard update(Standard s, String licensePlate) {
         String sql = "UPDATE standard SET shower = ?, elStove = ? WHERE licensePlate = ?";
         template.update(sql, s.isShower(), s.isElStove(), s.getLicensePlate());
 
-        sql = "UPDATE motorhomes SET brand = ?, model = ?, pricePerDay = ?, seats = ?, beds = ?, fuelType = ?, gear = ?, odometer = ?, " +
+        sql = "UPDATE motorhomes SET licensePlate = ?, brand = ?, model = ?, pricePerDay = ?, seats = ?, beds = ?, fuelType = ?, gear = ?, odometer = ?, " +
                 "registrationDate = ?, lengthAndHeight = ?, `type` = ?, fridge = ?, toilet = ?, awning = ? WHERE licensePlate = ?";
-        template.update(sql, s.getBrand(), s.getModel(), s.getPricePerDay(), s.getSeats(), s.getBeds(), s.getFuelType(), s.getGear(), s.getOdometer(),
-                s.getRegistrationDate(), s.getLengthAndHeight(), s.getType(), s.isFridge(), s.isToilet(), s.isAwning(), s.getLicensePlate());
+        template.update(sql, s.getLicensePlate(), s.getBrand(), s.getModel(), s.getPricePerDay(), s.getSeats(), s.getBeds(), s.getFuelType(), s.getGear(), s.getOdometer(),
+                s.getRegistrationDate(), s.getLengthAndHeight(), s.getType(), s.isFridge(), s.isToilet(), s.isAwning(), licensePlate);
         return null;
     }
 }

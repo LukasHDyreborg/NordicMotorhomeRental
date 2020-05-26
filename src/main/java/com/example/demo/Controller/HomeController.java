@@ -190,8 +190,8 @@ public class HomeController {
         return "home/updateEconomy";
     }
     @PostMapping("/updateEconomy")
-    public String updateEconomy(@ModelAttribute Economy e){
-        economyService.update(e);
+    public String updateEconomy(@ModelAttribute Economy e, @RequestParam("licenseId") String licensePlate){
+        economyService.update(e, licensePlate);
         return "redirect:/motorhome";
     }
     @GetMapping("/updateStandard/{id}")
@@ -200,8 +200,8 @@ public class HomeController {
         return "home/updateStandard";
     }
     @PostMapping("/updateStandard")
-    public String updateLuxury(@ModelAttribute Standard s){
-        standardService.update(s);
+    public String updateLuxury(@ModelAttribute Standard s, @RequestParam("licenseId") String licensePlate){
+        standardService.update(s, licensePlate);
         return "redirect:/motorhome";
     }
     @GetMapping("/updateLuxury/{id}")
@@ -210,8 +210,8 @@ public class HomeController {
         return "home/updateLuxury";
     }
     @PostMapping("/updateLuxury")
-    public String updateLuxury(@ModelAttribute Luxury l){
-        luxuryService.update(l);
+    public String updateLuxury(@ModelAttribute Luxury l, @RequestParam("licenseId") String licensePlate){
+        luxuryService.update(l, licensePlate);
         return "redirect:/motorhome";
     }
 
@@ -231,11 +231,13 @@ public class HomeController {
         List<Economy> economyList = economyService.fetchAll();
         List<Standard> standardList = standardService.fetchAll();
         List<Luxury> luxuryList = luxuryService.fetchAll();
+        List<Staff> staffList = staffService.fetchAll();
 
         model.addAttribute("customers", customerList);
         model.addAttribute("economies", economyList);
         model.addAttribute("standards", standardList);
         model.addAttribute("luxuries", luxuryList);
+        model.addAttribute("staffs", staffList);
         return "home/createContract";
     }
 
@@ -274,12 +276,13 @@ public class HomeController {
         List<Economy> economyList = economyService.fetchAll();
         List<Standard> standardList = standardService.fetchAll();
         List<Luxury> luxuryList = luxuryService.fetchAll();
-
+        List<Staff> staffList = staffService.fetchAll();
 
         model.addAttribute("customers", customerList);
         model.addAttribute("economies", economyList);
         model.addAttribute("standards", standardList);
         model.addAttribute("luxuries", luxuryList);
+        model.addAttribute("staffs", staffList);
         return "home/updateContract";
     }
 

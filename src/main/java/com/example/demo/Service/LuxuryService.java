@@ -28,7 +28,7 @@ public class LuxuryService {
         return luxuryRepository.delete(id);
     }
 
-    public Luxury update(Luxury l) {
-        return luxuryRepository.update(l);
+    public Luxury update(Luxury l, String licenseId) {
+        return luxuryRepository.update(l, licenseId);
     }
 }

@@ -7,7 +7,7 @@
 </head>
 <body>
 <form action="/updateEconomy" method="post" class="btn-update">
-    <input hidden type="text" name="id" th:value="${economy.licensePlate}">
+    <input hidden type="text" name="licenseId" th:value="${economy.licensePlate}">
 
     <label>License Plate</label>
     <input type="text" name="licensePlate" th:value="${economy.licensePlate}" required>
@@ -21,11 +21,16 @@
     <input type="number" name="seats" th:value="${economy.seats}" required>
     <label>beds</label>
     <input type="number" name="beds" th:value="${economy.beds}"required>
-    <label>fuelType</label>
-    <input type="text" name="fuelType" th:value="${economy.fuelType}" required>
+
+    <label>Fuel Type</label>
+    <select name="fuelType" th:field="${economy.fuelType}">
+        <option value="Benzin">Benzin</option>
+        <option value="Diesel">Diesel</option>
+        <option value="Elektrisk">Elektrisk</option>
+    </select>
 
     <label>gear</label>
-    <select name="gear" th:value="${economy.gear}">
+    <select name="gear" th:field="${economy.gear}">
         <option value="Automat">Automat</option>
         <option value="Manuel">Manuel</option>
     </select>
