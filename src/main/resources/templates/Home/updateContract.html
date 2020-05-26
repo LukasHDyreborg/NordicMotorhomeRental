@@ -40,9 +40,12 @@
                 <td th:text="${customer.driverLicenseDate}"></td>
 
                 <td>
-                    <label>
+                    <span th:unless="${customer.id == contract.customId}">
                         <input type="radio" name="customId" th:value="${customer.id}" required>
-                    </label>
+                    </span>
+                    <span th:if="${customer.id == contract.customId}">
+                        <input type="radio" name="customId" th:value="${customer.id}" checked required>
+                    </span>
                 </td>
             </tr>
             </tbody>
@@ -106,7 +109,12 @@
                 <td th:text="${luxury.toilet}"></td>
                 <td th:text="${luxury.awning}"></td>
                 <td>
-                    <input type="radio" name="carId" th:value="${luxury.licensePlate}" required>
+                    <span th:unless="${contract.carId == luxury.licensePlate}">
+                        <input type="radio" name="carId" th:value="${luxury.licensePlate}" required>
+                    </span>
+                    <span th:if="${contract.carId == luxury.licensePlate}">
+                        <input type="radio" name="carId" th:value="${luxury.licensePlate}" checked required>
+                    </span>
                 </td>
             </tr>
             <tr th:each="standard: ${standards}"> <!--th:each means it will loop through the customers list -->
@@ -126,7 +134,12 @@
                 <td th:text="${standard.toilet}"></td>
                 <td th:text="${standard.awning}"></td>
                 <td>
-                    <input type="radio" name="carId" th:value="${standard.licensePlate}" required>
+                    <span th:unless="${contract.carId == standard.licensePlate}">
+                        <input type="radio" name="carId" th:value="${standard.licensePlate}" required>
+                    </span>
+                    <span th:if="${contract.carId == standard.licensePlate}">
+                        <input type="radio" name="carId" th:value="${standard.licensePlate}" checked required>
+                    </span>
                 </td>
             </tr>
             <tr th:each="economy: ${economies}"> <!--th:each means it will loop through the customers list -->
@@ -146,7 +159,12 @@
                 <td th:text="${economy.toilet}"></td>
                 <td th:text="${economy.awning}"></td>
                 <td>
-                    <input type="radio" name="carId" th:value="${economy.licensePlate}" required>
+                    <span th:unless="${contract.carId == economy.licensePlate}">
+                        <input type="radio" name="carId" th:value="${economy.licensePlate}" required>
+                    </span>
+                    <span th:if="${contract.carId == economy.licensePlate}">
+                        <input type="radio" name="carId" th:value="${economy.licensePlate}" checked required>
+                    </span>
                 </td>
             </tr>
             </tbody>
