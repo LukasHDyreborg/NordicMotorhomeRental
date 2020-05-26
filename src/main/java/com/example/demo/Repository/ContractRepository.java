@@ -32,7 +32,7 @@ public class ContractRepository {
 
     public Contract add(Contract c) {
         /*try{*/
-            assignPriceDistance(c); //assigns distance and price based on amount of days
+            assignContract(c);//assigns distance and price based on amount of days, also customer and motorhome assignment
 
             String sql = "INSERT INTO contracts() VALUES (DEFAULT, ?, ?, ?, ?, ?, ?, ?)";
             template.update(sql, c.getFromDate(), c.getToDate(), c.getNumberOfDays(), c.getCarId(), c.getCustomId(), c.getMaxKM(), c.getPrice());
@@ -72,15 +72,13 @@ public class ContractRepository {
     public void assignContract(Contract contract){
         contract.setCustomer(customerRepository.findById(contract.getCustomId()));
         contract.setMotorhome(motorhomeRepository.findById(contract.getCarId()));
-    }
 
-    public void assignPriceDistance(Contract contract){
         if(contract.getMaxKM() == 0) {
             contract.setMaxKM(contract.getNumberOfDays() * 400);
         }
 
         if(contract.getPrice() == 0){
-            contract.setPrice((int)contract.getMotorhome().getPricePerDay() * contract.getNumberOfDays());
+            contract.setPrice(contract.getMotorhome().getPricePerDay() * contract.getNumberOfDays());
         }
     }
 }
