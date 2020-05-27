@@ -26,7 +26,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="customer: ${customers}"> <!--th:each means it will loop through the customers list -->
+            <tr th:each="customer: ${customers}">
 
                 <td th:text="${customer.id}"></td>
                 <td th:text="${customer.name}"></td>
@@ -92,7 +92,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="luxury: ${luxuries}"> <!--th:each means it will loop through the customers list -->
+            <tr th:each="luxury: ${luxuries}">
                 <td th:text="${luxury.licensePlate}"></td>
                 <td th:text="${luxury.brand}"></td>
                 <td th:text="${luxury.model}"></td>
@@ -117,7 +117,7 @@
                     </span>
                 </td>
             </tr>
-            <tr th:each="standard: ${standards}"> <!--th:each means it will loop through the customers list -->
+            <tr th:each="standard: ${standards}">
                 <td th:text="${standard.licensePlate}"></td>
                 <td th:text="${standard.brand}"></td>
                 <td th:text="${standard.model}"></td>
@@ -142,7 +142,7 @@
                     </span>
                 </td>
             </tr>
-            <tr th:each="economy: ${economies}"> <!--th:each means it will loop through the customers list -->
+            <tr th:each="economy: ${economies}">
                 <td th:text="${economy.licensePlate}"></td>
                 <td th:text="${economy.brand}"></td>
                 <td th:text="${economy.model}"></td>
@@ -170,6 +170,37 @@
             </tbody>
         </table>
     </div>
+
+    <div class="wrapper-table">
+        <table>
+            <thead>
+            <tr>
+                <th>id</th>
+                <th>name</th>
+                <th>Amount available</th>
+                <th>amount total</th>
+                <th>price</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="accessory: ${accessories}"> <!--th:each means it will loop through the Accessory list -->
+                <td th:text="${accessory.id}" />
+                <td th:text="${accessory.name}" />
+                <td th:text="${accessory.amountAvailable}" />
+                <td th:text="${accessory.amountTotal}" />
+                <td th:text="${accessory.price}" />
+                <td>
+                    <input type="checkbox" name="accessory" th:value="${accessory.id}"> <!--TODO FIND TH SO ITS PRESELECTED-->
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <label>Sales Assistent</label>
+    <select name="staff" th:field="${contract.staff}">
+        <option th:each="staff : ${staffs}" th:text="${staff.name}" th:value="${staff.name}"></option>
+    </select>
 
     <input type="submit" value="Save" class="btn-edit">
 </form>

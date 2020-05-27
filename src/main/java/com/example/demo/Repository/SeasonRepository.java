@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Repository
@@ -51,5 +52,11 @@ public class SeasonRepository {
         }catch(Exception e){
             return false;
         }
+    }
+
+    public Season findByDate(LocalDate localDate){
+        String sql = "SELECT * FROM seasons WHERE ? BETWEEN start_date AND end_date";
+        RowMapper<Season> rowMapper = new BeanPropertyRowMapper<>(Season.class);
+        return template.queryForObject(sql, rowMapper, localDate);
     }
 }

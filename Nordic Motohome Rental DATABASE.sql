@@ -72,6 +72,9 @@ CREATE TABLE contracts
     customId INT NOT NULL,
     maxKM INT NOT NULL,
     price INT NOT NULL,
+    staff VARCHAR(45) NOT NULL,
+    -- pickUp VARCHAR(45) NOT NULL,         SKAL HAVE LAVET TABLE SOM KAN INDEHOLDE points
+    -- dropOff VARCHAR (45) NOT NULL,
     FOREIGN KEY (carId) REFERENCES motorhomes(licensePlate) ON UPDATE CASCADE,
     FOREIGN KEY (customId) REFERENCES customers(id)
 );
@@ -83,6 +86,14 @@ id INT PRIMARY KEY AUTO_INCREMENT,
 amount_available INT NOT NULL,
 amount_total INT NOT NULL,
 price INT NOT NULL
+);
+
+CREATE TABLE accessory_contract
+(
+accessory_id INT NOT NULL,
+contract_id INT NOT NULL,
+FOREIGN KEY (accessory_id) REFERENCES accessories(id) ON DELETE CASCADE,
+FOREIGN KEY (contract_id) REFERENCES contracts(id) ON DELETE CASCADE
 );
 
 CREATE TABLE seasons (

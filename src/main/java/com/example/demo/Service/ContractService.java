@@ -16,8 +16,8 @@ public class ContractService {
         return contractRepository.fetchAll();
     }
 
-    public Contract add(Contract c) {
-        return contractRepository.add(c);
+    public Contract add(Contract c, int[] accessory) {
+        return contractRepository.add(c, accessory);
     }
 
     public Contract findById(int id) {
@@ -28,7 +28,7 @@ public class ContractService {
         return contractRepository.delete(id);
     }
 
-    public Contract update(Contract c) {
-        return contractRepository.update(c);
+    public Contract update(Contract c, int[] accessories) {
+        return contractRepository.update(c, accessories);
     }
 }

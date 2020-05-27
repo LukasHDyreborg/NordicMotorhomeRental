@@ -38,11 +38,28 @@ INSERT INTO luxury() VALUES ('CN MS 123', true, true);
 -- Contract
 /*INSERT INTO contracts() VALUES (id, fromDate, toDate, carId, customerId, maxKM, price);*/
 
-INSERT INTO contracts() VALUES (DEFAULT, '2020-05-22', '2020-05-31', '9', 'BG 23 432', 1, '3600', '9000');
+INSERT INTO contracts() VALUES (DEFAULT, '2020-05-22', '2020-05-31', '9', 'BG 23 432', 1, '3600', '9000', 'James Raynor');
 
+-- Seasons
+-- INSERT INTO seasons () VALUES (id, start_date, end_date, `type`);                  Datoer er bare baseret på forår, sommer, efterår, vinter
+INSERT INTO seasons() VALUES (DEFAULT, '2020-03-19', '2020-06-19','Middle');	-- forår
+INSERT INTO seasons() VALUES (DEFAULT, '2020-06-20', '2020-09-21','High');     -- sommer
+INSERT INTO seasons() VALUES (DEFAULT, '2020-09-22', '2020-12-20','Middle');  -- efterår
+INSERT INTO seasons() VALUES (DEFAULT, '2020-12-21', '2021-03-18','Low');     -- vinter
 
 -- Staff
 -- INSERT INTO staffs() VALUES (id, `name`, initials);
 INSERT INTO staffs() VALUES (DEFAULT, 'Steve Jobs', 'SJ');
 INSERT INTO staffs() VALUES (DEFAULT, 'Chris Anderson', 'CA');
 INSERT INTO staffs() VALUES (DEFAULT, 'James Raynor', 'JR');
+
+-- Accessories
+-- INSERT INTO accessories () VALUES (id, `name`, amount_available INT, amount_total INT, price INT);
+INSERT INTO accessories() VALUES (DEFAULT, 'Bike Rack', 18, 30, 50);
+INSERT INTO accessories() VALUES (DEFAULT, 'Child Seat', 21, 30, 75);
+INSERT INTO accessories() VALUES (DEFAULT, 'Picnic Table', 15, 30, 100);
+
+-- Mellem link mellem kontrakt og accessories
+-- accessory_contract
+-- INSERT INTO accessory_contract () VALUES (accessory_id, contract_id);
+INSERT INTO accessory_contract () VALUES (1, 1);

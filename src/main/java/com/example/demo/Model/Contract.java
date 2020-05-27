@@ -3,13 +3,14 @@ package com.example.demo.Model;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.List;
 
 @Entity
 public class Contract {
     @Id
     private int id;
-    private LocalDate fromDate;
-    private LocalDate toDate;
+    private String fromDate;
+    private String toDate;
     private int numberOfDays;
     @ManyToOne
     private Customer customer;
@@ -19,6 +20,13 @@ public class Contract {
     private String carId;
     private int maxKM;
     private int price;
+    //staff name/object?
+    private String staff; //kan laves om til et objekt. fordelen ved en string er at vi kan slette medabejdere uden at det berører kontrakten (på den anden side: ændrer vi navn for medarbejder, så er det ikke ændret i kontrakten)
+    //accessories?  list?
+    @OneToMany
+    private List<Accessory> accessoryList;
+    // pick op
+    // drop off
 
     public Contract() {
     }
@@ -45,11 +53,11 @@ public class Contract {
     }
 
     public String getFromDate() {
-        return String.valueOf(fromDate); // returns the localdate as a string for our browser - BG
+        return String.valueOf(fromDate); // returns the localdate as a string for our browser (since browsers apparently dont like date objects- BG
     }
 
     public void setFromDate(String fromDate) {
-        this.fromDate = LocalDate.parse(fromDate);
+        this.fromDate = fromDate;
     }
 
     public String getToDate() {
@@ -57,7 +65,7 @@ public class Contract {
     }
 
     public void setToDate(String toDate) {
-        this.toDate = LocalDate.parse(toDate);
+        this.toDate = toDate;
     }
 
     public int getNumberOfDays() {
@@ -66,7 +74,7 @@ public class Contract {
 
     public void setNumberOfDays(int numberOfDays) {
       //  this.numberOfDays = numberOfDays;
-        Period period = Period.between(fromDate, toDate);
+        Period period = Period.between(LocalDate.parse(fromDate), LocalDate.parse(toDate));
         this.numberOfDays = period.getDays();
     }
 
@@ -116,5 +124,21 @@ public class Contract {
 
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    public String getStaff() {
+        return staff;
+    }
+
+    public void setStaff(String staff) {
+        this.staff = staff;
+    }
+
+    public List<Accessory> getAccessoryList() {
+        return accessoryList;
+    }
+
+    public void setAccessoryList(List<Accessory> accessoryList) {
+        this.accessoryList = accessoryList;
     }
 }

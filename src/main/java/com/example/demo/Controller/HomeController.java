@@ -232,18 +232,23 @@ public class HomeController {
         List<Standard> standardList = standardService.fetchAll();
         List<Luxury> luxuryList = luxuryService.fetchAll();
         List<Staff> staffList = staffService.fetchAll();
+        List<Accessory> accessoryList = accessoryService.fetchAll();
 
         model.addAttribute("customers", customerList);
         model.addAttribute("economies", economyList);
         model.addAttribute("standards", standardList);
         model.addAttribute("luxuries", luxuryList);
         model.addAttribute("staffs", staffList);
+        model.addAttribute("accessories", accessoryList);
         return "home/createContract";
     }
 
     @PostMapping("/createContract")
-    public String createContract(@ModelAttribute Contract contract){
-        contractService.add(contract);
+    public String createContract(@ModelAttribute Contract contract, @RequestParam(value="accessory", required=false) int[] accessory){
+        if(accessory==null){
+            accessory = new int[]{}; // initialize an empty array if there isnt an accessory chosen
+        }
+        contractService.add(contract, accessory);
         return "redirect:/contract";
     }
 
@@ -277,18 +282,23 @@ public class HomeController {
         List<Standard> standardList = standardService.fetchAll();
         List<Luxury> luxuryList = luxuryService.fetchAll();
         List<Staff> staffList = staffService.fetchAll();
+        List<Accessory> accessoryList = accessoryService.fetchAll();
 
         model.addAttribute("customers", customerList);
         model.addAttribute("economies", economyList);
         model.addAttribute("standards", standardList);
         model.addAttribute("luxuries", luxuryList);
         model.addAttribute("staffs", staffList);
+        model.addAttribute("accessories", accessoryList);
         return "home/updateContract";
     }
 
     @PostMapping("/updateContract")
-    public String updateContract(@ModelAttribute Contract c) {
-        contractService.update(c);
+    public String updateContract(@ModelAttribute Contract c, @RequestParam(value="accessory", required=false) int[] accessory) {
+        if(accessory==null){
+            accessory = new int[]{}; // initialize an empty array if there isnt an accessory chosen
+        }
+        contractService.update(c, accessory);
         return "redirect:/contract";
     }
     //season
