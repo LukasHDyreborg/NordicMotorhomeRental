@@ -2,7 +2,7 @@ package com.example.demo.Model;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
+import java.time.Period;
 
 @Entity
 public class Contract {
@@ -66,7 +66,8 @@ public class Contract {
 
     public void setNumberOfDays(int numberOfDays) {
       //  this.numberOfDays = numberOfDays;
-        this.numberOfDays = (int) ChronoUnit.DAYS.between(fromDate, toDate);
+        Period period = Period.between(fromDate, toDate);
+        this.numberOfDays = period.getDays();
     }
 
     public Customer getCustomer() {
