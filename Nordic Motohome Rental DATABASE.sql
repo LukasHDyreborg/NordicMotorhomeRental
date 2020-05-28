@@ -62,6 +62,11 @@ CREATE TABLE luxury
     ON UPDATE CASCADE
 );
 
+/*CREATE TABLE points
+(
+address VARCHAR(45) NOT NULL PRIMARY KEY,
+distance DOUBLE NOT NULL
+);*/
 CREATE TABLE contracts
 (
     id INT PRIMARY KEY AUTO_INCREMENT,
@@ -73,11 +78,18 @@ CREATE TABLE contracts
     maxKM INT NOT NULL,
     price INT NOT NULL,
     staff VARCHAR(45) NOT NULL,
-    -- pickUp VARCHAR(45) NOT NULL,         SKAL HAVE LAVET TABLE SOM KAN INDEHOLDE points
-    -- dropOff VARCHAR (45) NOT NULL,
+    pickUp VARCHAR(45),
+    pickDistance DOUBLE,
+    dropOff VARCHAR(45),
+    dropDistance DOUBLE,
+    active BOOL,
+   /* FOREIGN KEY (pickUP) REFERENCES points(address),
+    FOREIGN KEY (dropOff) REFERENCES points(address),*/
     FOREIGN KEY (carId) REFERENCES motorhomes(licensePlate) ON UPDATE CASCADE,
     FOREIGN KEY (customId) REFERENCES customers(id)
 );
+
+
 
 CREATE TABLE accessories
 (
