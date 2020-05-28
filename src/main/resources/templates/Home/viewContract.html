@@ -31,6 +31,16 @@
     <span th:text="${contract.motorhome.model}"></span>
     <label>Max KM</label>
     <span th:text="${contract.maxKM}"></span>
+
+    <label>Pick-Up Point:</label>
+    <span th:text="${contract.pickUp}"></span>
+    <label>Pick-Up Distance:</label>
+    <span th:text="${contract.pickDistance}"></span>
+    <label>Drop-Off Point:</label>
+    <span th:text="${contract.dropOff}"></span>
+    <label>Drop-Off Distance:</label>
+    <span th:text="${contract.dropDistance}"></span>
+
     <label>Price</label>
     <span th:text="${contract.price}"></span>
 
@@ -57,7 +67,10 @@
         <button class="btn-delete">Delete</button>
     </a>
     <a th:href="@{'/updateContract/'+${contract.id}}">
-        <button class="btn-update">update</button>
+        <button class="btn-update">Update</button>
+    </a>
+    <a th:href="@{'/EndContract/'+${contract.id}}">
+        <button class="btn-update">End</button>
     </a>
 </body>
 </html>

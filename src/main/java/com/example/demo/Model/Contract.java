@@ -26,7 +26,16 @@ public class Contract {
     @OneToMany
     private List<Accessory> accessoryList;
     // pick op
+    private String pickUp;
+    private double pickDistance;
+   /* @OneToOne
+    private Point pickUp;*/
     // drop off
+    /*@OneToOne
+    private Point dropOff;*/
+    private String dropOff;
+    private double dropDistance;
+
 
     public Contract() {
     }
@@ -140,5 +149,37 @@ public class Contract {
 
     public void setAccessoryList(List<Accessory> accessoryList) {
         this.accessoryList = accessoryList;
+    }
+
+    public String getPickUp() {
+        return pickUp;
+    }
+
+    public void setPickUp(String pickUp) {
+        this.pickUp = pickUp;
+    }
+
+    public double getPickDistance() {
+        return pickDistance;
+    }
+
+    public void setPickDistance(double pickDistance) {
+        this.pickDistance = pickDistance;
+    }
+
+    public String getDropOff() {
+        return dropOff;
+    }
+
+    public void setDropOff(String dropOff) {
+        this.dropOff = dropOff;
+    }
+
+    public double getDropDistance() {
+        return dropDistance;
+    }
+
+    public void setDropDistance(double dropDistance) {
+        this.dropDistance = dropDistance;
     }
 }

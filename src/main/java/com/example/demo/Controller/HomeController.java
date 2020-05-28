@@ -225,6 +225,36 @@ public class HomeController {
         return "home/contract";
     }
 
+    @GetMapping("/endContract/{id}")
+    public String endContract(@PathVariable("id") int id, Model model){
+        model.addAttribute("contract", contractService.findById(id));
+        return "home/endContract";
+    }
+
+    /*@PostMapping
+    public String endContract(@ModelAttribute Contract c, @RequestParam("oldOdometer") int oldOdometer,
+                              @RequestParam("halfFull") boolean halfFull){
+        contractService.endContract(c, oldOdometer, halfFull);
+        return "redirect:/contract";
+    }*/
+
+    @GetMapping("/contractArchive")
+    public String contractArchive(Model model){
+        List<Contract> contractList = contractService.fetchAllArchive();
+        model.addAttribute("contracts", contractList);
+
+        return "home/contractArchive";
+    }
+
+    @GetMapping("/viewContractArchived/{id}")
+    public String viewContractArchived(@PathVariable("id") int id, Model model) {
+        Contract contract = contractService.findById(id);
+        contract.setCustomer(customerService.findById(contract.getCustomId()));
+        contract.setMotorhome(motorhomeService.findById(contract.getCarId()));
+        model.addAttribute("contract", contract);
+        return "home/viewContractArchived";
+    }
+
     @GetMapping("/createContract")
     public String createContract(Model model) {
         List<Customer> customerList = customerService.fetchAll();
@@ -294,13 +324,15 @@ public class HomeController {
     }
 
     @PostMapping("/updateContract")
-    public String updateContract(@ModelAttribute Contract c, @RequestParam(value="accessory", required=false) int[] accessory) {
+    public String updateContract(@ModelAttribute Contract c, @RequestParam(value="accessory", required=false) int[] accessory,
+                                 @RequestParam(value="newPrice", required=false) boolean newPrice) {
         if(accessory==null){
             accessory = new int[]{}; // initialize an empty array if there isnt an accessory chosen
         }
-        contractService.update(c, accessory);
+        contractService.update(c, accessory, newPrice);
         return "redirect:/contract";
     }
+
     //season
     @GetMapping("/season")
     public String season(Model model){

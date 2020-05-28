@@ -141,28 +141,39 @@
         </table>
     </div>
 
+    <div>
+        <label>Pick-Up Point:</label>
+        <input type="text" name="" id="pickUp">
+        <label>Pick-Up Distance:</label>
+        <input type="number" name="pickDistance" step="0.1">
+        <label>Drop-Off Point:</label>
+        <input type="text" name="dropOff">
+        <label>Drop-Off Distance:</label>
+        <input type="number" name="dropDistance" step="0.1">
+    </div>
+
     <div class="wrapper-table">
         <table>
             <thead>
-            <tr>
-                <th>id</th>
-                <th>name</th>
-                <th>Amount available</th>
-                <th>amount total</th>
-                <th>price</th>
-            </tr>
+                <tr>
+                    <th>id</th>
+                    <th>name</th>
+                    <th>Amount available</th>
+                    <th>amount total</th>
+                    <th>price</th>
+                </tr>
             </thead>
             <tbody>
-            <tr th:each="accessory: ${accessories}"> <!--th:each means it will loop through the Accessory list -->
-                <td th:text="${accessory.id}" />
-                <td th:text="${accessory.name}" />
-                <td th:text="${accessory.amountAvailable}" />
-                <td th:text="${accessory.amountTotal}" />
-                <td th:text="${accessory.price}" />
-                <td>
-                    <input type="checkbox" name="accessory" th:value="${accessory.id}">
-                </td>
-            </tr>
+                <tr th:each="accessory: ${accessories}"> <!--th:each means it will loop through the Accessory list -->
+                    <td th:text="${accessory.id}" />
+                    <td th:text="${accessory.name}" />
+                    <td th:text="${accessory.amountAvailable}" />
+                    <td th:text="${accessory.amountTotal}" />
+                    <td th:text="${accessory.price}" />
+                    <td>
+                        <input type="checkbox" name="accessory" th:value="${accessory.id}">
+                    </td>
+                </tr>
             </tbody>
         </table>
     </div>

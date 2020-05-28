@@ -60,10 +60,12 @@
         <label>End Date :</label>
         <input type="date" name="toDate" id="endDate" onchange="time()" th:value="${contract.toDate}">
 
-        <input type="text" name="totalDays" id="totalDays" readonly>
+      <!--  <input type="text" name="totalDays" id="totalDays" readonly> -->
 
         <label>Price:</label>
         <input type="number" name="price" th:value="${contract.price}" required>
+        <label>Automatically calculate new price?</label>
+        <input type="checkbox" name="newPrice">
 
         <label>Max KM:</label>
         <input type="number" name="maxKM" th:value="${contract.maxKM}" required>
@@ -169,6 +171,17 @@
             </tr>
             </tbody>
         </table>
+    </div>
+
+    <div>
+        <label>Pick-Up Point:</label>
+        <input type="text" name="pickUp" th:value="${contract.pickUp}">
+        <label>Pick-Up Distance:</label>
+        <input type="number" name="pickDistance" th:value="${contract.pickDistance}" step="0.1">
+        <label>Drop-Off Point:</label>
+        <input type="text" name="dropOff" th:value="${contract.dropOff}">
+        <label>Drop-Off Distance:</label>
+        <input type="number" name="dropDistance" th:value="${contract.dropDistance}" step="0.1">
     </div>
 
     <div class="wrapper-table">

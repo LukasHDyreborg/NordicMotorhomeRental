@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Show Contract - Archived</title>
+</head>
+<body>
+<label>id</label>
+<span th:text="${contract.id}"></span>
+<label>From Date</label>
+<span th:text="${contract.fromDate}"></span>
+<label>To Date</label>
+<span th:text="${contract.toDate}"></span>
+<label>Name</label>
+<span th:text="${contract.customer.name}"></span>
+<label>Driver license number</label>
+<span th:text="${contract.customer.driverLicenseNumber}"></span>
+<label>CPR</label>
+<span th:text="${contract.customer.cpr}"></span>
+<label>Address</label>
+<span th:text="${contract.customer.address}"></span>
+<label>Phone</label>
+<span th:text="${contract.customer.phone}"></span>
+<label>Email</label>
+<span th:text="${contract.customer.email}"></span>
+<label>Nummerplade</label>
+<span th:text="${contract.motorhome.licensePlate}"></span>
+<label>Brand</label>
+<span th:text="${contract.motorhome.brand}"></span>
+<label>Model</label>
+<span th:text="${contract.motorhome.model}"></span>
+<label>Max KM</label>
+<span th:text="${contract.maxKM}"></span>
+
+<label>Pick-Up Point:</label>
+<span th:text="${contract.pickUp}"></span>
+<label>Pick-Up Distance:</label>
+<span th:text="${contract.pickDistance}"></span>
+<label>Drop-Off Point:</label>
+<span th:text="${contract.dropOff}"></span>
+<label>Drop-Off Distance:</label>
+<span th:text="${contract.dropDistance}"></span>
+
+<label>Price</label>
+<span th:text="${contract.price}"></span>
+
+<span>
+        <table>
+            <thead>
+            <tr>
+                <th>Accessories</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="accessory: ${contract.accessoryList}">
+                <td th:text="${accessory.name}"></td>
+                <td th:text="${accessory.price}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </span>
+
+<label>Sales Assistant</label>
+<span th:text="${contract.staff}"></span>
+
+<a th:href="@{'/deleteContract/'+${contract.id}}">
+    <button class="btn-delete">Delete</button>
+</a>
+</body>
+</html>

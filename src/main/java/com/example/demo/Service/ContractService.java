@@ -16,6 +16,10 @@ public class ContractService {
         return contractRepository.fetchAll();
     }
 
+    public List<Contract> fetchAllArchive() {
+        return contractRepository.fetchAllArchive();
+    }
+
     public Contract add(Contract c, int[] accessory) {
         return contractRepository.add(c, accessory);
     }
@@ -28,7 +32,11 @@ public class ContractService {
         return contractRepository.delete(id);
     }
 
-    public Contract update(Contract c, int[] accessories) {
-        return contractRepository.update(c, accessories);
+    public Contract update(Contract c, int[] accessories, boolean newPrice) {
+        return contractRepository.update(c, accessories, newPrice);
+    }
+
+    public Contract endContract(Contract c, int oldOdometer){
+        return contractRepository.endContract(c, oldOdometer);
     }
 }

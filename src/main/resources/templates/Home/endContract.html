@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>End - Contract</title>
+    <link rel="stylesheet" type="text/css" href="/MyCSS.css">
+</head>
+<body>
+<form name="contract" action="/EndContract" method="post">
+    <input hidden type="text" name="id" th:value="${contract.id}">
+    <input hidden type="number" name="oldOdometer" th:value="${contract.motorhome.odometer}">
+    <input hidden type="date" name="fromDate" th:value="${contract.fromDate}">
+    <input hidden type="date" name="toDate" th:value="${contract.fromDate}"> <!-- fields we need when ending contract -->
+
+    <label>Is fuel tank under half full?</label>
+    <input type="checkbox" name="halfFull">
+
+    <label>Odometer</label>
+    <input type="number" name="odometer">
+
+
+    <label>Sales Assistent</label>
+    <select name="staff" th:field="${contract.staff}">
+        <option th:each="staff : ${staffs}" th:text="${staff.name}" th:value="${staff.name}"></option>
+    </select>
+
+    <input type="submit" value="End" class="btn-edit">
+</form>
+
+</body>
+</html>

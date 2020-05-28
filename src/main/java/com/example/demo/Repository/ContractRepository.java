@@ -2,6 +2,7 @@ package com.example.demo.Repository;
 
 import com.example.demo.Model.Accessory;
 import com.example.demo.Model.Contract;
+import com.example.demo.Model.Point;
 import com.example.demo.Model.Season;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -28,7 +29,23 @@ public class ContractRepository {
     AccessoryRepository accessoryRepository;
 
     public List<Contract> fetchAll() {
-        String sql = "SELECT c.id, fromDate, toDate, numberOfDays, carId, customId, maxKM, price, staff FROM contracts c JOIN customers cust ON c.customId = cust.id JOIN motorhomes m ON c.carId = m.licensePlate ORDER BY c.id";
+        String sql = "SELECT c.id, fromDate, toDate, numberOfDays, carId, customId, maxKM, price, staff, pickUp, pickDistance, dropOff, dropDistance FROM contracts c JOIN customers cust ON c.customId = cust.id JOIN motorhomes m ON c.carId = m.licensePlate WHERE c.active = 1 ORDER BY c.id";
+        RowMapper<Contract> rowMapper = new BeanPropertyRowMapper<>(Contract.class);
+        List<Contract> contractList = template.query(sql, rowMapper);
+        //assigns accessories to contract
+        for(int i = 0; i <contractList.size(); i++){
+            Contract contract = contractList.get(i);
+            contract.setAccessoryList(assignContractAccessories(contract));
+        }
+        //assigns customer and vehicle to contract
+        for(int i = 0; i < contractList.size(); i++){
+            assignContract(contractList.get(i));
+        }
+        return contractList;
+    }
+
+    public List<Contract> fetchAllArchive() {
+        String sql = "SELECT c.id, fromDate, toDate, numberOfDays, carId, customId, maxKM, price, staff, pickUp, pickDistance, dropOff, dropDistance FROM contracts c JOIN customers cust ON c.customId = cust.id JOIN motorhomes m ON c.carId = m.licensePlate WHERE c.active = 0 ORDER BY c.id";
         RowMapper<Contract> rowMapper = new BeanPropertyRowMapper<>(Contract.class);
         List<Contract> contractList = template.query(sql, rowMapper);
         //assigns accessories to contract
@@ -55,16 +72,17 @@ public class ContractRepository {
             }
 
             //sets number of days because it wont do itself for some reason ( ._.)
-            Period period = Period.between(LocalDate.parse(c.getFromDate()), LocalDate.parse(c.getToDate()));
-            c.setNumberOfDays(period.getDays());
+           /* Period period = Period.between(LocalDate.parse(c.getFromDate()), LocalDate.parse(c.getToDate()));
+            c.setNumberOfDays(period.getDays());*/
 
             assignContract(c); // assigns car and customer to list. We use it to calculate price
             assignPrice(c);//assigns distance and price based on amount of days
             c.setMaxKM(c.getNumberOfDays() * 400); //assigns max km
 
             //Inserts into database
-            String sql = "INSERT INTO contracts() VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-            template.update(sql, c.getId(), c.getFromDate(), c.getToDate(), c.getNumberOfDays(), c.getCarId(), c.getCustomId(), c.getMaxKM(), c.getPrice(), c.getStaff());
+            String sql = "INSERT INTO contracts() VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            template.update(sql, c.getId(), c.getFromDate(), c.getToDate(), c.getNumberOfDays(), c.getCarId(), c.getCustomId(), c.getMaxKM(), c.getPrice(), c.getStaff(),
+                    c.getPickUp(), c.getPickDistance(), c.getDropOff(), c.getDropDistance());
 
             //inserts into intermediary table between accessories and contracts.
             for(int i = 0; i < accessory.length; i++){
@@ -78,7 +96,7 @@ public class ContractRepository {
     }
 
     public Contract findById(int id) {
-        String sql = "SELECT c.id, fromDate, toDate, numberOfDays, carId, customId, maxKM, price, staff FROM contracts c JOIN customers cust ON c.customId = cust.id JOIN motorhomes m ON c.carId = m.licensePlate WHERE c.id = ?";
+        String sql = "SELECT c.id, fromDate, toDate, numberOfDays, carId, customId, maxKM, price, staff, pickUp, pickDistance, dropOff, dropDistance FROM contracts c JOIN customers cust ON c.customId = cust.id JOIN motorhomes m ON c.carId = m.licensePlate WHERE c.id = ?";
         RowMapper<Contract> rowMapper = new BeanPropertyRowMapper<>(Contract.class);
         Contract contract = template.queryForObject(sql, rowMapper, id);
 
@@ -99,7 +117,7 @@ public class ContractRepository {
         }
     }
 
-    public Contract update(Contract c, int[] accessories) {
+    public Contract update(Contract c, int[] accessories, boolean newPrice) {
         String sql = "DELETE FROM accessory_contract WHERE contract_id = ?"; //deletes all. easier if we want to remove some accessories
         template.update(sql, c.getId());
 
@@ -108,8 +126,36 @@ public class ContractRepository {
             template.update(sql, accessories[i], c.getId());
         }
 
-        sql = "UPDATE contracts c SET fromDate = ?, toDate = ?, numberOfDays = ?, carId = ?, customId = ?, maxKM = ?, price = ?, staff = ? WHERE id = ?";
-        template.update(sql, c.getFromDate(), c.getToDate(), c.getNumberOfDays(), c.getCarId(), c.getCustomId(), c.getMaxKM(), c.getPrice(), c.getStaff(), c.getId());
+
+        if (newPrice) {
+            c.setAccessoryList(new ArrayList<>());//assigns it an arraylist since it will be null by default
+
+            //adds accessories from list
+            for(int i = 0; i < accessories.length; i++){
+                c.getAccessoryList().add(accessoryRepository.findById(accessories[i]));
+            }
+
+            // assignContractAccessories(c);// assigns accessories so it will calculate new price*/
+            assignContract(c);
+            assignPrice(c);
+        }
+
+
+        sql = "UPDATE contracts c SET fromDate = ?, toDate = ?, numberOfDays = ?, carId = ?, customId = ?, maxKM = ?, price = ?, staff = ?, " +
+                "pickUp = ?, pickDistance = ?, dropOff = ?, dropDistance = ? WHERE id = ?";
+        template.update(sql, c.getFromDate(), c.getToDate(), c.getNumberOfDays(), c.getCarId(), c.getCustomId(), c.getMaxKM(), c.getPrice(), c.getStaff(),
+                c.getPickUp(), c.getPickDistance(), c.getDropOff(), c.getDropDistance(), c.getId());
+        return null;
+    }
+
+    public  Contract endContract(Contract c, int oldOdometer){
+        c.setPrice((int) (c.getPrice() * checkEndDate(c)));
+
+
+
+        String sql = "UPDATE contracts SET price = ?, active = ? WHERE id = ?";
+        template.update(sql, c.getPrice(), 0, c.getId()); //makes contract inactive
+
         return null;
     }
 
@@ -119,7 +165,13 @@ public class ContractRepository {
     }
 
     public void assignPrice(Contract contract){
+        //sets number of days because it wont do itself for some reason ( ._.)
+        Period period = Period.between(LocalDate.parse(contract.getFromDate()), LocalDate.parse(contract.getToDate()));
+        contract.setNumberOfDays(period.getDays());
+
         contract.setMaxKM(contract.getNumberOfDays() * 400);
+       //Makes sure its zero if changes are made to a contract so that it will calculate new price
+        contract.setPrice(0);
 
         //For loop so it makes  sure that it calculates correct price if rental is ongoing in different seasons
         for(int i = 0; i < contract.getNumberOfDays(); i++){
@@ -135,11 +187,15 @@ public class ContractRepository {
             }
             contract.setPrice(contract.getPrice() + carPrice);
         }
+
         if(contract.getAccessoryList()!=null || contract.getAccessoryList().size() != 0) {
             for (int i = 0; i < contract.getAccessoryList().size(); i++) {
                 contract.setPrice(contract.getPrice() + contract.getAccessoryList().get(i).getPrice());
             }
         }
+
+        contract.setPrice((int)(contract.getPrice() + (5.21 * contract.getPickDistance())));//5.21 is 0.7 euro (according to valutaomregner.dk/eur-dkk/)
+        contract.setPrice((int)(contract.getPrice() + (5.21 * contract.getDropDistance())));
     }
 
     public List<Accessory> assignContractAccessories(Contract c){
@@ -149,4 +205,22 @@ public class ContractRepository {
 
         return accessoryList;
     }
+
+    public double checkEndDate(Contract c){
+        Period period = Period.between(LocalDate.now(), LocalDate.parse(c.getToDate()));
+        int days = period.getDays();
+
+        if(days >= 50){
+            return 0.20;
+        }else if (days < 50 && days >= 15){
+            return 0.50;
+        }else if (days < 15 && days > 0){
+            return 0.80;
+        }else if (days == 0){
+            return 0.95;
+        }else{
+            return 1;
+        }
+    }
+
 }
