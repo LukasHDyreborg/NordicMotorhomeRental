@@ -150,8 +150,17 @@ public class HomeController {
         }
         return "home/viewMotorhome";
     }
+    @GetMapping("/deleteMotorhome/{id}")
+    public String deleteMotorhome(@PathVariable("id") String id) {
+        boolean success = motorhomeService.delete(id);
 
-    @GetMapping("/deleteLuxury/{id}")
+        if(success){
+            return "home/success";
+        } else{
+            return "home/failure";
+        }
+    }
+    /*@GetMapping("/deleteLuxury/{id}")
     public String deleteLuxury(@PathVariable("id") String id) {
         boolean success = luxuryService.delete(id);
 
@@ -182,7 +191,7 @@ public class HomeController {
         } else{
             return "home/failure";
         }
-    }
+    }*/
 
     @GetMapping("/updateEconomy/{id}")
     public String updateEconomy(@PathVariable("id") String id, Model model){

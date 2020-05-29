@@ -36,8 +36,13 @@ public class MotorhomeRepository {
     }
 
     public Boolean delete(String id) {
-        String sql = "DELETE FROM motorhomes WHERE licensePlate = ?";
-        return template.update(sql, id) < 0;
+        try{
+            String sql = "DELETE FROM motorhomes WHERE licensePlate = ?";
+            template.update(sql, id);
+            return true;
+        }catch(Exception e){
+            return false;
+        }
     }
 
     public Motorhome update(Motorhome m) {

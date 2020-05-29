@@ -23,8 +23,7 @@ public class IdRetriever {
 
             return id;
         }catch(SQLException e){
-            System.err.println(e);
-            return -1;
+            return 1; // vores resultset ville være tomt, og vi returnere derfor 1, eftersom vi ved 1 ikke eksistere
         }
     }
 }

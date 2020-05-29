@@ -42,6 +42,7 @@ CREATE TABLE economy
     gasBurners INT NOT NULL,
     FOREIGN KEY (licensePlate) REFERENCES motorhomes(licensePlate)
     ON UPDATE CASCADE
+    ON DELETE CASCADE
 );
 
 CREATE TABLE standard
@@ -51,6 +52,7 @@ CREATE TABLE standard
     elStove BOOLEAN NOT NULL,
     FOREIGN KEY (licensePlate) REFERENCES motorhomes(licensePlate)
     ON UPDATE CASCADE
+    ON DELETE CASCADE
 );
 
 CREATE TABLE luxury
@@ -60,6 +62,7 @@ CREATE TABLE luxury
     rearViewCamera BOOLEAN NOT NULL,
     FOREIGN KEY (licensePlate) REFERENCES standard(licensePlate)
     ON UPDATE CASCADE
+    ON DELETE CASCADE
 );
 
 CREATE TABLE contracts
