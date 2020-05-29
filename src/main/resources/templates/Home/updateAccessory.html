@@ -7,15 +7,17 @@
 </head>
 <body>
 <form action="/updateAccessory" method="post" class="btn-update">
-    <input hidden type="text" name="id" th:value="${Accessory.id}">
-    <label>Start dato</label>
-    <input type="text" name="Amount available" th:value="${Accessory.amount_available}" required>
-    <label>Slut dato</label>
-    <input type="text" name="end_date" th:value="${Accessory.amount_total}" required>
-    <label>Type</label>
-    <input type="text" name="type" th:value="${Accessory.price}" required>
+    <input hidden type="text" name="id" th:value="${accessory.id}">
+    <label>Name</label>
+    <input type="text" name="name" th:value="${accessory.name}" required>
+    <label>Amount Available</label>
+    <input type="number" name="amountAvailable" th:value="${accessory.amountAvailable}" required>
+    <label>Amount Total</label>
+    <input type="number" name="amountTotal" th:value="${accessory.amountTotal}" required>
+    <label>Price</label>
+    <input type="number" name="price" th:value="${accessory.price}" required>
 
-    <input type="submit" value="update Accessory">
+    <input type="submit" value="Update Accessory">
 </form>
 </body>
 </html>

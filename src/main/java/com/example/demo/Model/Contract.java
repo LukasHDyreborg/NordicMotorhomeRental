@@ -11,18 +11,16 @@ public class Contract {
     private int id;
     private String fromDate;
     private String toDate;
-    private int numberOfDays;
+    private int numberOfDays; // kan udregnes fra ovenstående to fields
     @ManyToOne
     private Customer customer;
-    private int customId;
+    private int customId; //kommer til at være i customer alligvel
     @ManyToOne
     private Motorhome motorhome;
-    private String carId;
+    private String carId;  //kommer til at være i motorhome
     private int maxKM;
     private int price;
-    //staff name/object?
     private String staff; //kan laves om til et objekt. fordelen ved en string er at vi kan slette medabejdere uden at det berører kontrakten (på den anden side: ændrer vi navn for medarbejder, så er det ikke ændret i kontrakten)
-    //accessories?  list?
     @OneToMany
     private List<Accessory> accessoryList;
     // pick op
@@ -30,8 +28,8 @@ public class Contract {
     private double pickDistance;
    /* @OneToOne
     private Point pickUp;*/
-    // drop off
-    /*@OneToOne
+    /* drop off
+    @OneToOne
     private Point dropOff;*/
     private String dropOff;
     private double dropDistance;
@@ -81,7 +79,7 @@ public class Contract {
         return numberOfDays;
     }
 
-    public void setNumberOfDays(int numberOfDays) {
+    public void setNumberOfDays(/*int numberOfDays*/) {
       //  this.numberOfDays = numberOfDays;
         Period period = Period.between(LocalDate.parse(fromDate), LocalDate.parse(toDate));
         this.numberOfDays = period.getDays();
@@ -182,4 +180,5 @@ public class Contract {
     public void setDropDistance(double dropDistance) {
         this.dropDistance = dropDistance;
     }
+
 }

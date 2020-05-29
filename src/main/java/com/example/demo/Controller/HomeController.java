@@ -228,15 +228,23 @@ public class HomeController {
     @GetMapping("/endContract/{id}")
     public String endContract(@PathVariable("id") int id, Model model){
         model.addAttribute("contract", contractService.findById(id));
+        model.addAttribute("staffs", staffService.fetchAll());
         return "home/endContract";
     }
 
-    /*@PostMapping
-    public String endContract(@ModelAttribute Contract c, @RequestParam("oldOdometer") int oldOdometer,
-                              @RequestParam("halfFull") boolean halfFull){
-        contractService.endContract(c, oldOdometer, halfFull);
-        return "redirect:/contract";
-    }*/
+    @PostMapping("/endContract")
+    public String endContract(@RequestParam("contractId") int id,
+                              @RequestParam(value="halfFull", required=false) boolean halfFull, @RequestParam("odometer") int odometer, Model model) {
+        Contract c = contractService.findById(id);
+        int price = contractService.endContract(c, odometer, halfFull);
+
+        model.addAttribute("contract", c);//we use the contract for an if statement
+        model.addAttribute("price", price); //the amount the customer gets og pays
+        model.addAttribute("halfFull", halfFull);
+        model.addAttribute("odometer", odometer);
+
+        return "home/contractPay";
+    }
 
     @GetMapping("/contractArchive")
     public String contractArchive(Model model){
@@ -262,7 +270,7 @@ public class HomeController {
         List<Standard> standardList = standardService.fetchAll();
         List<Luxury> luxuryList = luxuryService.fetchAll();
         List<Staff> staffList = staffService.fetchAll();
-        List<Accessory> accessoryList = accessoryService.fetchAll();
+        List<Accessory> accessoryList = accessoryService.fetchAllAvailable();
 
         model.addAttribute("customers", customerList);
         model.addAttribute("economies", economyList);
@@ -305,21 +313,22 @@ public class HomeController {
 
     @GetMapping("/updateContract/{id}")
     public String updateContract(@PathVariable("id") int id, Model model) {
-        model.addAttribute("contract", contractService.findById(id));
-
         List<Customer> customerList = customerService.fetchAll();
         List<Economy> economyList = economyService.fetchAll();
         List<Standard> standardList = standardService.fetchAll();
         List<Luxury> luxuryList = luxuryService.fetchAll();
         List<Staff> staffList = staffService.fetchAll();
-        List<Accessory> accessoryList = accessoryService.fetchAll();
+       // List<Accessory> accessoryList = accessoryService.fetchAllAvailable(); // what if the contract we edit has the last of an item( availability = 0), then it won't be showed as an option (and will then be removed when you press update)
+        List<Accessory> accessoryList = accessoryService.fetchAllAvailable();
 
+        model.addAttribute("contract", contractService.findById(id));
         model.addAttribute("customers", customerList);
         model.addAttribute("economies", economyList);
         model.addAttribute("standards", standardList);
         model.addAttribute("luxuries", luxuryList);
         model.addAttribute("staffs", staffList);
         model.addAttribute("accessories", accessoryList);
+        model.addAttribute("contractAccessories", contractService.findById(id).getAccessoryList());
         return "home/updateContract";
     }
 
@@ -416,7 +425,7 @@ public class HomeController {
 
     @GetMapping("/updateAccessory/{id}")
     public String updateAccessory(@PathVariable("id") int id, Model model){
-        model.addAttribute("Accessory", accessoryService.findById(id));
+        model.addAttribute("accessory", accessoryService.findById(id));
         return "home/updateAccessory";
     }
     @PostMapping("/updateAccessory")

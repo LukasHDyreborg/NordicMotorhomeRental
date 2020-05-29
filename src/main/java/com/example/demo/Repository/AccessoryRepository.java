@@ -22,6 +22,12 @@ public class AccessoryRepository {
         return template.query(sql, rowMapper);
     }
 
+    public List<Accessory> fetchAllAvailable() {
+        String sql = "SELECT * FROM accessories WHERE amount_available > 0 ORDER BY id";
+        RowMapper<Accessory> rowMapper = new BeanPropertyRowMapper<>(Accessory.class);
+        return template.query(sql, rowMapper);
+    }
+
     public Accessory findById(int id) {
         String sql = "SELECT * FROM accessories WHERE id = ?";
         RowMapper<Accessory> rowMapper = new BeanPropertyRowMapper<>(Accessory.class);
@@ -51,6 +57,20 @@ public class AccessoryRepository {
             return true;
         } catch (Exception e) {
             return false;
+        }
+    }
+
+    public void increaseAvailable(List<Accessory> accessoryList) {
+        for(int i = 0; i < accessoryList.size(); i++){
+            String sql = "UPDATE accessories SET amount_available = amount_available + 1 WHERE id = ?";
+            template.update(sql, accessoryList.get(i).getId());
+        }
+    }
+
+    public void decreaseAvailable(List<Accessory> accessoryList) {
+        for(int i = 0; i < accessoryList.size(); i++){
+            String sql = "UPDATE accessories SET amount_available = amount_available - 1 WHERE id = ?";
+            template.update(sql, accessoryList.get(i).getId());
         }
     }
 }
