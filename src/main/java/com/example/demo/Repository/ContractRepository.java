@@ -167,9 +167,6 @@ public class ContractRepository {
             for(int i = 0; i < accessories.length; i++){
                 c.getAccessoryList().add(accessoryRepository.findById(accessories[i])); //we populate the new list
             }
-            for(int i=0;i<c.getAccessoryList().size();i++){
-                System.out.println(c.getAccessoryList().get(i).getName());
-            }
 
             fetchContractObjects(c); //motorhome, customer assigned to customer
             assignPrice(c); //calculates price
