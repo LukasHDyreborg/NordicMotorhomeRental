@@ -62,11 +62,6 @@ CREATE TABLE luxury
     ON UPDATE CASCADE
 );
 
-/*CREATE TABLE points
-(
-address VARCHAR(45) NOT NULL PRIMARY KEY,
-distance DOUBLE NOT NULL
-);*/
 CREATE TABLE contracts
 (
     id INT PRIMARY KEY AUTO_INCREMENT,
@@ -76,20 +71,27 @@ CREATE TABLE contracts
     carId VARCHAR(45) NOT NULL,
     customId INT NOT NULL,
     maxKM INT NOT NULL,
-    price INT NOT NULL,
+    price DOUBLE NOT NULL,
     staff VARCHAR(45) NOT NULL,
-    pickUp VARCHAR(45),
-    pickDistance DOUBLE,
-    dropOff VARCHAR(45),
-    dropDistance DOUBLE,
+  --  pickUp VARCHAR(45),
+  --  pickDistance DOUBLE,
+  --  dropOff VARCHAR(45),
+   -- dropDistance DOUBLE,
     active BOOL,
-   /* FOREIGN KEY (pickUP) REFERENCES points(address),
-    FOREIGN KEY (dropOff) REFERENCES points(address),*/
     FOREIGN KEY (carId) REFERENCES motorhomes(licensePlate) ON UPDATE CASCADE,
     FOREIGN KEY (customId) REFERENCES customers(id)
 );
 
-
+CREATE TABLE points
+(
+id INT AUTO_INCREMENT PRIMARY KEY,
+pickUp VARCHAR(45) NOT NULL,
+pickDistance DOUBLE NOT NULL,
+dropOff VARCHAR(45) NOT NULL,
+dropDistance DOUBLE NOT NULL,
+contract_id INT NOT NULL,
+FOREIGN KEY(contract_id) REFERENCES contracts(id) ON DELETE CASCADE
+);
 
 CREATE TABLE accessories
 (
