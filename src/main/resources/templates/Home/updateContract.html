@@ -111,10 +111,10 @@
                 <td th:text="${luxury.toilet}"></td>
                 <td th:text="${luxury.awning}"></td>
                 <td>
-                    <span th:unless="${contract.carId == luxury.licensePlate}">
+                    <span th:unless="${contract.motorhome.licensePlate == luxury.licensePlate}">
                         <input type="radio" name="carId" th:value="${luxury.licensePlate}" required>
                     </span>
-                    <span th:if="${contract.carId == luxury.licensePlate}">
+                    <span th:if="${contract.motorhome.licensePlate == luxury.licensePlate}">
                         <input type="radio" name="carId" th:value="${luxury.licensePlate}" checked required>
                     </span>
                 </td>
@@ -136,10 +136,10 @@
                 <td th:text="${standard.toilet}"></td>
                 <td th:text="${standard.awning}"></td>
                 <td>
-                    <span th:unless="${contract.carId == standard.licensePlate}">
+                    <span th:unless="${contract.motorhome.licensePlate == standard.licensePlate}">
                         <input type="radio" name="carId" th:value="${standard.licensePlate}" required>
                     </span>
-                    <span th:if="${contract.carId == standard.licensePlate}">
+                    <span th:if="${contract.motorhome.licensePlate == standard.licensePlate}">
                         <input type="radio" name="carId" th:value="${standard.licensePlate}" checked required>
                     </span>
                 </td>
@@ -161,10 +161,10 @@
                 <td th:text="${economy.toilet}"></td>
                 <td th:text="${economy.awning}"></td>
                 <td>
-                    <span th:unless="${contract.carId == economy.licensePlate}">
+                    <span th:unless="${contract.motorhome.licensePlate == economy.licensePlate}">
                         <input type="radio" name="carId" th:value="${economy.licensePlate}" required>
                     </span>
-                    <span th:if="${contract.carId == economy.licensePlate}">
+                    <span th:if="${contract.motorhome.licensePlate == economy.licensePlate}">
                         <input type="radio" name="carId" th:value="${economy.licensePlate}" checked required>
                     </span>
                 </td>
