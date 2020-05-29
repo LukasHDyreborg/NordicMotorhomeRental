@@ -9,11 +9,15 @@
 <form action="/updateSeason" method="post" class="btn-update">
     <input hidden type="text" name="id" th:value="${season.id}">
     <label>Start dato</label>
-    <input type="text" name="start_date" th:value="${season.start_date}" required>
+    <input type="date" name="start_date" th:value="${season.start_date}" required>
     <label>Slut dato</label>
-    <input type="text" name="end_date" th:value="${season.end_date}" required>
+    <input type="date" name="end_date" th:value="${season.end_date}" required>
     <label>Type</label>
-    <input type="text" name="type" th:value="${season.type}" required>
+    <select name="type" th:field="${season.type}">
+        <option value="Høj">Høj</option>
+        <option value="Middel">Middel</option>
+        <option value="Lav">Lav</option>
+    </select>
 
     <input type="submit" value="update season">
 </form>

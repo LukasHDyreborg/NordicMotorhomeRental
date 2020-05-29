@@ -318,8 +318,7 @@ public class HomeController {
         List<Standard> standardList = standardService.fetchAll();
         List<Luxury> luxuryList = luxuryService.fetchAll();
         List<Staff> staffList = staffService.fetchAll();
-       // List<Accessory> accessoryList = accessoryService.fetchAllAvailable(); // what if the contract we edit has the last of an item( availability = 0), then it won't be showed as an option (and will then be removed when you press update)
-        List<Accessory> accessoryList = accessoryService.fetchAllAvailable();
+        List<Accessory> accessoryList = accessoryService.fetchAllAvailable(); // what if the contract we edit has the last of an item( availability = 0), then it won't be showed as an option (and will then be removed when you press update)
 
         model.addAttribute("contract", contractService.findById(id));
         model.addAttribute("customers", customerList);
@@ -328,7 +327,6 @@ public class HomeController {
         model.addAttribute("luxuries", luxuryList);
         model.addAttribute("staffs", staffList);
         model.addAttribute("accessories", accessoryList);
-        model.addAttribute("contractAccessories", contractService.findById(id).getAccessoryList());
         return "home/updateContract";
     }
 

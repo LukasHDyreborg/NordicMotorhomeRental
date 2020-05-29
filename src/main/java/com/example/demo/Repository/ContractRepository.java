@@ -162,7 +162,15 @@ public class ContractRepository {
         c.setMaxKM(c.getNumberOfDays() * 400); //automatically calculates maxKm based on number of days
 
         if (newPrice) { //boolean , true = automatically calculate price, false = price manually entered will be saved
-            fetchContractAccessories(c);// assigns accessories so it will calculate new price*/
+           //we make a new empty list
+            c.setAccessoryList(new ArrayList<>());
+            for(int i = 0; i < accessories.length; i++){
+                c.getAccessoryList().add(accessoryRepository.findById(accessories[i])); //we populate the new list
+            }
+            for(int i=0;i<c.getAccessoryList().size();i++){
+                System.out.println(c.getAccessoryList().get(i).getName());
+            }
+
             fetchContractObjects(c); //motorhome, customer assigned to customer
             assignPrice(c); //calculates price
         }
@@ -231,9 +239,9 @@ public class ContractRepository {
             //Gets motorhomes price
             int carPrice = contract.getMotorhome().getPricePerDay();
             //Multiplies based on season
-            if(season.getType().equals("High")){
+            if(season.getType().equals("Høj")){
                 carPrice *= 1.60;
-            }else if(season.getType().equals("Middle")){
+            }else if(season.getType().equals("Middel")){
                 carPrice *= 1.30;
             }else{
                 carPrice *= 1;
@@ -241,6 +249,7 @@ public class ContractRepository {
             //Sets price (price will increase after every iteration/loop)
             contract.setPrice(contract.getPrice() + carPrice);
         }
+
         //Calculates Accessories price
         if(contract.getAccessoryList()!=null || contract.getAccessoryList().size() != 0) {
             for (int i = 0; i < contract.getAccessoryList().size(); i++) { //loops through accessories in contract and adds price

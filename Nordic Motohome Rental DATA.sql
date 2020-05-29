@@ -48,10 +48,10 @@ INSERT INTO points() VALUES (DEFAULT, 'Lygten 37', 14, 'Lampen 14', 22, 2);
 
 -- Seasons
 -- INSERT INTO seasons () VALUES (id, start_date, end_date, `type`);                  Datoer er bare baseret på forår, sommer, efterår, vinter
-INSERT INTO seasons() VALUES (DEFAULT, '2020-03-19', '2020-06-19','Middle');	-- forår
-INSERT INTO seasons() VALUES (DEFAULT, '2020-06-20', '2020-09-21','High');     -- sommer
-INSERT INTO seasons() VALUES (DEFAULT, '2020-09-22', '2020-12-20','Middle');  -- efterår
-INSERT INTO seasons() VALUES (DEFAULT, '2020-12-21', '2021-03-18','Low');     -- vinter
+INSERT INTO seasons() VALUES (DEFAULT, '2020-03-19', '2020-06-19','Middel');	-- forår
+INSERT INTO seasons() VALUES (DEFAULT, '2020-06-20', '2020-09-21','Høj');     -- sommer
+INSERT INTO seasons() VALUES (DEFAULT, '2020-09-22', '2020-12-20','Middel');  -- efterår
+INSERT INTO seasons() VALUES (DEFAULT, '2020-12-21', '2021-03-18','Lav');     -- vinter
 
 -- Staff
 -- INSERT INTO staffs() VALUES (id, `name`, initials);
