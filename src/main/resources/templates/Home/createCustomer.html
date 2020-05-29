@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Kunderegistration</title>
@@ -28,5 +28,8 @@
 
     <input type="submit" value="Save customer" required>
 </form>
+<a th:href="@{/customer}">
+    <button>Tilbage</button>
+</a>
 </body>
 </html>

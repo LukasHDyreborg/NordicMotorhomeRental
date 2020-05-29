@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Failure</title>
@@ -7,12 +7,9 @@
 </head>
 <body>
     <h1>Failure page</h1>
-    <p>You will be redirected in 3 seconds</p>
 
-   <!-- <script>
-        var timer = setTimeout(function() {
-            window.location='http://localhost:9090/customer'
-        }, 3000);
-    </script> -->
+    <a th:href="@{/}">
+        <button>Tilbage</button>
+    </a>
 </body>
 </html>
