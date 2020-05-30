@@ -160,38 +160,6 @@ public class HomeController {
             return "home/failure";
         }
     }
-    /*@GetMapping("/deleteLuxury/{id}")
-    public String deleteLuxury(@PathVariable("id") String id) {
-        boolean success = luxuryService.delete(id);
-
-        if(success){
-            return "home/success";
-        } else{
-            return "home/failure";
-        }
-    }
-
-    @GetMapping("/deleteStandard/{id}")
-    public String deleteStandard(@PathVariable("id") String id) {
-        boolean success = standardService.delete(id);
-
-        if(success){
-            return "home/success";
-        } else{
-            return "home/failure";
-        }
-    }
-
-    @GetMapping("/deleteEconomy/{id}")
-    public String deleteMotorhome(@PathVariable("id") String id) {
-        boolean success = economyService.delete(id);
-
-        if(success){
-            return "home/success";
-        } else{
-            return "home/failure";
-        }
-    }*/
 
     @GetMapping("/updateEconomy/{id}")
     public String updateEconomy(@PathVariable("id") String id, Model model){
@@ -243,8 +211,11 @@ public class HomeController {
 
     @PostMapping("/endContract")
     public String endContract(@RequestParam("contractId") int id,
-                              @RequestParam(value="halfFull", required=false) boolean halfFull, @RequestParam("odometer") int odometer, Model model) {
+                              @RequestParam(value="halfFull", required=false) boolean halfFull,
+                              @RequestParam("odometer") int odometer,
+                              @RequestParam("staff") String staff, Model model) {
         Contract c = contractService.findById(id);
+        c.setStaff(staff);
         int price = contractService.endContract(c, odometer, halfFull);
 
         model.addAttribute("contract", c);//we use the contract for an if statement
@@ -266,8 +237,6 @@ public class HomeController {
     @GetMapping("/viewContractArchived/{id}")
     public String viewContractArchived(@PathVariable("id") int id, Model model) {
         Contract contract = contractService.findById(id);
-        contract.setCustomer(customerService.findById(contract.getCustomId()));
-        contract.setMotorhome(motorhomeService.findById(contract.getCarId()));
         model.addAttribute("contract", contract);
         return "home/viewContractArchived";
     }
@@ -301,10 +270,7 @@ public class HomeController {
 
     @GetMapping("/viewContract/{id}")
     public String viewContract(@PathVariable("id") int id, Model model) {
-        Contract contract = contractService.findById(id);
-        contract.setCustomer(customerService.findById(contract.getCustomId()));
-        contract.setMotorhome(motorhomeService.findById(contract.getCarId()));
-        model.addAttribute("contract", contract);
+        model.addAttribute("contract", contractService.findById(id));
         return "home/viewContract";
     }
 
@@ -497,7 +463,6 @@ public class HomeController {
     @GetMapping("/deleteStaff/{id}")
     public String deleteStaff(@PathVariable("id") int id){
         boolean success = staffService.delete(id);
-        Staff staff = new Staff();
 
         if(success){
             return "home/success";

@@ -52,4 +52,10 @@ public class MotorhomeRepository {
                 m.getRegistrationDate(), m.getLengthAndHeight(), m.getType(), m.isFridge(), m.isToilet(), m.isAwning(), m.getLicensePlate());
         return null;
     }
+
+    public Motorhome updateOdometer(Motorhome m, int odometer) {
+        String sql = "UPDATE motorhomes SET odometer = ? WHERE licensePlate = ?";
+        template.update(sql, odometer, m.getLicensePlate());
+        return null;
+    }
 }

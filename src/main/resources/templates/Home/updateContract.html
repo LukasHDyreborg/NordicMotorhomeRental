@@ -63,7 +63,7 @@
       <!--  <input type="text" name="totalDays" id="totalDays" readonly> -->
 
         <label>Manually enter Price:</label>
-        <input type="number" name="price" th:value="${contract.price}" required>
+        <input type="number" name="price" th:value="${contract.price}" min="1" required> <!--Minimum pris skal vel være 1-->
         <label>Automatically calculate new price?</label>
         <input type="checkbox" name="newPrice">
 <!--
@@ -177,11 +177,11 @@
         <label>Pick-Up Point:</label>
         <input type="text" name="pickUp" th:value="${contract.pickUp}">
         <label>Pick-Up Distance:</label>
-        <input type="number" name="pickDistance" th:value="${contract.pickDistance}" step="0.1">
+        <input type="number" name="pickDistance" th:value="${contract.pickDistance}" min="0" step="0.1">
         <label>Drop-Off Point:</label>
         <input type="text" name="dropOff" th:value="${contract.dropOff}">
         <label>Drop-Off Distance:</label>
-        <input type="number" name="dropDistance" th:value="${contract.dropDistance}" step="0.1">
+        <input type="number" name="dropDistance" th:value="${contract.dropDistance}" min="0" step="0.1">
     </div>
 
     <div class="wrapper-table">
@@ -193,6 +193,7 @@
                 <th>Amount available</th>
                 <th>amount total</th>
                 <th>price</th>
+                <th></th>
             </tr>
             </thead>
             <tbody>

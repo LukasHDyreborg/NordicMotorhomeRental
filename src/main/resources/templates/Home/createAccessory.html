@@ -7,14 +7,14 @@
 </head>
 <body>
 <form action="/createAccessory" method="post">
-    <label>name</label>
+    <label>Name</label>
     <input type="text" name="name" required>
-    <label>amount available</label>
-    <input type="number" name="amountAvailable" required>
-    <label>amount total</label>
-    <input type="number" name="amountTotal" required>
-    <label>price</label>
-    <input type="number" name="price" required>
+    <label>Amount available</label>
+    <input type="number" name="amountAvailable" min="1" required> <!--Skal være 1, giver ikke mening at lave en ny accessory hvis man ikke havde denne accessory-->
+    <label>Amount total</label>
+    <input type="number" name="amountTotal" min="1" required>
+    <label>Price</label>
+    <input type="number" name="price" min="1" required> <!-- Skal vel koste noget? Men måske skulle man stadig have muligheden for at lave en free accessory? -->
 
     <input type="submit" value="Save accessory" required>
 </form>

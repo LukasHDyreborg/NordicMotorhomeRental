@@ -17,13 +17,13 @@
     <input type="text" name="licensePlate" required>
 
     <label>Pris</label>
-    <input type="number" name="pricePerDay" required>
+    <input type="number" name="pricePerDay" min="1" required>   <!-- skal vel mindst koste en krone? -->
 
     <label>Sæder</label>
-    <input type="number" name="seats" required>
+    <input type="number" name="seats" min="1" required> <!-- der er vel altid et sæde? eller gælder føresæde ikke? -->
 
     <label>Senge</label>
-    <input type="number" name="beds" required>
+    <input type="number" name="beds" min="0" required> <!-- behøver der mindst være én seng? eller kan der ikke være nogen? -->
 
     <label>Brændstof</label>
     <select name="fuelType">
@@ -39,7 +39,7 @@
     </select>
 
     <label>Odometer</label>
-    <input type="number" name="odometer" required>
+    <input type="number" name="odometer" min="0" required>
 
     <label>Registrations Dato</label>
     <input type="date" name="registrationDate" required>

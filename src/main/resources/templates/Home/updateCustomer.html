@@ -11,7 +11,7 @@
     <label>Navn</label>
     <input type="text" name="name" th:value="${customer.name}" required>
     <label>Alder</label>
-    <input type="text" name="age" th:value="${customer.age}" required>
+    <input type="text" name="age" th:value="${customer.age}" min="17 "required> <!-- hvor gammel skal man være for at leje en autocamper?-->
     <label>CPR-Nummer</label>
     <input type="text" name="cpr" th:value="${customer.cpr}" required>
     <label>Email</label>

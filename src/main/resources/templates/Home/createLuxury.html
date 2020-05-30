@@ -17,13 +17,13 @@
     <input type="text" name="licensePlate" required>
 
     <label>Pris</label>
-    <input type="number" name="pricePerDay" required>
+    <input type="number" name="pricePerDay" min="1" required>  <!-- Et køretøj skal vel ikke være gratis, derfor mindst 1 kr. -->
 
     <label>Sæder</label>
-    <input type="number" name="seats" required>
+    <input type="number" name="seats" min="1" required>  <!-- et køretøj skal vel have mindst ét sæde? eller gælder føresædet ikke?--->
 
     <label>Senge</label>
-    <input type="number" name="beds" required>
+    <input type="number" name="beds" min="0" required> <!-- SKAL en autocamper have mindst en seng? eller kan en autocamper være så barebone at den ikke engang har en seng? -->
 
     <label>Brændstof</label>
     <select name="fuelType">
@@ -39,7 +39,7 @@
     </select>
 
     <label>Odometer</label>
-    <input type="number" name="odometer" required>
+    <input type="number" name="odometer" min="0" required>
 
     <label>Registrations Dato</label>
     <input type="date" name="registrationDate" required>

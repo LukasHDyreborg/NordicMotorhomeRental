@@ -7,10 +7,10 @@
 </head>
 <body>
 <form name="contract" action="/endContract" method="post">
-    <input type="text" name="contractId" th:value="${contract.id}">
-    <input type="number" name="oldOdometer" th:value="${contract.motorhome.odometer}">
-    <input type="date" name="fromDate" th:value="${contract.fromDate}">
-    <input type="date" name="toDate" th:value="${contract.toDate}"> <!-- fields we need when ending contract -->
+    <input hidden type="text" name="contractId" th:value="${contract.id}">
+    <input hidden type="number" name="oldOdometer" th:value="${contract.motorhome.odometer}">
+    <input hidden type="date" name="fromDate" th:value="${contract.fromDate}">
+    <input hidden type="date" name="toDate" th:value="${contract.toDate}"> <!-- fields we need when ending contract -->
 
     <label>Is fuel tank less than half full?</label>
     <input type="checkbox" name="halfFull">

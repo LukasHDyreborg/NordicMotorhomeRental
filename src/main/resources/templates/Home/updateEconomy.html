@@ -16,11 +16,11 @@
     <label>Model</label>
     <input type="text" name="model" th:value="${economy.model}" required>
     <label>Pris</label>
-    <input type="number" name="pricePerDay" th:value="${economy.pricePerDay}" required>
+    <input type="number" name="pricePerDay" th:value="${economy.pricePerDay}" min="1" required>
     <label>Seats</label>
-    <input type="number" name="seats" th:value="${economy.seats}" required>
+    <input type="number" name="seats" th:value="${economy.seats}" min="1" required> <!-- samme tanke som i create-->
     <label>beds</label>
-    <input type="number" name="beds" th:value="${economy.beds}"required>
+    <input type="number" name="beds" th:value="${economy.beds}" min="0" required> <!-- samme tanke som i create-->
 
     <label>Fuel Type</label>
     <select name="fuelType" th:field="${economy.fuelType}">
@@ -37,7 +37,7 @@
     <!--<input type="text" name="gear" th:value="${}" required>
     -->
     <label>odometer</label>
-    <input type="number" name="odometer" th:value="${economy.odometer}"required>
+    <input type="number" name="odometer" th:value="${economy.odometer}" min="0" required>
     <label>Registration Date</label>
     <input type="date" name="registrationDate" th:value="${economy.registrationDate}"required>
     <label>LengthAndHeight</label>

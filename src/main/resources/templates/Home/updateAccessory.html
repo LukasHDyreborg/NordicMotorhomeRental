@@ -11,11 +11,11 @@
     <label>Name</label>
     <input type="text" name="name" th:value="${accessory.name}" required>
     <label>Amount Available</label>
-    <input type="number" name="amountAvailable" th:value="${accessory.amountAvailable}" required>
+    <input type="number" name="amountAvailable" th:value="${accessory.amountAvailable}" min="0" required> <!-- skal vel være 0 her eftersom at der kan være sket noget så de har null-->
     <label>Amount Total</label>
-    <input type="number" name="amountTotal" th:value="${accessory.amountTotal}" required>
+    <input type="number" name="amountTotal" th:value="${accessory.amountTotal}" min="0" required> <!-- skal vel være 0 her eftersom at der kan være sket noget så de har null-->
     <label>Price</label>
-    <input type="number" name="price" th:value="${accessory.price}" required>
+    <input type="number" name="price" th:value="${accessory.price}" min="1" required> <!--skal vel koste noget? kan også være nul for en free accessory-->
 
     <input type="submit" value="Update Accessory">
 </form>

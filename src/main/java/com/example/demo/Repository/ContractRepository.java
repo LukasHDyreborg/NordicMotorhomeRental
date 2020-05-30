@@ -186,8 +186,7 @@ public class ContractRepository {
 
     public int endContract(Contract c, int odometer, boolean halfFull){
         accessoryRepository.increaseAvailable(c.getAccessoryList()); // "releases accessories" (increases available)
-        //gets how much the fee is for cancelling (1 if not cancelled)
-        double endFee = checkEndDateCost(c);
+        double endFee = checkEndDateCost(c); //gets how much the fee is for cancelling (1 if not cancelled)
         double cost = c.getPrice(); //current contract price
 
         if(endFee == 1){ // 1 = it wasnt cancelled, calculate additional feed
@@ -198,18 +197,15 @@ public class ContractRepository {
                 int extraKm = odometer - c.getMotorhome().getOdometer() - c.getMaxKM();
                 cost += 7.45 * extraKm; //vi trækker original odometer fra nye odometer og ganger med 7.45(en euro per ekstra km)
             }
-            String sql = "UPDATE contracts SET price = ?, active = ? WHERE id = ?";
-            template.update(sql, (int) cost, 0, c.getId()); //makes contract inactive also saves new price if they ended up paying more or less
-
-            return (int) cost; //returns price so user can see if they have to pay back or if customer has to pay additional fees
         }else{
             cost *= endFee;//the price is reduced based on how far back they cancelled -- >return money
-
-            String sql = "UPDATE contracts SET price = ?, active = ? WHERE id = ?";
-            template.update(sql, (int) cost, 0, c.getId()); //makes contract inactive
-
-            return (int) cost;
         }
+        String sql = "UPDATE contracts SET price = ?, active = ?, staff = ? WHERE id = ?";
+        template.update(sql, (int) cost, 0, c.getStaff(), c.getId()); //makes contract inactive
+
+        motorhomeRepository.updateOdometer(c.getMotorhome(), odometer); //updates odometer
+
+        return (int) cost;
     }
 
     public void fetchContractObjects(Contract contract){
