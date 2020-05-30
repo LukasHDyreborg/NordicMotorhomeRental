@@ -29,7 +29,8 @@ public class ContractRepository {
 
     public List<Contract> fetchAll() {
         //IFNULL(expression, altvalue) hvis det ikke er null, selects expression. hvis det er null, selects altvalue
-        String sql = "SELECT c.id, fromDate, toDate, numberOfDays, carId, customId, maxKM, price, staff, p.pickUp, IFNULL(p.pickDistance, 0), p.dropOff, IFNULL(p.dropDistance, 0) FROM contracts c " +
+        String sql = "SELECT c.id, fromDate, toDate, numberOfDays, carId, customId, maxKM, price, staff, p.pickUp, IFNULL(p.pickDistance, 0) AS pickDistance, " +
+                "p.dropOff, IFNULL(p.dropDistance, 0) AS dropDistance FROM contracts c " +
                 "JOIN customers cust ON c.customId = cust.id " +
                 "JOIN motorhomes m ON c.carId = m.licensePlate " +
                 "LEFT JOIN points p ON c.id = p.contract_id WHERE c.active = 1 ORDER BY c.id";
@@ -48,7 +49,8 @@ public class ContractRepository {
     }
 
     public List<Contract> fetchAllArchive() {
-        String sql = "SELECT c.id, fromDate, toDate, numberOfDays, carId, customId, maxKM, price, staff, p.pickUp, IFNULL(p.pickDistance, 0), p.dropOff, IFNULL(p.dropDistance, 0) FROM contracts c " +
+        String sql = "SELECT c.id, fromDate, toDate, numberOfDays, carId, customId, maxKM, price, staff, p.pickUp, IFNULL(p.pickDistance, 0) AS pickDistance, " +
+                "p.dropOff, IFNULL(p.dropDistance, 0) AS dropDistance FROM contracts c " +
                 "JOIN customers cust ON c.customId = cust.id " +
                 "JOIN motorhomes m ON c.carId = m.licensePlate " +
                 "LEFT JOIN points p ON c.id = p.contract_id WHERE c.active = 0 ORDER BY c.id";
@@ -68,7 +70,7 @@ public class ContractRepository {
 
     public Contract add(Contract c, int[] accessory) {
         /*try{*/
-            c.setId(IdRetriever.retrieveID("id", "contracts")); //pulls ID from database, we'll need it for our accessory_contract intermediary table
+            c.setId(IdRetriever.retrieveID("id", "contracts")); //pulls ID from database, we'll need it for our accessory_contract intermediary table //returns highest id + 1
 
             c.setAccessoryList(new ArrayList<>());//assigns it an arraylist since it will be null by default
             //adds accessories from list
@@ -79,7 +81,7 @@ public class ContractRepository {
 
             fetchContractObjects(c); // assigns car and customer to list. We use it to calculate price
             c.setNumberOfDays(); //sets number of days based on from and to date
-            assignPrice(c);//assigns price based on amount of days
+            assignPrice(c);//assigns price based on amount of days //TODO
             c.setMaxKM(c.getNumberOfDays() * 400); //assigns max km
 
             //Inserts into database
@@ -101,7 +103,7 @@ public class ContractRepository {
     }
 
     public Contract findById(int id) {
-        String sql = "SELECT c.id, fromDate, toDate, numberOfDays, carId, customId, maxKM, price, staff, pickUp, pickDistance, dropOff, dropDistance FROM contracts c " +
+        String sql = "SELECT c.id, fromDate, toDate, numberOfDays, carId, customId, maxKM, price, staff, pickUp, IFNULL(pickDistance, 0) AS pickDistance, dropOff, IFNULL(dropDistance,0) AS dropDistance FROM contracts c " +
                 "JOIN customers cust ON c.customId = cust.id " +
                 "JOIN motorhomes m ON c.carId = m.licensePlate " +
                 "LEFT JOIN points p ON c.id = p.contract_id WHERE c.id = ?";
@@ -116,7 +118,7 @@ public class ContractRepository {
 
     public Contract findActiveById(int id) { //works much the same as in findById(id), but this one returns null if the object is inactive
         try{
-            String sql = "SELECT c.id, fromDate, toDate, numberOfDays, carId, customId, maxKM, price, staff, p.pickUp, IFNULL(p.pickDistance, 0), p.dropOff, IFNULL(p.dropDistance, 0) FROM contracts c " +
+            String sql = "SELECT c.id, fromDate, toDate, numberOfDays, carId, customId, maxKM, price, staff, p.pickUp, IFNULL(p.pickDistance, 0) AS pickDistance, p.dropOff, IFNULL(p.dropDistance, 0) AS dropDistance FROM contracts c " +
                     "JOIN customers cust ON c.customId = cust.id " +
                     "JOIN motorhomes m ON c.carId = m.licensePlate " +
                     "LEFT JOIN points p ON c.id = p.contract_id WHERE c.id = ? AND c.active = 1";
@@ -161,21 +163,15 @@ public class ContractRepository {
         c.setNumberOfDays(); //calculates number of days between from and todate
         c.setMaxKM(c.getNumberOfDays() * 400); //automatically calculates maxKm based on number of days
 
-        if (newPrice) { //boolean , true = automatically calculate price, false = price manually entered will be saved
-           //we make a new empty list
-            c.setAccessoryList(new ArrayList<>());
-            for(int i = 0; i < accessories.length; i++){
-                c.getAccessoryList().add(accessoryRepository.findById(accessories[i])); //we populate the new list
-            }
-
-            fetchContractObjects(c); //motorhome, customer assigned to customer
-            assignPrice(c); //calculates price
-        }
-
         c.setAccessoryList(new ArrayList<>());//assigns it an arraylist since it will be null by default
         //adds accessories from list
         for(int i = 0; i < accessories.length; i++){
             c.getAccessoryList().add(accessoryRepository.findById(accessories[i])); //adds accessories from array
+        }
+
+        if (newPrice) { //boolean , true = automatically calculate price, false = price manually entered will be saved
+            fetchContractObjects(c); //motorhome, customer assigned to customer
+            assignPrice(c); //calculates price
         }
         accessoryRepository.decreaseAvailable(c.getAccessoryList()); //decreases availability of accessories based on new accessories selected (or removed) see line 137. sort of :3
 
@@ -192,8 +188,8 @@ public class ContractRepository {
         accessoryRepository.increaseAvailable(c.getAccessoryList()); // "releases accessories" (increases available)
         //gets how much the fee is for cancelling (1 if not cancelled)
         double endFee = checkEndDateCost(c);
+        double cost = c.getPrice(); //current contract price
 
-        int cost = c.getPrice(); //current contract price
         if(endFee == 1){ // 1 = it wasnt cancelled, calculate additional feed
             if(halfFull){ //Tilføjer ekstra kost hvis tanken er halv tom
                 cost += 70 * 7.45; //det koster 70 euro (siger opgaven) så det ganger vi med 7,45 for at få det i kroner //vi behøver ikke have endFee med ind fordi den bare ganger med 1
@@ -203,14 +199,16 @@ public class ContractRepository {
                 cost += 7.45 * extraKm; //vi trækker original odometer fra nye odometer og ganger med 7.45(en euro per ekstra km)
             }
             String sql = "UPDATE contracts SET price = ?, active = ? WHERE id = ?";
-            template.update(sql, cost, 0, c.getId()); //makes contract inactive also saves new price if they ended up paying more or less
-            return cost; //returns price so user can see if they have to pay back or if customer has to pay additional fees
+            template.update(sql, (int) cost, 0, c.getId()); //makes contract inactive also saves new price if they ended up paying more or less
+
+            return (int) cost; //returns price so user can see if they have to pay back or if customer has to pay additional fees
         }else{
             cost *= endFee;//the price is reduced based on how far back they cancelled -- >return money
 
             String sql = "UPDATE contracts SET price = ?, active = ? WHERE id = ?";
-            template.update(sql, cost, 0, c.getId()); //makes contract inactive
-            return cost;
+            template.update(sql, (int) cost, 0, c.getId()); //makes contract inactive
+
+            return (int) cost;
         }
     }
 
@@ -219,7 +217,7 @@ public class ContractRepository {
         contract.setMotorhome(motorhomeRepository.findById(contract.getCarId()));
     }
 
-    public List<Accessory> fetchContractAccessories(Contract c){
+    public List<Accessory> fetchContractAccessories(Contract c){ //returns list of accessories to contract
         String sql = "SELECT a.id, a.name, a.amount_available, a.amount_total, a.price FROM accessory_contract ac JOIN accessories a ON ac.accessory_id = a.id JOIN contracts c ON ac.contract_id = c.id WHERE c.id = ?";
         RowMapper<Accessory> rowMapper = new BeanPropertyRowMapper<>(Accessory.class);
 
@@ -234,7 +232,7 @@ public class ContractRepository {
         for(int i = 0; i < contract.getNumberOfDays(); i++){
             Season season = seasonRepository.findByDate(LocalDate.parse(contract.getFromDate()).plusDays(i+1)); //det virker til at den tager datoen for dagen før vores fromdate, så vi + 1
             //Gets motorhomes price
-            int carPrice = contract.getMotorhome().getPricePerDay();
+            double carPrice = contract.getMotorhome().getPricePerDay();
             //Multiplies based on season
             if(season.getType().equals("Høj")){
                 carPrice *= 1.60;
@@ -244,7 +242,7 @@ public class ContractRepository {
                 carPrice *= 1;
             }
             //Sets price (price will increase after every iteration/loop)
-            contract.setPrice(contract.getPrice() + carPrice);
+            contract.setPrice((int) (contract.getPrice() + carPrice));
         }
 
         //Calculates Accessories price
@@ -263,11 +261,11 @@ public class ContractRepository {
         LocalDate nowDate = LocalDate.now();
         LocalDate fromDate = LocalDate.parse(c.getFromDate());
 
+        Period period = Period.between(nowDate, fromDate); // gets days between now and fromDate
+        int days = period.getDays();
+
         //if nowDate is before fromDate contract = cancelled (cancelled = true)
         boolean cancelled = nowDate.isBefore(fromDate);
-
-        Period period = Period.between(nowDate, fromDate);
-        int days = period.getDays();
 
         if(cancelled) {
             if (days >= 50) {

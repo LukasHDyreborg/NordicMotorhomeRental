@@ -36,10 +36,10 @@ INSERT INTO standard() VALUES ('CN MS 123', true, true);
 INSERT INTO luxury() VALUES ('CN MS 123', true, true);
 
 -- Contract
-/*INSERT INTO contracts() VALUES (id, fromDate, toDate, carId, customerId, maxKM, price, staffName, "pickup, pickDistance, dropOff, dropDistance", active);*/
+/*INSERT INTO contracts() VALUES (id, fromDate, toDate, carId, customerId, maxKM, price, staffName, active);*/
 
-INSERT INTO contracts() VALUES (DEFAULT, '2020-05-22', '2020-05-31', '9', 'BG 23 432', 1, '3600', '9000', 'James Raynor', /*null, 0, null, 0,*/ 1);
-INSERT INTO contracts() VALUES (DEFAULT, '2020-05-22', '2020-05-27', '9', 'BG 23 432', 1, '3600', '9000', 'James Raynor', /*null, 0, null, 0,*/ 0); -- test af inaktiv kontrakt
+INSERT INTO contracts() VALUES (DEFAULT, '2020-05-22', '2020-05-31', '9', 'BG 23 432', 1, '3600', '9000', 'James Raynor', 1);
+INSERT INTO contracts() VALUES (DEFAULT, '2020-05-22', '2020-05-27', '9', 'BG 23 432', 1, '3600', '9000', 'James Raynor', 0); -- test af inaktiv kontrakt
 
 -- points
 -- INSERT INTO points() VALUES (DEFAULT, pickUp, pickDistance, dropOff, dropDistance, contract_id)

@@ -65,8 +65,7 @@
 
     <span th:if="${motorhome.type == 'Economy'}">
         <label>Gas Burners</label>
-        <span th:if="${motorhome.type == 'Economy'}" th:text="${economy.gasBurners}"/>
-
+        <span th:text="${economy.gasBurners}"/>
         <a th:href="@{'/updateEconomy/'+${economy.licensePlate}}">
             <button class="btn-update">update</button>
         </a>
@@ -79,7 +78,7 @@
         <button>Tilbage</button>
     </a>
 
-    <a th:href="@{'/updateMotorhome/'+${motorhome.licensePlate}}">
+   <!-- <a th:href="@{'/updateMotorhome/'+${motorhome.licensePlate}}">
         <button class="btn-update">update</button>
     </a> -->
 </body>
