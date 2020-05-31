@@ -8,13 +8,13 @@
 <body>
     <h1>Tilbehørs Information</h1>
     <label>ID:</label>
-    <span th:text="${accessory.id}"/>
+    <span th:text="${accessory.id}"></span>
     <label>Beløb - Tilgængelig:</label>
-    <span th:text="${accessory.amountAvailable}"/>
+    <span th:text="${accessory.amountAvailable}"></span>
     <label>Beløb - Total:</label>
-    <span th:text="${accessory.amountTotal}"/>
+    <span th:text="${accessory.amountTotal}"></span>
     <label>Pris:</label>
-    <span th:text="${accessory.price}"/>
+    <span th:text="${accessory.price}"></span>
 
     <a th:href="@{'/deleteAccessory/'+${accessory.id}}">
         <button class="btn-delete">Slet</button>

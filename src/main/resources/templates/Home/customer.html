@@ -32,16 +32,16 @@
         </thead>
         <tbody>
             <tr th:each="customer: ${customers}"> <!--th:each means it will loop through the customers list -->
-                <td th:text="${customer.id}" />
-                <td th:text="${customer.name}" />
-                <td th:text="${customer.age}" />
-                <td th:text="${customer.cpr}" />
-                <td th:text="${customer.email}" />
-                <td th:text="${customer.phone}" />
-                <td th:text="${customer.address}" />
-                <td th:text="${customer.zipCode}" />
-                <td th:text="${customer.driverLicenseNumber}" />
-                <td th:text="${customer.driverLicenseDate}" />
+                <td th:text="${customer.id}"></td>
+                <td th:text="${customer.name}"></td>
+                <td th:text="${customer.age}"></td>
+                <td th:text="${customer.cpr}"></td>
+                <td th:text="${customer.email}"></td>
+                <td th:text="${customer.phone}"></td>
+                <td th:text="${customer.address}"></td>
+                <td th:text="${customer.zipCode}"></td>
+                <td th:text="${customer.driverLicenseNumber}"></td>
+                <td th:text="${customer.driverLicenseDate}"></td>
                 <td>
                     <a th:href="@{'/viewCustomer/'+${customer.id}}">
                         <button class="btn-show">Vis</button>

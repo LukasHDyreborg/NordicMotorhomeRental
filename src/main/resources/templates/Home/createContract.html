@@ -170,11 +170,11 @@
             </thead>
             <tbody>
                 <tr th:each="accessory: ${accessories}"> <!--th:each means it will loop through the Accessory list -->
-                    <td th:text="${accessory.id}" />
-                    <td th:text="${accessory.name}" />
-                    <td th:text="${accessory.amountAvailable}" />
-                    <td th:text="${accessory.amountTotal}" />
-                    <td th:text="${accessory.price}" />
+                    <td th:text="${accessory.id}"></td>
+                    <td th:text="${accessory.name}"></td>
+                    <td th:text="${accessory.amountAvailable}"></td>
+                    <td th:text="${accessory.amountTotal}"></td>
+                    <td th:text="${accessory.price}"></td>
                     <td>
                         <input type="checkbox" name="accessory" th:value="${accessory.id}">
                     </td>
@@ -186,7 +186,7 @@
     <div>
         <label>Salgsassistent</label>
         <select name="staff">
-            <option th:each="staff : ${staffs}" th:text="${staff.name}"/>
+            <option th:each="staff : ${staffs}" th:text="${staff.name}"></option>
         </select>
     </div>
 

@@ -8,25 +8,25 @@
 <body>
     <h1>Kunde Information</h1>
     <label>ID:</label>
-    <span th:text="${customer.id}"/>
+    <span th:text="${customer.id}"></span>
     <label>Navn:</label>
-    <span th:text="${customer.name}"/>
+    <span th:text="${customer.name}"></span>
     <label>Alder:</label>
-    <span th:text="${customer.age}"/>
+    <span th:text="${customer.age}"></span>
     <label>CPR-Nummer:</label>
-    <span th:text="${customer.cpr}"/>
+    <span th:text="${customer.cpr}"></span>
     <label>Tlf:</label>
-    <span th:text="${customer.phone}"/>
+    <span th:text="${customer.phone}"></span>
     <label>Email:</label>
-    <span th:text="${customer.email}"/>
+    <span th:text="${customer.email}"></span>
     <label>Adresse:</label>
-    <span th:text="${customer.address}"/>
+    <span th:text="${customer.address}"></span>
     <label>Postnummer:</label>
-    <span th:text="${customer.zipCode}"/>
+    <span th:text="${customer.zipCode}"></span>
     <label>Kørekortnummer:</label>
-    <span th:text="${customer.driverLicenseNumber}"/>
+    <span th:text="${customer.driverLicenseNumber}"></span>
     <label>Udstedelsesdato:</label>
-    <span th:text="${customer.driverLicenseDate}"/>
+    <span th:text="${customer.driverLicenseDate}"></span>
 
     <a th:href="@{'/deleteCustomer/'+${customer.id}}">
         <button class="btn-delete">Slet</button>

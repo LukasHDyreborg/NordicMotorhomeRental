@@ -61,9 +61,9 @@ public class AccessoryRepository {
     }
 
     public void increaseAvailable(List<Accessory> accessoryList) {
-        for(int i = 0; i < accessoryList.size(); i++){
+        for (Accessory accessory : accessoryList) {
             String sql = "UPDATE accessories SET amount_available = amount_available + 1 WHERE id = ?";
-            template.update(sql, accessoryList.get(i).getId());
+            template.update(sql, accessory.getId());
         }
     }
 

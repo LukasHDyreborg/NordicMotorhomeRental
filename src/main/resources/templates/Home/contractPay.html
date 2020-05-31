@@ -7,7 +7,7 @@
 </head>
 <body>
     <span th:if="${contract.price &gt; price}">   <!-- &gt; betyder >   -->
-        <p1>Kunden aflyste sin udlejning og vil modtage:</p1>
+        <p>Kunden aflyste sin udlejning og vil modtage:</p>
         <span th:text="${contract.price} - ${price}"></span>
         <label>Gammel Pris:</label>
         <span th:text="${contract.price}"></span>
@@ -16,7 +16,7 @@
     </span>
 
     <span th:if="${contract.price &lt; price}"> <!-- &lt; betyder <   -->
-        <p1>Kunden skal betale ekstra gebyrer:</p1>
+        <p>Kunden skal betale ekstra gebyrer:</p>
         <span th:text="${price} - ${contract.price}"></span>
         <label>Gammel Pris:</label>
         <span th:text="${contract.price}"></span>
@@ -33,7 +33,7 @@
 
     </span>
     <span th:if="${contract.price == price}">
-        <p1>Tak for at du lejede hos os!</p1>
+        <p>Tak for at du lejede hos os!</p>
     </span>
 
     <a th:href="@{'/'}">

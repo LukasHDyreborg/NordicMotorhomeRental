@@ -31,19 +31,16 @@ public class ContractRepository {
         //IFNULL(expression, altvalue) hvis det ikke er null, selects expression. hvis det er null, selects altvalue
         String sql = "SELECT c.id, fromDate, toDate, numberOfDays, carId, customId, maxKM, price, staff, p.pickUp, IFNULL(p.pickDistance, 0) AS pickDistance, " +
                 "p.dropOff, IFNULL(p.dropDistance, 0) AS dropDistance FROM contracts c " +
-                "JOIN customers cust ON c.customId = cust.id " +
-                "JOIN motorhomes m ON c.carId = m.licensePlate " +
                 "LEFT JOIN points p ON c.id = p.contract_id WHERE c.active = 1 ORDER BY c.id";
         RowMapper<Contract> rowMapper = new BeanPropertyRowMapper<>(Contract.class);
         List<Contract> contractList = template.query(sql, rowMapper);
         //assigns accessories to contract
-        for(int i = 0; i <contractList.size(); i++){
-            Contract contract = contractList.get(i);
+        for (Contract contract : contractList) {
             contract.setAccessoryList(fetchContractAccessories(contract));
         }
         //assigns customer and vehicle to contract
-        for(int i = 0; i < contractList.size(); i++){
-            fetchContractObjects(contractList.get(i));
+        for (Contract contract : contractList) {
+            fetchContractObjects(contract);
         }
         return contractList;
     }
@@ -51,19 +48,17 @@ public class ContractRepository {
     public List<Contract> fetchAllArchive() {
         String sql = "SELECT c.id, fromDate, toDate, numberOfDays, carId, customId, maxKM, price, staff, p.pickUp, IFNULL(p.pickDistance, 0) AS pickDistance, " +
                 "p.dropOff, IFNULL(p.dropDistance, 0) AS dropDistance FROM contracts c " +
-                "JOIN customers cust ON c.customId = cust.id " +
-                "JOIN motorhomes m ON c.carId = m.licensePlate " +
+
                 "LEFT JOIN points p ON c.id = p.contract_id WHERE c.active = 0 ORDER BY c.id";
         RowMapper<Contract> rowMapper = new BeanPropertyRowMapper<>(Contract.class);
         List<Contract> contractList = template.query(sql, rowMapper);
         //assigns accessories to contract
-        for(int i = 0; i <contractList.size(); i++){
-            Contract contract = contractList.get(i);
+        for (Contract contract : contractList) {
             contract.setAccessoryList(fetchContractAccessories(contract));
         }
         //assigns customer and vehicle to contract
-        for(int i = 0; i < contractList.size(); i++){
-            fetchContractObjects(contractList.get(i));
+        for (Contract contract : contractList) {
+            fetchContractObjects(contract);
         }
         return contractList;
     }
@@ -74,8 +69,8 @@ public class ContractRepository {
 
             c.setAccessoryList(new ArrayList<>());//assigns it an arraylist since it will be null by default
             //adds accessories from list
-            for(int i = 0; i < accessory.length; i++){
-                c.getAccessoryList().add(accessoryRepository.findById(accessory[i]));
+            for (int value : accessory) {
+                c.getAccessoryList().add(accessoryRepository.findById(value));
             }
             accessoryRepository.decreaseAvailable(c.getAccessoryList()); //decreases available accessories
 
@@ -92,9 +87,9 @@ public class ContractRepository {
             template.update(sql, c.getPickUp(), c.getPickDistance(), c.getDropOff(), c.getDropDistance(), c.getId());
 
             //inserts into intermediary table between accessories and contracts.
-            for(int i = 0; i < accessory.length; i++){
-                    sql = "INSERT INTO accessory_contract () VALUES (?,?)";
-                    template.update(sql, accessory[i], c.getId());
+            for (int value : accessory) {
+                sql = "INSERT INTO accessory_contract () VALUES (?,?)";
+                template.update(sql, value, c.getId());
             }
             return null;
         /*} catch(Exception e) {
@@ -104,8 +99,6 @@ public class ContractRepository {
 
     public Contract findById(int id) {
         String sql = "SELECT c.id, fromDate, toDate, numberOfDays, carId, customId, maxKM, price, staff, pickUp, IFNULL(pickDistance, 0) AS pickDistance, dropOff, IFNULL(dropDistance,0) AS dropDistance FROM contracts c " +
-                "JOIN customers cust ON c.customId = cust.id " +
-                "JOIN motorhomes m ON c.carId = m.licensePlate " +
                 "LEFT JOIN points p ON c.id = p.contract_id WHERE c.id = ?";
         RowMapper<Contract> rowMapper = new BeanPropertyRowMapper<>(Contract.class);
         Contract contract = template.queryForObject(sql, rowMapper, id);
@@ -119,8 +112,6 @@ public class ContractRepository {
     public Contract findActiveById(int id) { //works much the same as in findById(id), but this one returns null if the object is inactive
         try{
             String sql = "SELECT c.id, fromDate, toDate, numberOfDays, carId, customId, maxKM, price, staff, p.pickUp, IFNULL(p.pickDistance, 0) AS pickDistance, p.dropOff, IFNULL(p.dropDistance, 0) AS dropDistance FROM contracts c " +
-                    "JOIN customers cust ON c.customId = cust.id " +
-                    "JOIN motorhomes m ON c.carId = m.licensePlate " +
                     "LEFT JOIN points p ON c.id = p.contract_id WHERE c.id = ? AND c.active = 1";
             RowMapper<Contract> rowMapper = new BeanPropertyRowMapper<>(Contract.class);
             Contract contract = template.queryForObject(sql, rowMapper, id);
@@ -156,17 +147,17 @@ public class ContractRepository {
         String sql = "DELETE FROM accessory_contract WHERE contract_id = ?"; //deletes all from accessory_contract. easier if we want to remove some accessories and add new ones
         template.update(sql, c.getId());
 
-        for(int i = 0; i < accessories.length; i++){ //inserts into accessory_contract so we know which contract has which accessory
+        for (int accessory : accessories) { //inserts into accessory_contract so we know which contract has which accessory
             sql = "INSERT INTO accessory_contract () VALUES (?, ?)";
-            template.update(sql, accessories[i], c.getId());
+            template.update(sql, accessory, c.getId());
         }
         c.setNumberOfDays(); //calculates number of days between from and todate
         c.setMaxKM(c.getNumberOfDays() * 400); //automatically calculates maxKm based on number of days
 
         c.setAccessoryList(new ArrayList<>());//assigns it an arraylist since it will be null by default
         //adds accessories from list
-        for(int i = 0; i < accessories.length; i++){
-            c.getAccessoryList().add(accessoryRepository.findById(accessories[i])); //adds accessories from array
+        for (int accessory : accessories) {
+            c.getAccessoryList().add(accessoryRepository.findById(accessory)); //adds accessories from array
         }
 
         if (newPrice) { //boolean , true = automatically calculate price, false = price manually entered will be saved
@@ -266,9 +257,9 @@ public class ContractRepository {
         if(cancelled) {
             if (days >= 50) {
                 return 0.20;
-            } else if (days < 50 && days >= 15) {
+            } else if (days >= 15) {
                 return 0.50;
-            } else if (days < 15 && days > 0) {
+            } else if (days > 0) {
                 return 0.80;
             } else if (days == 0) { //hvis man aflyser på dagen så skal man stadig betale 0.95%
                 return 0.95;

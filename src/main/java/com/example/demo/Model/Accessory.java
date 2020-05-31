@@ -15,13 +15,13 @@ public class Accessory {
     public Accessory(){
     }
 
-    public Accessory(int id, String name, int amountAvailable, int amountTotal, int price){
+   /* public Accessory(int id, String name, int amountAvailable, int amountTotal, int price){
         this.id = id;
         this.name = name;
         this.amountAvailable = amountAvailable;
         this.amountTotal = amountTotal;
         this.price = price;
-    }
+    }*/
 
     public int getId() {
         return id;

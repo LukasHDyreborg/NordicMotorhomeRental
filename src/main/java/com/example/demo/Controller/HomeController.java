@@ -324,7 +324,7 @@ public class HomeController {
     }
 
     @GetMapping("/createSeason")
-    public String createSeason(Model model) {
+    public String createSeason() {
         return "home/createSeason";
     }
 
@@ -376,9 +376,10 @@ public class HomeController {
     }
 
     @GetMapping("/createAccessory")
-    public String createAccessory(Model model) {
+    public String createAccessory() {
         return "home/createAccessory";
     }
+
     @PostMapping("/createAccessory")
     public String createAccessory(@ModelAttribute Accessory a){
         boolean success = accessoryService.add(a);
@@ -410,8 +411,6 @@ public class HomeController {
     @GetMapping("/deleteAccessory/{id}")
     public String deleteAccessory(@PathVariable("id") int id){
         boolean success = accessoryService.delete(id);
-        Accessory accessory = new Accessory();
-
         if(success){
             return "home/success";
         }
@@ -429,9 +428,10 @@ public class HomeController {
     }
 
     @GetMapping("/createStaff")
-    public String createStaff(Model model) {
+    public String createStaff() {
         return "home/createStaff";
     }
+
     @PostMapping("/createStaff")
     public String createStaff(@ModelAttribute Staff s){
         boolean success = staffService.add(s);

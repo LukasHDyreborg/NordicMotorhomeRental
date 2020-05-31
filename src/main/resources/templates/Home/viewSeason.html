@@ -8,13 +8,13 @@
 <body>
     <h1>Sæson Information</h1>
     <label>ID</label>
-    <span th:text="${season.id}"/>
+    <span th:text="${season.id}"></span>
     <label>Start</label>
-    <span th:text="${season.start_date}"/>
+    <span th:text="${season.start_date}"></span>
     <label>Slut</label>
-    <span th:text="${season.end_date}"/>
+    <span th:text="${season.end_date}"></span>
     <label>Type</label>
-    <span th:text="${season.type}"/>
+    <span th:text="${season.type}"></span>
 
     <a th:href="@{'/deleteSeason/'+${season.id}}">
         <button class="btn-delete">Slet</button>

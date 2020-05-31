@@ -24,10 +24,10 @@
             </thead>
             <tbody>
                 <tr th:each="season: ${seasons}"> <!--th:each means it will loop through the season list -->
-                    <td th:text="${season.id}" />
-                    <td th:text="${season.start_date}" />
-                    <td th:text="${season.end_date}" />
-                    <td th:text="${season.type}" />
+                    <td th:text="${season.id}"></td>
+                    <td th:text="${season.start_date}"></td>
+                    <td th:text="${season.end_date}"></td>
+                    <td th:text="${season.type}"></td>
                     <td>
                         <a th:href="@{'/viewSeason/'+${season.id}}">
                             <button class="btn-show">Vis</button>

@@ -41,9 +41,9 @@
     <label>Registreringsdato:</label>
     <input type="date" name="registrationDate" th:value="${standard.registrationDate}"required>
     <label>Længde og Højde:</label>
-    <input type="text" name="lengthAndHeight" th:value="${standard.lengthAndHeight}"required>
+    <input type="text" name="lengthAndHeight" th:value="${standard.lengthAndHeight}" required>
 
-    <input type="text" name="type" th:value="${standard.type}"hidden required>
+    <input type="text" name="type" th:value="${standard.type}" hidden required>
 
     <label>Køleskab:</label>
     <input type="checkbox" name="fridge" th:checked="${standard.fridge}">
