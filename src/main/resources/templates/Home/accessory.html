@@ -2,24 +2,25 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Accessory Test</title>
+    <title>Tilbehør</title>
     <link rel="stylesheet" type="text/css" href="/MyCSS.css">
 </head>
 <body>
-    <h1>Accessories:</h1>
+    <h1>Tilbehør:</h1>
     <a href="/createAccessory">
-        <button class="btn-create">Register new accessory!</button>
+        <button class="btn-create">Registrer nyt tilbehør!</button>
     </a>
 
     <div class="wrapper-table">
         <table>
             <thead>
                 <tr>
-                    <th>id</th>
-                    <th>name</th>
-                    <th>Amount available</th>
-                    <th>amount total</th>
-                    <th>price</th>
+                    <th>ID</th>
+                    <th>Navn</th>
+                    <th>Beløb - Ledig</th>
+                    <th>Beløb - Total</th>
+                    <th>Pris</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -31,7 +32,7 @@
                     <td th:text="${accessory.price}" />
                     <td>
                         <a th:href="@{'/viewAccessory/'+${accessory.id}}">
-                            <button class="btn-show">Show</button>
+                            <button class="btn-show">Vis</button>
                         </a>
                     </td>
                 </tr>

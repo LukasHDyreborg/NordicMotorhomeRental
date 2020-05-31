@@ -2,13 +2,15 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>update Contract</title>
+    <title>Kontrakt - Opdatering</title>
     <link rel="stylesheet" type="text/css" href="/MyCSS.css">
     <script src="Actions.js"></script>
 </head>
 <body>
+<h1>Kontrakt Opdatering</h1>
 <form name="contract" action="/updateContract" method="post">
     <div class="wrapper-table">
+        <h2>Kunder:</h2>
         <table>
             <thead>
             <tr>
@@ -17,12 +19,12 @@
                 <th>Alder</th>
                 <th>CPR-Nummer</th>
                 <th>Email</th>
-                <th>Tlf. nr.</th>
+                <th>Tlf.</th>
                 <th>Adresse</th>
                 <th>Postnummer</th>
                 <th>Kørekortnummer</th>
                 <th>Udstedelsesdato</th>
-                <th>Options</th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -55,22 +57,23 @@
     <input hidden type="text" name="id" th:value="${contract.id}">
 
     <div>
-        <label>Start Date :</label>
+        <label>Start Dato:</label>
         <input type="date" name="fromDate" id="startDate" onchange="time()" th:value="${contract.fromDate}">
-        <label>End Date :</label>
+        <label>Slut Dato:</label>
         <input type="date" name="toDate" id="endDate" onchange="time()" th:value="${contract.toDate}">
 
       <!--  <input type="text" name="totalDays" id="totalDays" readonly> -->
 
-        <label>Manually enter Price:</label>
+        <label>Indtast prisen manuelt:</label>
         <input type="number" name="price" th:value="${contract.price}" min="1" required> <!--Minimum pris skal vel være 1-->
-        <label>Automatically calculate new price?</label>
+        <label>Udregn prisen automatisk?</label>
         <input type="checkbox" name="newPrice">
 <!--
         <label>Max KM:</label>
         <input type="number" name="maxKM" th:value="${contract.maxKM}" required> -->
     </div>
 
+    <h2>Autocamper:</h2>
     <div class="wrapper-table">
         <table>
             <thead>
@@ -84,13 +87,13 @@
                 <th>Brændstoftype</th>
                 <th>Gear</th>
                 <th>Odometer</th>
-                <th>Registrations dato</th>
+                <th>Registreringsdato</th>
                 <th>Længde og Højde</th>
                 <th>Type</th>
                 <th>Køleskab</th>
                 <th>Toilet</th>
                 <th>Markise</th>
-                <th>Vælg</th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -174,25 +177,26 @@
     </div>
 
     <div>
-        <label>Pick-Up Point:</label>
+        <label>Pick-Up Punkt:</label>
         <input type="text" name="pickUp" th:value="${contract.pickUp}">
         <label>Pick-Up Distance:</label>
         <input type="number" name="pickDistance" th:value="${contract.pickDistance}" min="0" step="0.1">
-        <label>Drop-Off Point:</label>
+        <label>Drop-Off Punkt:</label>
         <input type="text" name="dropOff" th:value="${contract.dropOff}">
         <label>Drop-Off Distance:</label>
         <input type="number" name="dropDistance" th:value="${contract.dropDistance}" min="0" step="0.1">
     </div>
 
+    <h2>Tilbehør:</h2>
     <div class="wrapper-table">
         <table>
             <thead>
             <tr>
-                <th>id</th>
-                <th>name</th>
-                <th>Amount available</th>
-                <th>amount total</th>
-                <th>price</th>
+                <th>ID</th>
+                <th>Navn</th>
+                <th>Beløb - Tilgængelig</th>
+                <th>Beløb - Total</th>
+                <th>Pris</th>
                 <th></th>
             </tr>
             </thead>
@@ -211,12 +215,12 @@
         </table>
     </div>
 
-    <label>Sales Assistent</label>
+    <label>Salgsassistent</label>
     <select name="staff" th:field="${contract.staff}">
         <option th:each="staff : ${staffs}" th:text="${staff.name}" th:value="${staff.name}"></option>
     </select>
 
-    <input type="submit" value="Save" class="btn-edit">
+    <input type="submit" value="Opdater!" class="btn-create">
 </form>
 <a th:href="@{'/viewContract/'+${contract.id}}">
     <button>Tilbage</button>

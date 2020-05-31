@@ -2,20 +2,20 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Contract - Archive</title>
+    <title>Kontrakt - Arkiv</title>
     <link rel="stylesheet" type="text/css" href="/MyCSS.css">
 </head>
 <body>
-
+<h1>Kontrakter - Arkiv</h1>
 <div class="wrapper-table">
     <table>
         <thead>
         <tr>
-            <th>Contract ID</th>
+            <th>ID</th>
             <th>Fra</th>
             <th>Til</th>
             <th>Kunde</th>
-            <th>Tlf</th>
+            <th>Tlf.</th>
             <th>Email</th>
             <th>AutoCamper (Brand og model)</th>
             <th>Nummerplade</th>
@@ -33,13 +33,13 @@
             <td th:text="${contract.customer.name}"></td>
             <td th:text="${contract.customer.phone}"></td>
             <td th:text="${contract.customer.email}"></td>
-            <td th:text="${contract.motorhome.brand}"></td>
+            <td th:text="|${contract.motorhome.brand}, ${contract.motorhome.model}|"></td>
             <td th:text="${contract.motorhome.licensePlate}"></td>
             <td th:text="${contract.price}"></td>
             <td th:text="${contract.maxKM}"></td>
             <td>
                 <a th:href="@{'/viewContractArchived/'+${contract.id}}">
-                    <button class="btn-show">Show</button>
+                    <button class="btn-show">Vis</button>
                 </a>
             </td>
         </tr>

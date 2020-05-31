@@ -2,24 +2,25 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>update season</title>
+    <title>Sæson - Opdatering</title>
     <link rel="stylesheet" type="text/css" href="/MyCSS.css">
 </head>
 <body>
+<h1>Sæson Opdatering</h1>
 <form action="/updateSeason" method="post" class="btn-update">
     <input hidden type="text" name="id" th:value="${season.id}">
-    <label>Start dato</label>
+    <label>Startdato:</label>
     <input type="date" name="start_date" th:value="${season.start_date}" required>
-    <label>Slut dato</label>
+    <label>Slutdato:</label>
     <input type="date" name="end_date" th:value="${season.end_date}" required>
-    <label>Type</label>
+    <label>Type:</label>
     <select name="type" th:field="${season.type}">
         <option value="Høj">Høj</option>
         <option value="Middel">Middel</option>
         <option value="Lav">Lav</option>
     </select>
 
-    <input type="submit" value="update season">
+    <input type="submit" value="Opdater!" class="btn-create">
 </form>
 <a th:href="@{'/viewSeason/'+${season.id}}">
     <button>Tilbage</button>

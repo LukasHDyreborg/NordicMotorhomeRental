@@ -12,19 +12,19 @@
     <input hidden type="date" name="fromDate" th:value="${contract.fromDate}">
     <input hidden type="date" name="toDate" th:value="${contract.toDate}"> <!-- fields we need when ending contract -->
 
-    <label>Is fuel tank less than half full?</label>
+    <label>Er gastanken mindre end halv fuld?</label>
     <input type="checkbox" name="halfFull">
 
     <label>Odometer</label>
     <input type="number" name="odometer" th:value="${contract.motorhome.odometer}" required>
 
 
-    <label>Sales Assistent</label>
+    <label>Salgsassistent</label>
     <select name="staff" th:field="${contract.staff}">
         <option th:each="staff : ${staffs}" th:text="${staff.name}" th:value="${staff.name}"></option>
     </select>
 
-    <input type="submit" value="End">
+    <input type="submit" value="Afslut">
 </form>
 <a th:href="@{'/viewContract/'+${contract.id}}">
     <button>Tilbage</button>

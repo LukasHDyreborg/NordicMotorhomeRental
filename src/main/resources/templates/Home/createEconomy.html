@@ -2,71 +2,72 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Autocamper registration</title>
+    <title>Autocamper - Registrering</title>
     <link rel="stylesheet" type="text/css" href="/MyCSS.css">
 </head>
 <body>
+<h1>Autocamper Registrering - Økonomi</h1>
 <form action="/createEconomy" method="post">
-    <label>Brand</label>
+    <label>Mærke:</label>
     <input type="text" name="brand" required>
 
-    <label>Model</label>
+    <label>Model:</label>
     <input type="text" name="model" required>
 
-    <label>Nummerplade</label>
+    <label>Nummerplade:</label>
     <input type="text" name="licensePlate" required>
 
-    <label>Pris</label>
+    <label>Pris:</label>
     <input type="number" name="pricePerDay" min="1" required>   <!-- skal vel mindst koste en krone? -->
 
-    <label>Sæder</label>
+    <label>Sæder:</label>
     <input type="number" name="seats" min="1" required> <!-- der er vel altid et sæde? eller gælder føresæde ikke? -->
 
-    <label>Senge</label>
+    <label>Senge:</label>
     <input type="number" name="beds" min="0" required> <!-- behøver der mindst være én seng? eller kan der ikke være nogen? -->
 
-    <label>Brændstof</label>
+    <label>Brændstof:</label>
     <select name="fuelType">
         <option value="Benzin">Benzin</option>
         <option value="Diesel">Diesel</option>
         <option value="Elektrisk">Elektrisk</option>
     </select>
 
-    <label>Gear</label>
+    <label>Gear:</label>
     <select name="gear">
         <option value="Automat">Automat</option>
         <option value="Manuel">Manuel</option>
     </select>
 
-    <label>Odometer</label>
+    <label>Odometer:</label>
     <input type="number" name="odometer" min="0" required>
 
-    <label>Registrations Dato</label>
+    <label>Registreringsdato:</label>
     <input type="date" name="registrationDate" required>
 
-    <label>Længde & Højde</label>
+    <label>Længde & Højde:</label>
     <input type="text" name="lengthAndHeight" required>
 
     <!-- <label>Type</label> -->
     <select name="type" hidden> <!-- see createLuxury comment -->
-        <option value="Economy">Økonomi</option>
+        <option value="Økonomi">Økonomi</option>
         <option value="Standard">Standard</option>
-        <option value="Luxury">Luxury</option>
+        <option value="Luksus">Luxury</option>
     </select>
 
-    <label>Køleskab</label>
+    <label>Køleskab:</label>
     <input type="checkbox" name="fridge">
 
-    <label>Toilet</label>
+    <label>Toilet:</label>
     <input type="checkbox" name="toilet">
 
-    <label>Markise</label>
+    <label>Markise:</label>
     <input type="checkbox" name="awning">
 
-    <label>Gas blus</label>
-    <input type="text" name="gasBurners">
+    <label>Gasblus:</label>
+    <input type="number" min="0" name="gasBurners">
 
-    <input type="submit" value="Save motorhome">
+    <input type="submit" value="Gem!" class="btn-create">
 </form>
 <a th:href="@{/motorhome}">
     <button>Tilbage</button>

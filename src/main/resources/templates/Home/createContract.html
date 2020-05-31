@@ -2,13 +2,15 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Create Contract</title>
+    <title>Kontrakt - Registrering</title>
     <link rel="stylesheet" type="text/css" href="/MyCSS.css">
     <script src="Actions.js"></script>
 </head>
 <body>
+<h1>Kontrakt Registrering</h1>
 <form name="contract" action="/createContract" method="post">
     <div class="wrapper-table">
+        <h2>Kunder:</h2>
         <table>
             <thead>
             <tr>
@@ -17,12 +19,12 @@
                 <th>Alder</th>
                 <th>CPR-Nummer</th>
                 <th>Email</th>
-                <th>Tlf. nr.</th>
+                <th>Tlf.</th>
                 <th>Adresse</th>
                 <th>Postnummer</th>
                 <th>Kørekortnummer</th>
                 <th>Udstedelsesdato</th>
-                <th>Options</th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -46,14 +48,15 @@
     </div>
 
     <div>
-        <label>Start Date :</label>
+        <label>Start Dato:</label>
         <input type="date" name="fromDate" id="startDate" onchange="time()" required>
-        <label>End Date :</label>
+        <label>Slut Dato:</label>
         <input type="date" name="toDate" id="endDate" onchange="time()" required>
 
         <input type="text" name="totalDays" id="totalDays" readonly>
     </div>
 
+    <h2>Autocamper:</h2>
     <div class="wrapper-table">
         <table>
             <thead>
@@ -61,19 +64,19 @@
                     <th>Nummerplade</th>
                     <th>Mærke</th>
                     <th>Model</th>
-                    <th>Pris per dag</th>
+                    <th>Pris pr. dag</th>
                     <th>Sæder</th>
                     <th>Senge</th>
-                    <th>Brændstoftype</th>
+                    <th>Brændstof</th>
                     <th>Gear</th>
                     <th>Odometer</th>
-                    <th>Registrations dato</th>
+                    <th>Registreringsdato</th>
                     <th>Længde og Højde</th>
                     <th>Type</th>
                     <th>Køleskab</th>
                     <th>Toilet</th>
                     <th>Markise</th>
-                    <th>Vælg</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -142,25 +145,27 @@
     </div>
 
     <div>
-        <label>Pick-Up Point:</label>
+        <label>Pick-Up Punkt:</label>
         <input type="text" name="pickUp">
         <label>Pick-Up Distance:</label>
         <input type="number" name="pickDistance" step="0.1" min="0" value="0">
-        <label>Drop-Off Point:</label>
+        <label>Drop-Off Punkt:</label>
         <input type="text" name="dropOff">
         <label>Drop-Off Distance:</label>
         <input type="number" name="dropDistance" step="0.1" min="0" value="0">
     </div>
 
+    <h2>Tilbehør:</h2>
     <div class="wrapper-table">
         <table>
             <thead>
                 <tr>
-                    <th>id</th>
-                    <th>name</th>
-                    <th>Amount available</th>
-                    <th>amount total</th>
-                    <th>price</th>
+                    <th>ID</th>
+                    <th>Navn</th>
+                    <th>Beløb - Tilgængelig</th>
+                    <th>Beløb - Total</th>
+                    <th>Pris</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -179,13 +184,13 @@
     </div>
 
     <div>
-        <label>Sales assistent</label>
+        <label>Salgsassistent</label>
         <select name="staff">
             <option th:each="staff : ${staffs}" th:text="${staff.name}"/>
         </select>
     </div>
 
-    <input type="submit" value="Register" class="btn-create">
+    <input type="submit" value="Gem!" class="btn-create">
 </form>
 <a th:href="@{/contract}">
     <button>Tilbage</button>

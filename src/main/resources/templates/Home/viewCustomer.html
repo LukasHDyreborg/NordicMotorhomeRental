@@ -2,40 +2,40 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>View customer</title>
+    <title>Kunde - Information</title>
     <link rel="stylesheet" type="text/css" href="/MyCSS.css">
 </head>
 <body>
-<h1>View Customer</h1>
-<label>ID</label>
-<span th:text="${customer.id}"/>
-<label>Name</label>
-<span th:text="${customer.name}"/>
-<label>Age</label>
-<span th:text="${customer.age}"/>
-<label>CPR</label>
-<span th:text="${customer.cpr}"/>
-<label>Phone</label>
-<span th:text="${customer.phone}"/>
-<label>Email</label>
-<span th:text="${customer.email}"/>
-<label>Address</label>
-<span th:text="${customer.address}"/>
-<label>Zip</label>
-<span th:text="${customer.zipCode}"/>
-<label>DriverLicenseNumber</label>
-<span th:text="${customer.driverLicenseNumber}"/>
-<label>DriverLicenseDate</label>
-<span th:text="${customer.driverLicenseDate}"/>
+    <h1>Kunde Information</h1>
+    <label>ID:</label>
+    <span th:text="${customer.id}"/>
+    <label>Navn:</label>
+    <span th:text="${customer.name}"/>
+    <label>Alder:</label>
+    <span th:text="${customer.age}"/>
+    <label>CPR-Nummer:</label>
+    <span th:text="${customer.cpr}"/>
+    <label>Tlf:</label>
+    <span th:text="${customer.phone}"/>
+    <label>Email:</label>
+    <span th:text="${customer.email}"/>
+    <label>Adresse:</label>
+    <span th:text="${customer.address}"/>
+    <label>Postnummer:</label>
+    <span th:text="${customer.zipCode}"/>
+    <label>Kørekortnummer:</label>
+    <span th:text="${customer.driverLicenseNumber}"/>
+    <label>Udstedelsesdato:</label>
+    <span th:text="${customer.driverLicenseDate}"/>
 
-<a th:href="@{'/deleteCustomer/'+${customer.id}}">
-    <button class="btn-delete">Delete</button>
-</a>
-<a th:href="@{'/updateCustomer/'+${customer.id}}">
-    <button class="btn-update">update</button>
-</a>
-<a th:href="@{/customer}">
-    <button>Tilbage</button>
-</a>
+    <a th:href="@{'/deleteCustomer/'+${customer.id}}">
+        <button class="btn-delete">Slet</button>
+    </a>
+    <a th:href="@{'/updateCustomer/'+${customer.id}}">
+        <button class="btn-update">Opdater</button>
+    </a>
+    <a th:href="@{/customer}">
+        <button>Tilbage</button>
+    </a>
 </body>
 </html>

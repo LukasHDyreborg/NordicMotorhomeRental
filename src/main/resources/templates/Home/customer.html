@@ -7,10 +7,10 @@
 </head>
 <body class="background">
 
-<h1>Customers</h1>
+<h1>Kunder</h1>
 
 <a href="/createCustomer">
-    <button class="btn-create">Register new Customer!</button>
+    <button class="btn-create">Registrer ny kunde!</button>
 </a>
 
 <div class="wrapper-table">
@@ -22,14 +22,12 @@
                 <th>Alder</th>
                 <th>CPR-Nummer</th>
                 <th>Email</th>
-                <th>Tlf. nr.</th>
+                <th>Tlf.</th>
                 <th>Adresse</th>
                 <th>Postnummer</th>
-                <!-- <th>City</th>
-                <th>Country</th> -->
                 <th>Kørekortnummer</th>
                 <th>Udstedelsesdato</th>
-                <th>Options</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -46,7 +44,7 @@
                 <td th:text="${customer.driverLicenseDate}" />
                 <td>
                     <a th:href="@{'/viewCustomer/'+${customer.id}}">
-                        <button class="btn-show">Show</button>
+                        <button class="btn-show">Vis</button>
                     </a>
                 </td>
             </tr>

@@ -2,24 +2,24 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>View Staff</title>
+    <title>Medarbejder - Information</title>
     <link rel="stylesheet" type="text/css" href="/MyCSS.css">
 </head>
 <body>
-<h1>View Staff</h1>
+<h1>Medarbejder Information</h1>
 
-<label>ID</label>
+<label>ID:</label>
 <span th:text="${staff.id}"/>
-<label>Navn</label>
+<label>Navn:</label>
 <span th:text="${staff.name}"/>
-<label>Initialer</label>
+<label>Initialer:</label>
 <span th:text="${staff.initials}"/>
 
 <a th:href="@{'/deleteStaff/'+${staff.id}}">
-    <button class="btn-delete">Delete</button>
+    <button class="btn-delete">Slet</button>
 </a>
 <a th:href="@{'/updateStaff/'+${staff.id}}">
-    <button class="btn-update">update</button>
+    <button class="btn-update">Opdater</button>
 </a>
 <a th:href="@{/staff}">
     <button>Tilbage</button>

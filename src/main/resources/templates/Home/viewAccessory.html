@@ -2,25 +2,25 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>View accessories</title>
+    <title>Tilbehør - Information</title>
     <link rel="stylesheet" type="text/css" href="/MyCSS.css">
 </head>
 <body>
-    <h1>View accessories</h1>
-    <label>ID</label>
+    <h1>Tilbehørs Information</h1>
+    <label>ID:</label>
     <span th:text="${accessory.id}"/>
-    <label>Amount Available</label>
+    <label>Beløb - Tilgængelig:</label>
     <span th:text="${accessory.amountAvailable}"/>
-    <label>Amount Total</label>
+    <label>Beløb - Total:</label>
     <span th:text="${accessory.amountTotal}"/>
-    <label>Price</label>
+    <label>Pris:</label>
     <span th:text="${accessory.price}"/>
 
     <a th:href="@{'/deleteAccessory/'+${accessory.id}}">
-        <button class="btn-delete">Delete</button>
+        <button class="btn-delete">Slet</button>
     </a>
     <a th:href="@{'/updateAccessory/'+${accessory.id}}">
-        <button class="btn-update">update</button>
+        <button class="btn-update">Opdater</button>
     </a>
     <a th:href="@{/accessory}">
         <button>Tilbage</button>

@@ -2,32 +2,33 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>update customer</title>
+    <title>Kunde - Opdatering</title>
     <link rel="stylesheet" type="text/css" href="/MyCSS.css">
 </head>
 <body>
+<h1>Kunde Opdatering</h1>
 <form action="/updateCustomer" method="post" class="btn-update">
     <input hidden type="text" name="id" th:value="${customer.id}">
-    <label>Navn</label>
+    <label>Navn:</label>
     <input type="text" name="name" th:value="${customer.name}" required>
-    <label>Alder</label>
-    <input type="text" name="age" th:value="${customer.age}" min="17 "required> <!-- hvor gammel skal man være for at leje en autocamper?-->
-    <label>CPR-Nummer</label>
+    <label>Alder:</label>
+    <input type="number" name="age" th:value="${customer.age}" min="17 "required> <!-- hvor gammel skal man være for at leje en autocamper?-->
+    <label>CPR-Nummer:</label>
     <input type="text" name="cpr" th:value="${customer.cpr}" required>
-    <label>Email</label>
+    <label>Email:</label>
     <input type="email" name="email" th:value="${customer.email}" required>
-    <label>Tlf.</label>
+    <label>Tlf:</label>
     <input type="text" name="phone" th:value="${customer.phone}" required>
-    <label>Adresse</label>
+    <label>Adresse:</label>
     <input type="text" name="address" th:value="${customer.address}"required>
-    <label>Postnummer</label>
+    <label>Postnummer:</label>
     <input type="text" name="zipCode" th:value="${customer.zipCode}" required>
-    <label>Kørekortnummer</label>
+    <label>Kørekortnummer:</label>
     <input type="text" name="driverLicenseNumber" th:value="${customer.driverLicenseNumber}" required>
-    <label>Udstedelsesdato</label>
+    <label>Udstedelsesdato:</label>
     <input type="date" name="driverLicenseDate" th:value="${customer.driverLicenseDate}"required>
 
-    <input type="submit" value="update customer">
+    <input type="submit" value="Opdater!" class="btn-create">
 </form>
 <a th:href="@{'/viewCustomer/'+${customer.id}}">
     <button>Tilbage</button>

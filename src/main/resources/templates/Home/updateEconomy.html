@@ -2,59 +2,60 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Economy - Update</title>
+    <title>Økonomi - Opdatering</title>
     <link rel="stylesheet" type="text/css" href="/MyCSS.css">
 </head>
 <body>
+<h1>Økonomi Opdatering</h1>
 <form action="/updateEconomy" method="post" class="btn-update">
     <input hidden type="text" name="licenseId" th:value="${economy.licensePlate}">
 
-    <label>License Plate</label>
+    <label>Nummerplade:</label>
     <input type="text" name="licensePlate" th:value="${economy.licensePlate}" required>
-    <label>Brand</label>
+    <label>Mærke:</label>
     <input type="text" name="brand" th:value="${economy.brand}" required>
-    <label>Model</label>
+    <label>Model:</label>
     <input type="text" name="model" th:value="${economy.model}" required>
-    <label>Pris</label>
+    <label>Pris:</label>
     <input type="number" name="pricePerDay" th:value="${economy.pricePerDay}" min="1" required>
-    <label>Seats</label>
+    <label>Sæder:</label>
     <input type="number" name="seats" th:value="${economy.seats}" min="1" required> <!-- samme tanke som i create-->
-    <label>beds</label>
+    <label>Senge:</label>
     <input type="number" name="beds" th:value="${economy.beds}" min="0" required> <!-- samme tanke som i create-->
 
-    <label>Fuel Type</label>
+    <label>Brændstof:</label>
     <select name="fuelType" th:field="${economy.fuelType}">
         <option value="Benzin">Benzin</option>
         <option value="Diesel">Diesel</option>
         <option value="Elektrisk">Elektrisk</option>
     </select>
 
-    <label>gear</label>
+    <label>Gear:</label>
     <select name="gear" th:field="${economy.gear}">
         <option value="Automat">Automat</option>
         <option value="Manuel">Manuel</option>
     </select>
     <!--<input type="text" name="gear" th:value="${}" required>
     -->
-    <label>odometer</label>
+    <label>Odometer:</label>
     <input type="number" name="odometer" th:value="${economy.odometer}" min="0" required>
-    <label>Registration Date</label>
+    <label>Registreringsdato:</label>
     <input type="date" name="registrationDate" th:value="${economy.registrationDate}"required>
-    <label>LengthAndHeight</label>
+    <label>Længde og Højde:</label>
     <input type="text" name="lengthAndHeight" th:value="${economy.lengthAndHeight}"required>
 
     <input type="text" name="type" th:value="${economy.type}"hidden required>
 
-    <label>fridge</label>
+    <label>Køleskab:</label>
     <input type="checkbox" name="fridge" th:checked="${economy.fridge}">
-    <label>toilet</label>
+    <label>Toilet:</label>
     <input type="checkbox" name="toilet" th:checked="${economy.toilet}">
-    <label>awning</label>
+    <label>Markise:</label>
     <input type="checkbox" name="awning" th:checked="${economy.awning}">
-    <label>Gas blus</label>
+    <label>Gasblus:</label>
     <input type="number" name="gasBurners" th:value="${economy.gasBurners}">
 
-    <input type="submit" value="Update Motorhome">
+    <input type="submit" value="Opdater!" class="btn-create">
 </form>
 <a th:href="@{'/viewMotorhome/'+${economy.licensePlate}}">
     <button>Tilbage</button>

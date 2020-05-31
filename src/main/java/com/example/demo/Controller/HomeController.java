@@ -141,7 +141,7 @@ public class HomeController {
         Motorhome motorhome = motorhomeService.findById(id);
         model.addAttribute(motorhome);
 
-        if(motorhome.getType().equals("Luxury")){
+        if(motorhome.getType().equals("Luksus")){
             model.addAttribute(luxuryService.findById(id));
         }else if(motorhome.getType().equals("Standard")){
             model.addAttribute(standardService.findById(id));

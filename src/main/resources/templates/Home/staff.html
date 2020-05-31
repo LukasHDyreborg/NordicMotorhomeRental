@@ -2,13 +2,13 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Staff</title>
+    <title>Medarbejdere</title>
     <link rel="stylesheet" type="text/css" href="/MyCSS.css">
 </head>
 <body>
-<h1>Staff members:</h1>
+<h1>Medarbejdere</h1>
 <a href="/createStaff">
-    <button class="btn-create">Register new Staff member!</button>
+    <button class="btn-create">Registrer ny medarbejder!</button>
 </a>
 
 <div class="wrapper-table">
@@ -16,8 +16,8 @@
         <thead>
         <tr>
             <th>ID</th>
-            <th>Name</th>
-            <th>Initials</th>
+            <th>Navn</th>
+            <th>Initialer</th>
             <th></th>
         </tr>
         </thead>
@@ -28,7 +28,7 @@
             <td th:text="${staff.initials}" />
             <td>
                 <a th:href="@{'/viewStaff/'+${staff.id}}">
-                    <button class="btn-show">Show</button>
+                    <button class="btn-show">Vis</button>
                 </a>
             </td>
         </tr>

@@ -2,10 +2,11 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Motorhomes</title>
+    <title>Autocampere</title>
     <link rel="stylesheet" type="text/css" href="/MyCSS.css">
 </head>
 <body>
+<h1>Autocampere</h1>
 <a href="/createLuxury">
     <button class="btn-create">Registrer et luksus køretøj!</button>
 </a>
@@ -31,13 +32,13 @@
             <th>Brændstoftype</th>
             <th>Gear</th>
             <th>Odometer</th>
-            <th>Registrations dato</th>
+            <th>Registreringsdato</th>
             <th>Længde og Højde</th>
             <th>Type</th>
             <th>Køleskab</th>
             <th>Toilet</th>
             <th>Markise</th>
-            <th>Vælg</th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
@@ -59,7 +60,7 @@
             <td th:text="${luxury.awning}"/>
             <td>
                 <a th:href="@{'/viewMotorhome/'+${luxury.licensePlate}}">
-                    <button class="btn-show">Show</button>
+                    <button class="btn-show">Vis</button>
                 </a>
             </td>
         </tr>
@@ -81,7 +82,7 @@
             <td th:text="${standard.awning}"/>
             <td>
                 <a th:href="@{'/viewMotorhome/'+${standard.licensePlate}}">
-                    <button class="btn-show">Show</button>
+                    <button class="btn-show">Vis</button>
                 </a>
             </td>
         </tr>
@@ -103,7 +104,7 @@
             <td th:text="${economy.awning}"/>
             <td>
                 <a th:href="@{'/viewMotorhome/'+${economy.licensePlate}}">
-                    <button class="btn-show">Show</button>
+                    <button class="btn-show">Vis</button>
                 </a>
             </td>
         </tr>

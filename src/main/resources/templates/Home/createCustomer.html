@@ -2,31 +2,32 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Kunderegistration</title>
+    <title>Kunde - Registrering</title>
     <link rel="stylesheet" type="text/css" href="/MyCSS.css">
 </head>
 <body>
+<h1>Kunde Registrering</h1>
 <form action="/createCustomer" method="post">
-    <label>Navn</label>
+    <label>Navn:</label>
     <input type="text" name="name" required>
-    <label>Alder</label>
+    <label>Alder:</label>
     <input type="number" name="age" min="17" required> <!-- hvor gammel skal man være for at leje en autocamper? man kan vel få kørekort fra når man er 17?-->
-    <label>CPR-Nummer</label>
+    <label>CPR-Nummer:</label>
     <input type="text" name="cpr" required>
-    <label>Email</label>
+    <label>Email:</label>
     <input type="email" name="email" required>
-    <label>Tlf.</label>
+    <label>Tlf:</label>
     <input type="text" name="phone" required>
-    <label>Adresse</label>
+    <label>Adresse:</label>
     <input type="text" name="address" required>
-    <label>Postnummer</label>
+    <label>Postnummer:</label>
     <input type="text" name="zipCode" required>
-    <label>Kørekortnummer</label>
+    <label>Kørekortnummer:</label>
     <input type="text" name="driverLicenseNumber" required>
-    <label>Udstedelsesdato</label>
+    <label>Udstedelsesdato:</label>
     <input type="date" name="driverLicenseDate" required>
 
-    <input type="submit" value="Save customer" required>
+    <input type="submit" value="Gem!" class="btn-create" required>
 </form>
 <a th:href="@{/customer}">
     <button>Tilbage</button>

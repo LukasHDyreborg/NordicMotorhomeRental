@@ -2,53 +2,53 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Show Contract</title>
+    <title>Kontrakt - Information</title>
 </head>
 <body>
-    <label>id</label>
+    <label>ID:</label>
     <span th:text="${contract.id}"></span>
-    <label>From Date</label>
+    <label>Fra Dato:</label>
     <span th:text="${contract.fromDate}"></span>
-    <label>To Date</label>
+    <label>Til Dato:</label>
     <span th:text="${contract.toDate}"></span>
-    <label>Name</label>
+    <label>Navn:</label>
     <span th:text="${contract.customer.name}"></span>
-    <label>Driver license number</label>
+    <label>Kørekortnummer:</label>
     <span th:text="${contract.customer.driverLicenseNumber}"></span>
-    <label>CPR</label>
+    <label>CPR-nummer:</label>
     <span th:text="${contract.customer.cpr}"></span>
-    <label>Address</label>
+    <label>Adresse:</label>
     <span th:text="${contract.customer.address}"></span>
-    <label>Phone</label>
+    <label>Tlf:</label>
     <span th:text="${contract.customer.phone}"></span>
-    <label>Email</label>
+    <label>Email:</label>
     <span th:text="${contract.customer.email}"></span>
-    <label>Nummerplade</label>
+    <label>Nummerplade:</label>
     <span th:text="${contract.motorhome.licensePlate}"></span>
-    <label>Brand</label>
+    <label>Mærke:</label>
     <span th:text="${contract.motorhome.brand}"></span>
-    <label>Model</label>
+    <label>Model:</label>
     <span th:text="${contract.motorhome.model}"></span>
-    <label>Max KM</label>
+    <label>Max KM:</label>
     <span th:text="${contract.maxKM}"></span>
 
-    <label>Pick-Up Point:</label>
+    <label>Pick-Up Punkt:</label>
     <span th:text="${contract.pickUp}"></span>
     <label>Pick-Up Distance:</label>
     <span th:text="${contract.pickDistance}"></span>
-    <label>Drop-Off Point:</label>
+    <label>Drop-Off Punkt:</label>
     <span th:text="${contract.dropOff}"></span>
     <label>Drop-Off Distance:</label>
     <span th:text="${contract.dropDistance}"></span>
 
-    <label>Price</label>
+    <label>Pris:</label>
     <span th:text="${contract.price}"></span>
 
     <span>
         <table>
             <thead>
             <tr>
-                <th>Accessories</th>
+                <th>Tilbehør:</th>
             </tr>
             </thead>
             <tbody>
@@ -60,17 +60,17 @@
         </table>
     </span>
 
-    <label>Sales Assistant</label>
+    <label>Salgsassistant:</label>
     <span th:text="${contract.staff}"></span>
 
     <a th:href="@{'/deleteContract/'+${contract.id}}">
-        <button class="btn-delete">Delete</button>
+        <button class="btn-delete">Slet</button>
     </a>
     <a th:href="@{'/updateContract/'+${contract.id}}">
-        <button class="btn-update">Update</button>
+        <button class="btn-update">Opdater</button>
     </a>
     <a th:href="@{'/endContract/'+${contract.id}}">
-        <button class="btn-update">End</button>
+        <button class="btn-update">Afslut</button>
     </a>
     <a th:href="@{/contract}">
         <button>Tilbage</button>

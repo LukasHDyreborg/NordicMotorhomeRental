@@ -2,22 +2,23 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>update season</title>
+    <title>Tilbehør - Opdatering</title>
     <link rel="stylesheet" type="text/css" href="/MyCSS.css">
 </head>
 <body>
+<h1>Tilbehørs Opdatering</h1>
 <form action="/updateAccessory" method="post" class="btn-update">
     <input hidden type="text" name="id" th:value="${accessory.id}">
-    <label>Name</label>
+    <label>Navn:</label>
     <input type="text" name="name" th:value="${accessory.name}" required>
-    <label>Amount Available</label>
-    <input type="number" name="amountAvailable" th:value="${accessory.amountAvailable}" min="0" required> <!-- skal vel være 0 her eftersom at der kan være sket noget så de har null-->
-    <label>Amount Total</label>
-    <input type="number" name="amountTotal" th:value="${accessory.amountTotal}" min="0" required> <!-- skal vel være 0 her eftersom at der kan være sket noget så de har null-->
-    <label>Price</label>
+    <label>Beløb - Tilgængelig:</label>
+    <input type="number" name="amountAvailable" th:value="${accessory.amountAvailable}" min="0" required> <!-- skal vel være 0 eftersom at der kan være sket noget så de ikke har nogen-->
+    <label>Beløb - Total:</label>
+    <input type="number" name="amountTotal" th:value="${accessory.amountTotal}" min="0" required> <!-- skal vel være 0 eftersom at der kan være sket noget så de ikke har nogen-->
+    <label>Pris:</label>
     <input type="number" name="price" th:value="${accessory.price}" min="1" required> <!--skal vel koste noget? kan også være nul for en free accessory-->
 
-    <input type="submit" value="Update Accessory">
+    <input type="submit" value="Opdater!" class="btn-create">
 </form>
 <a th:href="@{'/viewAccessory/'+${accessory.id}}">
     <button>Tilbage</button>

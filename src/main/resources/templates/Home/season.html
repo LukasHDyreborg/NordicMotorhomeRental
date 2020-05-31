@@ -2,13 +2,13 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Season</title>
+    <title>Sæson</title>
     <link rel="stylesheet" type="text/css" href="/MyCSS.css">
 </head>
 <body>
-    <h1>Seasons:</h1>
+    <h1>Sæsoner:</h1>
     <a href="/createSeason">
-        <button class="btn-create">Register new Season!</button>
+        <button class="btn-create">Registrer ny Sæson!</button>
     </a>
 
     <div class="wrapper-table">
@@ -30,7 +30,7 @@
                     <td th:text="${season.type}" />
                     <td>
                         <a th:href="@{'/viewSeason/'+${season.id}}">
-                            <button class="btn-show">Show</button>
+                            <button class="btn-show">Vis</button>
                         </a>
                     </td>
                 </tr>
