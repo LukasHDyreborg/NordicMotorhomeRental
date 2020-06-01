@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -294,14 +295,21 @@ public class HomeController {
         List<Luxury> luxuryList = luxuryService.fetchAll();
         List<Staff> staffList = staffService.fetchAll();
         List<Accessory> accessoryList = accessoryService.fetchAllAvailable(); // what if the contract we edit has the last of an item( availability = 0), then it won't be showed as an option (and will then be removed when you press update)
+        Contract contract = contractService.findById(id);
 
-        model.addAttribute("contract", contractService.findById(id));
+        List<Integer> contractAccessories = new ArrayList<>(); //used to compare if accessory is in contract (hvis listen indeholder accessory.id)
+        for(int i = 0; i < contract.getAccessoryList().size(); i++){
+            contractAccessories.add(contract.getAccessoryList().get(i).getId()); //adds ids from contract to list
+        }
+
+        model.addAttribute("contract", contract);
         model.addAttribute("customers", customerList);
         model.addAttribute("economies", economyList);
         model.addAttribute("standards", standardList);
         model.addAttribute("luxuries", luxuryList);
         model.addAttribute("staffs", staffList);
         model.addAttribute("accessories", accessoryList);
+        model.addAttribute("contractAccessories", contractAccessories);
         return "home/updateContract";
     }
 

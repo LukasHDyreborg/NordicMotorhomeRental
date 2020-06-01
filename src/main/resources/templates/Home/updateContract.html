@@ -208,7 +208,12 @@
                 <td th:text="${accessory.amountTotal}"></td>
                 <td th:text="${accessory.price}"></td>
                 <td>
-                    <input type="checkbox" name="accessory" th:value="${accessory.id}"> <!--TODO FIND TH SO ITS PRESELECTED-->
+                   <span th:unless="${contractAccessories.contains(accessory.id)}">
+                        <input type="checkbox" name="accessory" th:value="${accessory.id}">
+                    </span>
+                    <span th:if="${contractAccessories.contains(accessory.id)}">
+                        <input type="checkbox" name="accessory" th:value="${accessory.id}" checked>
+                    </span>
                 </td>
             </tr>
             </tbody>
