@@ -19,7 +19,7 @@ public class Contract {
     private Motorhome motorhome;
     private String carId;  //kommer til at være i motorhome
     private int maxKM;
-    private int price;
+    private int price; // i euro
     private String staff; //kan laves om til et objekt. fordelen ved en string er at vi kan slette medabejdere uden at det berører kontrakten (på den anden side: ændrer vi navn for medarbejder, så er det ikke ændret i kontrakten)
     @OneToMany
     private List<Accessory> accessoryList;
@@ -79,10 +79,13 @@ public class Contract {
         return numberOfDays;
     }
 
-    public void setNumberOfDays(/*int numberOfDays*/) {
-      //  this.numberOfDays = numberOfDays;
+    public void setDays() {
         Period period = Period.between(LocalDate.parse(fromDate), LocalDate.parse(toDate));
         this.numberOfDays = period.getDays();
+    }
+
+    public void setNumberOfDays(int days) {
+        this.numberOfDays = days;
     }
 
     public Customer getCustomer() {

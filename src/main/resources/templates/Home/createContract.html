@@ -49,11 +49,11 @@
 
     <div>
         <label>Start Dato:</label>
-        <input type="date" name="fromDate" id="startDate" onchange="time()" required>
+        <input type="date" name="fromDate" id="fromDate" onchange="time()" required>
         <label>Slut Dato:</label>
-        <input type="date" name="toDate" id="endDate" onchange="time()" required>
+        <input type="date" name="toDate" id="toDate" onchange="time()" required>
 
-        <input type="text" name="totalDays" id="totalDays" readonly>
+        <input type="text" name="numberOfDays" id="numberOfDays" readonly>
     </div>
 
     <h2>Autocamper:</h2>
@@ -64,7 +64,7 @@
                     <th>Nummerplade</th>
                     <th>Mærke</th>
                     <th>Model</th>
-                    <th>Pris pr. dag</th>
+                    <th>Pris pr. dag (i Euro)</th>
                     <th>Sæder</th>
                     <th>Senge</th>
                     <th>Brændstof</th>
@@ -164,7 +164,7 @@
                     <th>Navn</th>
                     <th>Beløb - Tilgængelig</th>
                     <th>Beløb - Total</th>
-                    <th>Pris</th>
+                    <th>Pris (i Euro)</th>
                     <th></th>
                 </tr>
             </thead>

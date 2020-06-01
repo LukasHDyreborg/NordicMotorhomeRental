@@ -75,7 +75,7 @@ public class ContractRepository {
             accessoryRepository.decreaseAvailable(c.getAccessoryList()); //decreases available accessories
 
             fetchContractObjects(c); // assigns car and customer to list. We use it to calculate price
-            c.setNumberOfDays(); //sets number of days based on from and to date
+            c.setDays(); //sets number of days based on from and to date
             assignPrice(c);//assigns price based on amount of days //TODO
             c.setMaxKM(c.getNumberOfDays() * 400); //assigns max km
 
@@ -151,7 +151,7 @@ public class ContractRepository {
             sql = "INSERT INTO accessory_contract () VALUES (?, ?)";
             template.update(sql, accessory, c.getId());
         }
-        c.setNumberOfDays(); //calculates number of days between from and todate
+        c.setDays(); //calculates number of days between from and todate
         c.setMaxKM(c.getNumberOfDays() * 400); //automatically calculates maxKm based on number of days
 
         c.setAccessoryList(new ArrayList<>());//assigns it an arraylist since it will be null by default
@@ -239,9 +239,9 @@ public class ContractRepository {
             }
         }
         //Adds price from pick-up point
-        contract.setPrice((int) (contract.getPrice() + 5.21 * contract.getPickDistance()));//5.21 is 0.7 euro (according to valutaomregner.dk/eur-dkk/)
+        contract.setPrice((int) (contract.getPrice() + (0.7 * contract.getPickDistance()))); //0.7 euro * distance.
         //Adds price from drop-off point
-        contract.setPrice((int) (contract.getPrice() + 5.21 * contract.getDropDistance()));
+        contract.setPrice((int) (contract.getPrice() + (0.7 * contract.getDropDistance())));
     }
 
     public double checkEndDateCost(Contract c){

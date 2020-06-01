@@ -1,7 +1,7 @@
 function time() {
     var start, end, result, first, second, date;
-    start = document.getElementById("startDate");
-    end = document.getElementById("endDate");
+    start = document.getElementById("fromDate");
+    end = document.getElementById("toDate");
 
     date = start.value.split("-", 3);
     first = new Date(date[0], date[1], date[2]);
@@ -10,5 +10,5 @@ function time() {
     second = new Date(date[0], date[1], date[2]);
 
     result = (((((second.getTime() - first.getTime())/1000)/60)/60)/24);
-    document.contract.totalDays.value = result;
+    document.contract.numberOfDays.value = result;
 }

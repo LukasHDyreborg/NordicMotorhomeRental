@@ -58,16 +58,16 @@
 
     <div>
         <label>Start Dato:</label>
-        <input type="date" name="fromDate" id="startDate" onchange="time()" th:value="${contract.fromDate}">
+        <input type="date" name="fromDate" id="fromDate" onchange="time()" th:value="${contract.fromDate}">
         <label>Slut Dato:</label>
-        <input type="date" name="toDate" id="endDate" onchange="time()" th:value="${contract.toDate}">
+        <input type="date" name="toDate" id="toDate" onchange="time()" th:value="${contract.toDate}">
 
-      <!--  <input type="text" name="totalDays" id="totalDays" readonly> -->
+        <input type="text" name="numberOfDays" id="numberOfDays" th:value="${contract.numberOfDays}" readonly>
 
-        <label>Indtast prisen manuelt:</label>
+        <label>Indtast prisen manuelt (i euro):</label>
         <input type="number" name="price" th:value="${contract.price}" min="1" required> <!--Minimum pris skal vel være 1-->
         <label>Udregn prisen automatisk?</label>
-        <input type="checkbox" name="newPrice">
+        <input type="checkbox" name="newPrice" checked>
 <!--
         <label>Max KM:</label>
         <input type="number" name="maxKM" th:value="${contract.maxKM}" required> -->

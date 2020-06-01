@@ -15,7 +15,7 @@
     <input type="number" name="amountAvailable" th:value="${accessory.amountAvailable}" min="0" required> <!-- skal vel være 0 eftersom at der kan være sket noget så de ikke har nogen-->
     <label>Beløb - Total:</label>
     <input type="number" name="amountTotal" th:value="${accessory.amountTotal}" min="0" required> <!-- skal vel være 0 eftersom at der kan være sket noget så de ikke har nogen-->
-    <label>Pris:</label>
+    <label>Pris (i Euro):</label>
     <input type="number" name="price" th:value="${accessory.price}" min="1" required> <!--skal vel koste noget? kan også være nul for en free accessory-->
 
     <input type="submit" value="Opdater!" class="btn-create">

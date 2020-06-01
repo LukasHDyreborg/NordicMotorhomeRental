@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Kontrakt - Information</title>
+    <link rel="stylesheet" type="text/css" href="/MyCSS.css">
 </head>
 <body>
     <label>ID:</label>
@@ -11,6 +12,8 @@
     <span th:text="${contract.fromDate}"></span>
     <label>Til Dato:</label>
     <span th:text="${contract.toDate}"></span>
+    <label>Antal Dage:</label>
+    <span th:text="${contract.numberOfDays}"></span>
     <label>Navn:</label>
     <span th:text="${contract.customer.name}"></span>
     <label>Kørekortnummer:</label>
@@ -41,7 +44,7 @@
     <label>Drop-Off Distance:</label>
     <span th:text="${contract.dropDistance}"></span>
 
-    <label>Pris:</label>
+    <label>Pris (i Euro):</label>
     <span th:text="${contract.price}"></span>
 
     <span>
@@ -49,6 +52,7 @@
             <thead>
             <tr>
                 <th>Tilbehør:</th>
+                <th>Pris (i Euro)</th>
             </tr>
             </thead>
             <tbody>
