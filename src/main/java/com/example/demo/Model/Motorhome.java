@@ -25,7 +25,7 @@ public class Motorhome {
     public Motorhome() {
     }
 
-    /*public Motorhome(String licensePlate, String brand, String model, int pricePerDay, int seats, int beds,
+    public Motorhome(String licensePlate, String brand, String model, int pricePerDay, int seats, int beds,
                      String fuelType, String gear, int odometer, String registrationDate, String lengthAndHeight, String type,
                      boolean fridge, boolean toilet, boolean awning) {
         this.licensePlate = licensePlate;
@@ -43,7 +43,7 @@ public class Motorhome {
         this.fridge = fridge;
         this.toilet = toilet;
         this.awning = awning;
-    }*/
+    }
 
     public String getLicensePlate() {
         return licensePlate;

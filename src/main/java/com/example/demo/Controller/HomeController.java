@@ -217,12 +217,14 @@ public class HomeController {
                               @RequestParam("staff") String staff, Model model) {
         Contract c = contractService.findById(id);
         c.setStaff(staff);
-        int price = contractService.endContract(c, odometer, halfFull);
+        double price = contractService.endContract(c, odometer, halfFull);
+        double difference = (Math.round((price - c.getPrice()) * 100)) / 100;
 
         model.addAttribute("contract", c);//we use the contract for an if statement
         model.addAttribute("price", price); //the amount the customer gets og pays
         model.addAttribute("halfFull", halfFull);
         model.addAttribute("odometer", odometer);
+        model.addAttribute("difference", difference);
 
         return "home/contractPay";
     }

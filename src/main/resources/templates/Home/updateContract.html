@@ -62,10 +62,10 @@
         <label>Slut Dato:</label>
         <input type="date" name="toDate" id="toDate" onchange="time()" th:value="${contract.toDate}">
 
-        <input type="text" name="numberOfDays" id="numberOfDays" th:value="${contract.numberOfDays}" readonly>
+        <input type="text" name="days" id="numberOfDays" th:value="${contract.numberOfDays}" readonly>
 
         <label>Indtast prisen manuelt (i euro):</label>
-        <input type="number" name="price" th:value="${contract.price}" min="1" required> <!--Minimum pris skal vel være 1-->
+        <input type="number" name="price" th:value="${contract.price}" step="0.01" min="1" required> <!--Minimum pris skal vel være 1-->
         <label>Udregn prisen automatisk?</label>
         <input type="checkbox" name="newPrice" checked>
 <!--

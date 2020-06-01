@@ -10,7 +10,7 @@ public class Luxury extends Standard {
     public Luxury() {
     }
 
-    /*public Luxury(String licensePlate, String brand, String model, int pricePerDay, int seats, int beds,
+    public Luxury(String licensePlate, String brand, String model, int pricePerDay, int seats, int beds,
                   String fuelType, String gear, int odometer, String registrationDate, String lengthAndHeight, String type,
                   boolean fridge, boolean toilet, boolean awning, boolean shower, boolean elStove, boolean tv, boolean rearViewCamera) {
 
@@ -18,7 +18,7 @@ public class Luxury extends Standard {
                 lengthAndHeight, type, fridge, toilet, awning, shower, elStove);
         this.tv = tv;
         this.rearViewCamera = rearViewCamera;
-    }*/
+    }
 
     public boolean isTv() {
         return tv;

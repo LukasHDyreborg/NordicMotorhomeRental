@@ -10,5 +10,5 @@ function time() {
     second = new Date(date[0], date[1], date[2]);
 
     result = (((((second.getTime() - first.getTime())/1000)/60)/60)/24);
-    document.contract.numberOfDays.value = result;
+    document.contract.days.value = result;
 }

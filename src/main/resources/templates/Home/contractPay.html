@@ -7,28 +7,21 @@
 </head>
 <body>
     <span th:if="${contract.price &gt; price}">   <!-- &gt; betyder >   -->
-        <p>Kunden aflyste sin udlejning og vil modtage:</p>
-        <span th:text="${contract.price} - ${price}"></span>
-        <label>Gammel Pris (i Euro):</label>
-        <span th:text="${contract.price}"></span>
-        <label>Ny Pris (i Euro):</label>
-        <span th:text="${price}"></span>
+        <span th:text="|Kunden aflyste sin udlejning og vil modtage: ${difference}|"></span>
+        <span th:text="|Gammel Pris (i Euro): ${contract.price}|"></span>
+        <span th:text="|Ny Pris (i Euro): ${price}|"></span>
     </span>
 
     <span th:if="${contract.price &lt; price}"> <!-- &lt; betyder <   -->
-        <p>Kunden skal betale ekstra gebyrer:</p>
-        <span th:text="${price} - ${contract.price}"></span>
-        <label>Gammel Pris (i Euro):</label>
-        <span th:text="${contract.price}"></span>
-        <label>Ny Pris (i Euro):</label>
-        <span th:text="${price}"></span>
+        <span th:text="|Kunden skal betale ekstra gebyrer: ${difference}|"></span>
+        <span th:text="|Gammel Pris (i Euro): ${contract.price}|"></span>
+        <span th:text="|Ny Pris (i Euro): ${price}|"></span>
         <label>Udregninger:</label>
         <span th:if="${halfFull} == true">
-            <span th:text="|Gastanken var mindre end halv fuld. Pris = ${70} Euro|"></span> <!--TODO MÅSKE FJERNE EFTERSOM PRICE ER INT OG DETTE RESULTERE I EN DOUBLE-->
+            <span th:text="|Gastanken var mindre end halv fuld. Pris = 70 Euro|"></span>
         </span>
         <span th:if="${odometer} - ${contract.motorhome.odometer} &gt; ${contract.maxKM} "> <!-- If the difference between old and new odometer is bigger than allowed km-->
-            <span th:text="|Ekstra KM: ${odometer} - ${contract.motorhome.odometer} - ${contract.maxKM} = ${odometer - contract.motorhome.odometer - contract.maxKM}|"></span>
-            <span th:text="|Hver KM koster en euro: ${odometer - contract.motorhome.odometer - contract.maxKM} = ${(odometer - contract.motorhome.odometer - contract.maxKM)}|"></span>
+            <span th:text="|Ekstra KM: ${odometer} - ${contract.motorhome.odometer} - ${contract.maxKM} = ${odometer - contract.motorhome.odometer - contract.maxKM} Hver KM koster en euro.|"></span>
         </span>
 
     </span>

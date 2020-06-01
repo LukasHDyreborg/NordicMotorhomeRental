@@ -36,7 +36,7 @@ public class ContractService {
         return contractRepository.update(c, accessories, newPrice);
     }
 
-    public int endContract(Contract c, int odometer, boolean halfFull){
+    public double endContract(Contract c, int odometer, boolean halfFull){
         return contractRepository.endContract(c, odometer, halfFull);
     }
 }

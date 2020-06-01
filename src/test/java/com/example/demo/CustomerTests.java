@@ -23,7 +23,6 @@ public class CustomerTests {
     JdbcTemplate template;
 
     @Test
-    @Order(1)
     public void testAdd(){
         Customer c = new Customer(1000, "Steve", 23, "12312312", "Steve@mail.com", "55883439", "Lygten 37", "4780",
                 "1234567890", "2017-02-02");

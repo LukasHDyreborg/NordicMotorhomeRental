@@ -175,28 +175,28 @@ public class ContractRepository {
         return null;
     }
 
-    public int endContract(Contract c, int odometer, boolean halfFull){
+    public double endContract(Contract c, int odometer, boolean halfFull){
         accessoryRepository.increaseAvailable(c.getAccessoryList()); // "releases accessories" (increases available)
         double endFee = checkEndDateCost(c); //gets how much the fee is for cancelling (1 if not cancelled)
         double cost = c.getPrice(); //current contract price
 
         if(endFee == 1){ // 1 = it wasnt cancelled, calculate additional feed
             if(halfFull){ //Tilføjer ekstra kost hvis tanken er halv tom
-                cost += 70 * 7.45; //det koster 70 euro (siger opgaven) så det ganger vi med 7,45 for at få det i kroner //vi behøver ikke have endFee med ind fordi den bare ganger med 1
+                cost += 70; //det koster 70 euro (siger opgaven)
             }
             if(odometer - c.getMotorhome().getOdometer() > c.getMaxKM()) {//Hvis ny odometer minus gammel odometer > maxKM
                 int extraKm = odometer - c.getMotorhome().getOdometer() - c.getMaxKM();
-                cost += 7.45 * extraKm; //vi trækker original odometer fra nye odometer og ganger med 7.45(en euro per ekstra km)
+                cost += extraKm; //vi trækker original odometer fra nye odometer og ganger med 7.45(en euro per ekstra km)
             }
         }else{
             cost *= endFee;//the price is reduced based on how far back they cancelled -- >return money
         }
         String sql = "UPDATE contracts SET price = ?, active = ?, staff = ? WHERE id = ?";
-        template.update(sql, (int) cost, 0, c.getStaff(), c.getId()); //makes contract inactive
+        template.update(sql, cost, 0, c.getStaff(), c.getId()); //makes contract inactive
 
         motorhomeRepository.updateOdometer(c.getMotorhome(), odometer); //updates odometer
 
-        return (int) cost;
+        return cost;
     }
 
     public void fetchContractObjects(Contract contract){
@@ -229,7 +229,7 @@ public class ContractRepository {
                 carPrice *= 1;
             }
             //Sets price (price will increase after every iteration/loop)
-            contract.setPrice((int) (contract.getPrice() + carPrice));
+            contract.setPrice(contract.getPrice() + carPrice);
         }
 
         //Calculates Accessories price
@@ -239,9 +239,9 @@ public class ContractRepository {
             }
         }
         //Adds price from pick-up point
-        contract.setPrice((int) (contract.getPrice() + (0.7 * contract.getPickDistance()))); //0.7 euro * distance.
+        contract.setPrice(contract.getPrice() + (0.7 * contract.getPickDistance())); //0.7 euro * distance.
         //Adds price from drop-off point
-        contract.setPrice((int) (contract.getPrice() + (0.7 * contract.getDropDistance())));
+        contract.setPrice(contract.getPrice() + (0.7 * contract.getDropDistance()));
     }
 
     public double checkEndDateCost(Contract c){

@@ -19,18 +19,14 @@ public class Contract {
     private Motorhome motorhome;
     private String carId;  //kommer til at være i motorhome
     private int maxKM;
-    private int price; // i euro
+    private double price; // i euro
     private String staff; //kan laves om til et objekt. fordelen ved en string er at vi kan slette medabejdere uden at det berører kontrakten (på den anden side: ændrer vi navn for medarbejder, så er det ikke ændret i kontrakten)
     @OneToMany
     private List<Accessory> accessoryList;
     // pick op
     private String pickUp;
     private double pickDistance;
-   /* @OneToOne
-    private Point pickUp;*/
-    /* drop off
-    @OneToOne
-    private Point dropOff;*/
+    // drop off
     private String dropOff;
     private double dropDistance;
 
@@ -38,18 +34,26 @@ public class Contract {
     public Contract() {
     }
 
-    /*public Contract(int id, String fromDate, String toDate,int numberOfDays, int customId, String carId, int maxKM, int price, Customer customer, Motorhome motorhome) {
+    public Contract(int id, String fromDate, String toDate, int numberOfDays, Customer customer, int customId,
+                    Motorhome motorhome, String carId, int maxKM, int price, String staff, List<Accessory> accessoryList,
+                    String pickUp, double pickDistance, String dropOff, double dropDistance){
         this.id = id;
-        this.fromDate = LocalDate.parse(fromDate);
-        this.toDate = LocalDate.parse(toDate);
+        this.fromDate = fromDate;
+        this.toDate = toDate;
         this.numberOfDays = numberOfDays;
+        this.customer = customer;
         this.customId = customId;
+        this.motorhome = motorhome;
         this.carId = carId;
         this.maxKM = maxKM;
         this.price = price;
-        this.customer = customer;
-        this.motorhome = motorhome;
-    }*/
+        this.staff = staff;
+        this.accessoryList = accessoryList;
+        this.pickUp = pickUp;
+        this.pickDistance = pickDistance;
+        this.dropOff = dropOff;
+        this.dropDistance = dropDistance;
+    }
 
     public int getId() {
         return id;
@@ -128,12 +132,13 @@ public class Contract {
         this.maxKM = maxKM;
     }
 
-    public int getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
-        this.price = price;
+    public void setPrice(double price) {
+        this.price = Math.round(price*100);
+        this.price /= 100;
     }
 
     public String getStaff() {
