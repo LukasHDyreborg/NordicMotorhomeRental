@@ -5,7 +5,7 @@
     display: block;
     background-color: aqua;
     text-decoration: none;
-    font-size: 100%;
+    font-size: 180%;
 }
 
 .btn-Main-Menu:hover{
@@ -30,6 +30,7 @@ td, th{
     border: 1px solid black;
     text-align: left;
     padding: 4px;
+    white-space: nowrap;
 }
 
 tr:nth-child(even) {
@@ -51,32 +52,72 @@ tr:hover{
 }
 
 .btn-show{
-    background-color: blueviolet;
-    margin-bottom: 10px;
+    background-color: cyan;
 }
 
 .btn-show:hover{
-    background-color: darkviolet;
-    margin-bottom: 10px;
+    background-color: dodgerblue;
 }
 
-.btn-edit{
+.btn-update{
     background-color: sienna;
-    margin-bottom: 10px;
+    margin-bottom: 1px;
+    width: 70px;
 }
 
-.btn-edit:hover{
+.btn-update:hover{
     background-color: saddlebrown;
-    margin-bottom: 10px;
+    margin-bottom: 1px;
+    width: 70px;
 }
 
 .btn-delete{
     background-color: orangered;
-    margin-bottom: 10px;
+    margin-bottom: 1px;
+    width: 70px;
 }
 
 .btn-delete:hover{
     background-color: red;
-    margin-bottom: 10px;
+    margin-bottom: 1px;
+    width: 70px;
 }
 
+.btn-back{
+    background-color: silver;
+    margin-bottom: 1px;
+    width: 70px;
+}
+
+.btn-back:hover{
+    background-color: darkgrey;
+    margin-bottom: 1px;
+    width: 70px;
+}
+
+span::after, a::after{
+    content: "\a";
+    white-space: pre;
+}
+
+span, a{
+    margin-bottom: 5px;
+}
+
+.basic::after{
+    content: "";
+}
+
+button{
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+label{
+    font-weight: bold;
+}
+
+.header{
+    text-align: center;
+    font-size: 250%;
+}

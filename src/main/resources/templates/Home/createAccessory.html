@@ -16,11 +16,10 @@
     <input type="number" name="amountTotal" min="1" required>
     <label>Pris (i Euro):</label>
     <input type="number" name="price" min="1" required> <!-- Skal vel koste noget? Men måske skulle man stadig have muligheden for at lave en free accessory? -->
-
     <input type="submit" value="Gem!" class="btn-create">
 </form>
 <a th:href="@{/accessory}">
-    <button>Tilbage</button>
+    <button class="btn-back">Tilbage</button>
 </a>
 </body>
 </html>

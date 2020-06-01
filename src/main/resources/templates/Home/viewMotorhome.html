@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Autocamper - Information</title>
+    <link rel="stylesheet" type="text/css" href="/MyCSS.css">
 </head>
 <body>
 <h1>Autocamper Information</h1>
@@ -38,7 +39,7 @@
     <span th:text="${motorhome.awning}"></span>
 
 
-    <span th:if="${motorhome.type == 'Luksus'}">
+    <span class="basic" th:if="${motorhome.type == 'Luksus'}">
         <label>Bad:</label>
         <span th:text="${luxury.shower}"></span>
         <label>Elkomfur:</label>
@@ -53,7 +54,7 @@
         </a>
     </span>
 
-    <span th:if="${motorhome.type == 'Standard'}">
+    <span class="basic" th:if="${motorhome.type == 'Standard'}">
         <label>Bad:</label>
         <span th:text="${standard.shower}"></span>
         <label>Elkomfur:</label>
@@ -64,7 +65,7 @@
         </a>
     </span>
 
-    <span th:if="${motorhome.type == 'Økonomi'}">
+    <span class="basic" th:if="${motorhome.type == 'Økonomi'}">
         <label>Gasblus:</label>
         <span th:text="${economy.gasBurners}"></span>
         <a th:href="@{'/updateEconomy/'+${economy.licensePlate}}">
@@ -76,7 +77,7 @@
     </a>
 
     <a th:href="@{/motorhome}">
-        <button>Tilbage</button>
+        <button class="btn-back">Tilbage</button>
     </a>
 
    <!-- <a th:href="@{'/updateMotorhome/'+${motorhome.licensePlate}}">

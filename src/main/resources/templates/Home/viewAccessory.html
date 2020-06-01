@@ -15,15 +15,14 @@
     <span th:text="${accessory.amountTotal}"></span>
     <label>Pris (i Euro):</label>
     <span th:text="${accessory.price}"></span>
-
-    <a th:href="@{'/deleteAccessory/'+${accessory.id}}">
-        <button class="btn-delete">Slet</button>
-    </a>
     <a th:href="@{'/updateAccessory/'+${accessory.id}}">
         <button class="btn-update">Opdater</button>
     </a>
+    <a th:href="@{'/deleteAccessory/'+${accessory.id}}">
+        <button class="btn-delete">Slet</button>
+    </a>
     <a th:href="@{/accessory}">
-        <button>Tilbage</button>
+        <button class="btn-back">Tilbage</button>
     </a>
 </body>
 </html>

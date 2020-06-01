@@ -37,7 +37,7 @@
                 <td th:text="${customer.age}"></td>
                 <td th:text="${customer.cpr}"></td>
                 <td th:text="${customer.email}"></td>
-                <td th:text="${customer.phone}"></td>
+                <td th:text="${customer.phone}" width="172px"></td>
                 <td th:text="${customer.address}"></td>
                 <td th:text="${customer.zipCode}"></td>
                 <td th:text="${customer.driverLicenseNumber}"></td>
@@ -52,7 +52,7 @@
     </table>
 </div>
 <a th:href="@{/}">
-    <button>Tilbage</button>
+    <button class="btn-back">Tilbage</button>
 </a>
 </body>
 </html>
