@@ -1,16 +1,26 @@
+#main-menu-wrapper {
+    margin-left: 40%;
+    margin-right: 40%;
+}
+
 .btn-Main-Menu{
-    width: 30%;
+    width: 100%;
     padding: 10px;
     margin: auto;
     display: block;
     background-color: aqua;
     text-decoration: none;
     font-size: 180%;
+    cursor: pointer;
 }
 
 .btn-Main-Menu:hover{
     background-color: deepskyblue;
     box-shadow: 2px 2px 2px;
+}
+
+a {
+    text-decoration: none;
 }
 
 .wrapper-table{
@@ -44,6 +54,7 @@ tr:hover{
 .btn-create{
     background-color: greenyellow;
     margin-bottom: 10px;
+    cursor: pointer;
 }
 
 .btn-create:hover{
@@ -53,6 +64,7 @@ tr:hover{
 
 .btn-show{
     background-color: cyan;
+    cursor: pointer;
 }
 
 .btn-show:hover{
@@ -69,12 +81,14 @@ tr:hover{
     background-color: limegreen;
     margin-bottom: 1px;
     width: 70px;
+    cursor: pointer;
 }
 
 .btn-delete{
     background-color: orangered;
     margin-bottom: 1px;
     width: 70px;
+    cursor: pointer;
 }
 
 .btn-delete:hover{
@@ -87,6 +101,7 @@ tr:hover{
     background-color: silver;
     margin-bottom: 1px;
     width: 70px;
+    cursor: pointer;
 }
 
 .btn-back:hover{
