@@ -21,7 +21,7 @@
     <label>Sæder:</label>
     <input type="number" name="seats" th:value="${economy.seats}" min="1" required> <!-- samme tanke som i create-->
     <label>Senge:</label>
-    <input type="number" name="beds" th:value="${economy.beds}" min="0" required> <!-- samme tanke som i create-->
+    <input type="number" name="beds" th:value="${economy.beds}" min="2" max="6" required> <!-- samme tanke som i create-->
 
     <label>Brændstof:</label>
     <select name="fuelType" th:field="${economy.fuelType}">
