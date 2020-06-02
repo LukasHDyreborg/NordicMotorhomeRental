@@ -8,12 +8,12 @@
 <body>
 <h1>Medarbejder Registrering</h1>
 <form action="/createStaff" method="post">
-    <label>Navn:</label>
+    <label class="breaker">Navn:</label>
     <input type="text" name="name" required>
-    <label>Initialer:</label>
+    <label class="breaker">Initialer:</label>
     <input type="text" name="initials" required>
 
-    <input type="submit" value="Gem!" class="btn-create">
+    <input type="submit" value="Gem!" class="btn-create breaker">
 </form>
 <a th:href="@{/staff}">
     <button class="btn-back">Tilbage</button>

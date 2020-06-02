@@ -8,44 +8,44 @@
 <body>
 <h1>Autocamper Registrering - Luksus</h1>
 <form action="/createLuxury" method="post">
-    <label>Mærke:</label>
+    <label class="breaker">Mærke:</label>
     <input type="text" name="brand" required>
 
-    <label>Model:</label>
+    <label class="breaker">Model:</label>
     <input type="text" name="model" required>
 
-    <label>Nummerplade:</label>
+    <label class="breaker">Nummerplade:</label>
     <input type="text" name="licensePlate" required>
 
-    <label>Pris (i Euro):</label>
+    <label class="breaker">Pris (i Euro):</label>
     <input type="number" name="pricePerDay" min="1" required>  <!-- Et køretøj skal vel ikke være gratis, derfor mindst 1 kr. -->
 
-    <label>Sæder:</label>
+    <label class="breaker">Sæder:</label>
     <input type="number" name="seats" min="1" required>  <!-- et køretøj skal vel have mindst ét sæde? eller gælder føresædet ikke? eller er minimum 2??? ligner det lidt ud for opgavebeskrivelsen--->
 
-    <label>Senge:</label>
+    <label class="breaker">Senge:</label>
     <input type="number" name="beds" min="0" required> <!-- SKAL en autocamper have mindst en seng? eller kan en autocamper være så barebone at den ikke engang har en seng? -->
 
-    <label>Brændstof:</label>
+    <label class="breaker">Brændstof:</label>
     <select name="fuelType">
         <option value="Benzin">Benzin</option>
         <option value="Diesel">Diesel</option>
         <option value="Elektrisk">Elektrisk</option>
     </select>
 
-    <label>Gear:</label>
+    <label class="breaker">Gear:</label>
     <select name="gear">
         <option value="Automat">Automat</option>
         <option value="Manuel">Manuel</option>
     </select>
 
-    <label>Odometer:</label>
+    <label class="breaker">Odometer:</label>
     <input type="number" name="odometer" min="0" required>
 
-    <label>Registreringsdato:</label>
+    <label class="breaker">Registreringsdato:</label>
     <input type="date" name="registrationDate" required>
 
-    <label>Længde & Højde:</label>
+    <label class="breaker">Længde & Højde:</label>
     <input type="text" name="lengthAndHeight" required>
 
     <!-- <label>Type</label> -->
@@ -54,29 +54,29 @@
         <option value="Standard">Standard</option>
         <option value="Økonomi">Økonomi</option>
     </select>
-
-    <label>Køleskab:</label>
-    <input type="checkbox" name="fridge">
-
-    <label>Toilet:</label>
-    <input type="checkbox" name="toilet">
-
-    <label>Markise:</label>
-    <input type="checkbox" name="awning">
-
-    <label>Bad:</label>
-    <input type="checkbox" name="shower">
-
-    <label>Elkomfur:</label>
-    <input type="checkbox" name="elStove">
-
-    <label>TV:</label>
-    <input type="checkbox" name="tv">
-
-    <label>Bakkamera:</label>
-    <input type="checkbox" name="rearViewCamera">
-
-    <input type="submit" value="Gem!" class="btn-create">
+    <div class="breaker">
+        <label>Køleskab:</label>
+        <input type="checkbox" name="fridge">
+    </div><div class="breaker">
+        <label>Toilet:</label>
+        <input type="checkbox" name="toilet">
+    </div><div class="breaker">
+        <label>Markise:</label>
+        <input type="checkbox" name="awning">
+    </div><div class="breaker">
+        <label>Bad:</label>
+        <input type="checkbox" name="shower">
+    </div><div class="breaker">
+        <label>Elkomfur:</label>
+        <input type="checkbox" name="elStove">
+    </div><div class="breaker">
+        <label>TV:</label>
+        <input type="checkbox" name="tv">
+    </div><div class="breaker">
+        <label>Bakkamera:</label>
+        <input type="checkbox" name="rearViewCamera">
+    </div>
+    <input type="submit" value="Gem!" class="btn-create breaker">
 </form>
 <a th:href="@{/motorhome}">
     <button class="btn-back">Tilbage</button>

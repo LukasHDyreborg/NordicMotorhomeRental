@@ -8,19 +8,19 @@
 <body>
 <h1>Sæson Registrering</h1>
 <form action="/createSeason" method="post">
-    <label>Startdato:</label>
+    <label class="breaker">Startdato:</label>
     <input type="date" name="start_date" required>
-    <label>Slutdato:</label>
+    <label class="breaker">Slutdato:</label>
     <input type="date" name="end_date" required>
 
-    <label>Type:</label>
+    <label class="breaker">Type:</label>
     <select name="type">
         <option value="Høj">Høj</option>
         <option value="Middel">Middel</option>
         <option value="Lav">Lav</option>
     </select>
 
-    <input type="submit" value="Gem!" class="btn-create">
+    <input type="submit" value="Gem!" class="btn-create breaker">
 </form>
 <a th:href="@{/accessory}">
     <button class="btn-back">Tilbage</button>

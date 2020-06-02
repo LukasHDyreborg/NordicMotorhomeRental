@@ -8,25 +8,25 @@
 <body>
 <h1>Kunde Registrering</h1>
 <form action="/createCustomer" method="post">
-    <label>Navn:</label>
+    <label class="breaker">Navn:</label>
     <input type="text" name="name" required>
-    <label>Alder:</label>
+    <label class="breaker">Alder:</label>
     <input type="number" name="age" min="17" required> <!-- hvor gammel skal man være for at leje en autocamper? man kan vel få kørekort fra når man er 17?-->
-    <label>CPR-Nummer:</label>
+    <label class="breaker">CPR-Nummer:</label>
     <input type="text" name="cpr" required>
-    <label>Email:</label>
+    <label class="breaker">Email:</label>
     <input type="email" name="email" required>
-    <label>Tlf:</label>
+    <label class="breaker">Tlf:</label>
     <input type="text" name="phone" required>
-    <label>Adresse:</label>
+    <label class="breaker">Adresse:</label>
     <input type="text" name="address" required>
-    <label>Postnummer:</label>
+    <label class="breaker">Postnummer:</label>
     <input type="text" name="zipCode" required>
-    <label>Kørekortnummer:</label>
+    <label class="breaker">Kørekortnummer:</label>
     <input type="text" name="driverLicenseNumber" required>
-    <label>Udstedelsesdato:</label>
-    <input type="date" name="driverLicenseDate" required>
-    <input type="submit" value="Gem!" class="btn-create">
+    <label class="breaker">Udstedelsesdato:</label>
+    <input type="date" name="driverLicenseDate" required >
+    <input type="submit" value="Gem!" class="btn-create breaker">
 </form>
 <a th:href="@{/customer}">
     <button class="btn-back">Tilbage</button>

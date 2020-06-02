@@ -47,7 +47,7 @@ tr:hover{
 }
 
 .btn-create:hover{
-    background-color: green;
+    background-color: limegreen;
     margin-bottom: 10px;
 }
 
@@ -60,13 +60,13 @@ tr:hover{
 }
 
 .btn-update{
-    background-color: sienna;
+    background-color: greenyellow;
     margin-bottom: 1px;
     width: 70px;
 }
 
 .btn-update:hover{
-    background-color: saddlebrown;
+    background-color: limegreen;
     margin-bottom: 1px;
     width: 70px;
 }
@@ -120,4 +120,9 @@ label{
 .header{
     text-align: center;
     font-size: 250%;
+}
+
+.breaker{
+    display: block;
+    margin-top: 5px;
 }

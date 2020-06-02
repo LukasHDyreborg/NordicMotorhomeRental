@@ -48,11 +48,11 @@
     </div>
 
     <div>
-        <label>Start Dato:</label>
+        <label class="breaker">Start Dato:</label>
         <input type="date" name="fromDate" id="fromDate" onchange="time()" required>
-        <label>Slut Dato:</label>
+        <label class="breaker">Slut Dato:</label>
         <input type="date" name="toDate" id="toDate" onchange="time()" required>
-        <input type="text" name="days" id="numberOfDays" readonly>
+        <input type="text" name="days" id="numberOfDays" readonly class="breaker">
     </div>
 
     <h2>Autocamper:</h2>
@@ -144,13 +144,13 @@
     </div>
 
     <div>
-        <label>Pick-Up Punkt:</label>
+        <label class="breaker">Pick-Up Punkt:</label>
         <input type="text" name="pickUp">
-        <label>Pick-Up Distance:</label>
+        <label class="breaker">Pick-Up Distance:</label>
         <input type="number" name="pickDistance" step="0.1" min="0" value="0">
-        <label>Drop-Off Punkt:</label>
+        <label class="breaker">Drop-Off Punkt:</label>
         <input type="text" name="dropOff">
-        <label>Drop-Off Distance:</label>
+        <label class="breaker">Drop-Off Distance:</label>
         <input type="number" name="dropDistance" step="0.1" min="0" value="0">
     </div>
 
@@ -183,13 +183,13 @@
     </div>
 
     <div>
-        <label>Salgsassistent</label>
+        <label class="breaker">Salgsassistent</label>
         <select name="staff">
             <option th:each="staff : ${staffs}" th:text="${staff.name}"></option>
         </select>
     </div>
 
-    <input type="submit" value="Gem!" class="btn-create">
+    <input type="submit" value="Gem!" class="btn-create breaker">
 </form>
 <a th:href="@{/contract}">
     <button class="btn-back">Tilbage</button>

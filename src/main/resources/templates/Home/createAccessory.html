@@ -8,15 +8,15 @@
 <body>
 <h1>Tilbehør Registrering</h1>
 <form action="/createAccessory" method="post">
-    <label>Navn:</label>
+    <label class="breaker">Navn:</label>
     <input type="text" name="name" required>
-    <label>Beløb - Tilgængelig:</label>
+    <label class="breaker">Beløb - Tilgængelig:</label>
     <input type="number" name="amountAvailable" min="1" required> <!--Skal være 1, giver ikke mening at lave en ny accessory hvis man ikke havde denne accessory-->
-    <label>Beløb - Total:</label>
+    <label class="breaker">Beløb - Total:</label>
     <input type="number" name="amountTotal" min="1" required>
-    <label>Pris (i Euro):</label>
+    <label class="breaker">Pris (i Euro):</label>
     <input type="number" name="price" min="1" required> <!-- Skal vel koste noget? Men måske skulle man stadig have muligheden for at lave en free accessory? -->
-    <input type="submit" value="Gem!" class="btn-create">
+    <input type="submit" value="Gem!" class="btn-create breaker">
 </form>
 <a th:href="@{/accessory}">
     <button class="btn-back">Tilbage</button>

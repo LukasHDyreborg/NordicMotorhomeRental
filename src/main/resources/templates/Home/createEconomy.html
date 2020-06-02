@@ -8,34 +8,34 @@
 <body>
 <h1>Autocamper Registrering - Økonomi</h1>
 <form action="/createEconomy" method="post">
-    <label>Mærke:</label>
+    <label class="breaker">Mærke:</label>
     <input type="text" name="brand" required>
-    <label>Model:</label>
+    <label class="breaker">Model:</label>
     <input type="text" name="model" required>
-    <label>Nummerplade:</label>
+    <label class="breaker">Nummerplade:</label>
     <input type="text" name="licensePlate" required>
-    <label>Pris (i Euro):</label>
+    <label class="breaker">Pris (i Euro):</label>
     <input type="number" name="pricePerDay" min="1" required>   <!-- skal vel mindst koste en krone? -->
-    <label>Sæder:</label>
+    <label class="breaker">Sæder:</label>
     <input type="number" name="seats" min="1" required> <!-- der er vel altid et sæde? eller gælder føresæde ikke? -->
-    <label>Senge:</label>
+    <label class="breaker">Senge:</label>
     <input type="number" name="beds" min="0" required> <!-- behøver der mindst være én seng? eller kan der ikke være nogen? -->
-    <label>Brændstof:</label>
+    <label class="breaker">Brændstof:</label>
     <select name="fuelType">
         <option value="Benzin">Benzin</option>
         <option value="Diesel">Diesel</option>
         <option value="Elektrisk">Elektrisk</option>
     </select>
-    <label>Gear:</label>
+    <label class="breaker">Gear:</label>
     <select name="gear">
         <option value="Automat">Automat</option>
         <option value="Manuel">Manuel</option>
     </select>
-    <label>Odometer:</label>
+    <label class="breaker">Odometer:</label>
     <input type="number" name="odometer" min="0" required>
-    <label>Registreringsdato:</label>
+    <label class="breaker">Registreringsdato:</label>
     <input type="date" name="registrationDate" required>
-    <label>Længde & Højde:</label>
+    <label class="breaker">Længde & Højde:</label>
     <input type="text" name="lengthAndHeight" required>
     <!-- <label>Type</label> -->
     <select name="type" hidden> <!-- see createLuxury comment -->
@@ -43,15 +43,19 @@
         <option value="Standard">Standard</option>
         <option value="Luksus">Luxury</option>
     </select>
-    <label>Køleskab:</label>
-    <input type="checkbox" name="fridge">
-    <label>Toilet:</label>
-    <input type="checkbox" name="toilet">
-    <label>Markise:</label>
-    <input type="checkbox" name="awning">
-    <label>Gasblus:</label>
+    <div class="breaker">
+        <label>Køleskab:</label>
+        <input type="checkbox" name="fridge">
+    </div><div class="breaker">
+        <label>Toilet:</label>
+        <input type="checkbox" name="toilet">
+    </div><div class="breaker">
+        <label>Markise:</label>
+        <input type="checkbox" name="awning">
+    </div>
+    <label class="breaker">Gasblus:</label>
     <input type="number" min="0" name="gasBurners">
-    <input type="submit" value="Gem!" class="btn-create">
+    <input type="submit" value="Gem!" class="btn-create breaker">
 </form>
 <a th:href="@{/motorhome}">
     <button class="btn-back">Tilbage</button>
