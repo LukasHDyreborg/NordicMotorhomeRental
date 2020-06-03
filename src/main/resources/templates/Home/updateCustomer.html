@@ -7,7 +7,7 @@
 </head>
 <body>
 <h1>Kunde Opdatering</h1>
-<form action="/updateCustomer" method="post" class="btn-update">
+<form action="/updateCustomer" method="post" class="update">
     <input hidden type="text" name="id" th:value="${customer.id}">
     <label>Navn:</label>
     <input type="text" name="name" th:value="${customer.name}" required>

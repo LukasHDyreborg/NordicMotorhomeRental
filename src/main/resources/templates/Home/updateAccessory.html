@@ -7,7 +7,7 @@
 </head>
 <body>
 <h1>Tilbehørs Opdatering</h1>
-<form action="/updateAccessory" method="post" class="btn-update">
+<form action="/updateAccessory" method="post" class="update">
     <input hidden type="text" name="id" th:value="${accessory.id}">
     <label>Navn:</label>
     <input type="text" name="name" th:value="${accessory.name}" required>

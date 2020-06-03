@@ -141,3 +141,8 @@ label{
     display: block;
     margin-top: 5px;
 }
+
+.update{
+    margin-bottom: 1px;
+    width: 70px;
+}

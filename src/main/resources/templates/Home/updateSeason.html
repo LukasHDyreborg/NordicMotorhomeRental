@@ -7,7 +7,7 @@
 </head>
 <body>
 <h1>Sæson Opdatering</h1>
-<form action="/updateSeason" method="post" class="btn-update">
+<form action="/updateSeason" method="post" class="update">
     <input hidden type="text" name="id" th:value="${season.id}">
     <label>Startdato:</label>
     <input type="date" name="start_date" th:value="${season.start_date}" required>
