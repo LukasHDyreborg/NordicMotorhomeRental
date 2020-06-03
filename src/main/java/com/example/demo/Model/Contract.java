@@ -20,13 +20,11 @@ public class Contract {
     private String carId;  //kommer til at være i motorhome
     private int maxKM;
     private double price; // i euro
-    private String staff; //kan laves om til et objekt. fordelen ved en string er at vi kan slette medabejdere uden at det berører kontrakten (på den anden side: ændrer vi navn for medarbejder, så er det ikke ændret i kontrakten)
+    private String staff;
     @OneToMany
     private List<Accessory> accessoryList;
-    // pick op
     private String pickUp;
     private double pickDistance;
-    // drop off
     private String dropOff;
     private double dropDistance;
 

@@ -263,12 +263,17 @@ public class HomeController {
     }
 
     @PostMapping("/createContract")
-    public String createContract(@ModelAttribute Contract contract, @RequestParam(value="accessory", required=false) int[] accessory){
+    public String createContract(@ModelAttribute Contract contract,
+                                 @RequestParam(value="accessory", required=false) int[] accessory){
         if(accessory==null){
             accessory = new int[]{}; // initialize an empty array if there isnt an accessory chosen
         }
-        contractService.add(contract, accessory);
-        return "redirect:/contract";
+        boolean success = contractService.add(contract, accessory);
+        if(success){
+            return "home/success";
+        }else{
+            return "home/failure";
+        }
     }
 
     @GetMapping("/viewContract/{id}")

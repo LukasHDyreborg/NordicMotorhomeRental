@@ -63,8 +63,8 @@ public class ContractRepository {
         return contractList;
     }
 
-    public Contract add(Contract c, int[] accessory) {
-        /*try{*/
+    public boolean add(Contract c, int[] accessory) {
+        try{
             c.setId(IdRetriever.retrieveID("id", "contracts")); //pulls ID from database, we'll need it for our accessory_contract intermediary table //returns highest id + 1
 
             c.setAccessoryList(new ArrayList<>());//assigns it an arraylist since it will be null by default
@@ -76,12 +76,13 @@ public class ContractRepository {
 
             fetchContractObjects(c); // assigns car and customer to list. We use it to calculate price
             c.setDays(); //sets number of days based on from and to date
-            assignPrice(c);//assigns price based on amount of days //TODO
+            assignPrice(c);//assigns price based on amount of days
             c.setMaxKM(c.getNumberOfDays() * 400); //assigns max km
 
             //Inserts into database
             String sql = "INSERT INTO contracts() VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 1)";//1 = active
-            template.update(sql, c.getId(), c.getFromDate(), c.getToDate(), c.getNumberOfDays(), c.getCarId(), c.getCustomId(), c.getMaxKM(), c.getPrice(), c.getStaff());
+            template.update(sql, c.getId(), c.getFromDate(), c.getToDate(), c.getNumberOfDays(), c.getCarId(),
+                    c.getCustomId(), c.getMaxKM(), c.getPrice(), c.getStaff());
 
             sql = "INSERT INTO points() VALUES (DEFAULT, ?, ?, ?, ?, ?)";
             template.update(sql, c.getPickUp(), c.getPickDistance(), c.getDropOff(), c.getDropDistance(), c.getId());
@@ -91,10 +92,10 @@ public class ContractRepository {
                 sql = "INSERT INTO accessory_contract () VALUES (?,?)";
                 template.update(sql, value, c.getId());
             }
-            return null;
-        /*} catch(Exception e) {
-
-        }*/
+            return true;
+        } catch(Exception e) {
+            return false;
+        }
     }
 
     public Contract findById(int id) {
@@ -214,10 +215,15 @@ public class ContractRepository {
     public void assignPrice(Contract contract){
         //Makes sure its zero, so new calculation wont be added to old price
         contract.setPrice(0);
-
         //Calculates price based on season
         for(int i = 0; i < contract.getNumberOfDays(); i++){
-            Season season = seasonRepository.findByDate(LocalDate.parse(contract.getFromDate()).plusDays(i+1)); //det virker til at den tager datoen for dagen før vores fromdate, så vi + 1
+            Season season;
+            try{
+                season = seasonRepository.findByDate(LocalDate.parse(contract.getFromDate()).plusDays(i+1)); //det virker til at den tager datoen for dagen før vores fromdate, så vi + 1
+            }catch (Exception e){
+                season = new Season();
+                season.setType(""); //vi giver det en tom string eftersom den er null by default
+            }
             //Gets motorhomes price
             double carPrice = contract.getMotorhome().getPricePerDay();
             //Multiplies based on season
@@ -231,7 +237,6 @@ public class ContractRepository {
             //Sets price (price will increase after every iteration/loop)
             contract.setPrice(contract.getPrice() + carPrice);
         }
-
         //Calculates Accessories price
         if(contract.getAccessoryList()!=null || contract.getAccessoryList().size() != 0) {
             for (int i = 0; i < contract.getAccessoryList().size(); i++) { //loops through accessories in contract and adds price

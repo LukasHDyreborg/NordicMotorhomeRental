@@ -20,7 +20,7 @@ public class ContractService {
         return contractRepository.fetchAllArchive();
     }
 
-    public Contract add(Contract c, int[] accessory) {
+    public boolean add(Contract c, int[] accessory) {
         return contractRepository.add(c, accessory);
     }
 
