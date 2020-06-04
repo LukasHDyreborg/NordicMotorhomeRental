@@ -1,3 +1,5 @@
+<!-- Benjamin Andre Wede Gustavsen, Dat19a-->
+
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
@@ -7,7 +9,7 @@
 </head>
 <body>
     <span th:if="${contract.price &gt; price}">   <!-- &gt; betyder >   -->
-        <span th:text="|Kunden aflyste sin udlejning og vil modtage: ${difference}|"></span>
+        <span th:text="|Kunden aflyste sin udlejning og vil modtage: ${difference / 2 * -2}|"></span> <!-- we make a plus number -->
         <span th:text="|Gammel Pris (i Euro): ${contract.price}|"></span>
         <span th:text="|Ny Pris (i Euro): ${price}|"></span>
     </span>
