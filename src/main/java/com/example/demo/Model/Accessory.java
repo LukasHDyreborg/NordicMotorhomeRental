@@ -1,5 +1,5 @@
 package com.example.demo.Model;
-
+//Lavet af CBN & MES
 import javax.persistence.Entity;
 import javax.persistence.Id;
 

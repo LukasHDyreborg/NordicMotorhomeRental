@@ -1,5 +1,5 @@
 package com.example.demo.Model;
-
+//Lavet af MES
 import javax.persistence.Entity;
 import javax.persistence.Id;
 

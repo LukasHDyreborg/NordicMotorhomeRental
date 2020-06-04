@@ -1,3 +1,4 @@
+--Lavet af alle medlemmer
 DROP DATABASE IF EXISTS nordicMotorhome;
 CREATE DATABASE nordicMotorhome;
 

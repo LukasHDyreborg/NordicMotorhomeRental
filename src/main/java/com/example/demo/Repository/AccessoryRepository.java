@@ -9,7 +9,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-
+//Lavet af CBN & MES
 @Repository
 public class AccessoryRepository {
 

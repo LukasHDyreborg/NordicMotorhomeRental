@@ -1,5 +1,5 @@
 package com.example.demo.Model;
-
+//Lavet at CBN OG BAWG
 import javax.persistence.Entity;
 import javax.persistence.Id;
 

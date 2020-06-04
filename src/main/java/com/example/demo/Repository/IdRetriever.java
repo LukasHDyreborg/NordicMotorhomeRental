@@ -1,7 +1,7 @@
 /*Benjamin Andre Wede Gustavsen, Dat19a*/
 
 package com.example.demo.Repository;
-
+//Lavet af Benjamin
 import java.sql.*;
 //Pure fabrication. Havde brug for en måde at få fat på et ID
 public class IdRetriever {

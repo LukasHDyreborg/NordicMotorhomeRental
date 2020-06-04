@@ -2,7 +2,7 @@ package com.example.demo.Model;
 
 import javax.persistence.Entity;
 
-// LAvet af LHD
+// Lavet af LHD
 
 @Entity
 public class Luxury extends Standard {

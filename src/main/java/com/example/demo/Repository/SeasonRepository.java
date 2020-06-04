@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
 import java.util.List;
-
+//Lavet af CBN & BAWG.
 @Repository
 public class SeasonRepository {
 

@@ -1,5 +1,5 @@
 package com.example.demo.Controller;
-
+//Lavet af alle medlemmer
 import com.example.demo.Model.*;
 import com.example.demo.Service.*;
 import org.springframework.beans.factory.annotation.Autowired;

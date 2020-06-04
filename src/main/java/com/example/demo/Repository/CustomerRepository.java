@@ -8,7 +8,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-
+//Lavet af CBN & BAWG
 @Repository
 public class CustomerRepository {
 
