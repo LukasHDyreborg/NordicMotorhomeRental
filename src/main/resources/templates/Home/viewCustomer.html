@@ -31,11 +31,12 @@
     <label>Udstedelsesdato:</label>
     <span th:text="${customer.driverLicenseDate}"></span>
 
-    <a th:href="@{'/deleteCustomer/'+${customer.id}}">
-        <button class="btn-delete">Slet</button>
-    </a>
+
     <a th:href="@{'/updateCustomer/'+${customer.id}}">
         <button class="btn-update">Opdater</button>
+    </a>
+    <a th:href="@{'/deleteCustomer/'+${customer.id}}">
+        <button class="btn-delete">Slet</button>
     </a>
     <a th:href="@{/customer}">
         <button class="btn-back">Tilbage</button>

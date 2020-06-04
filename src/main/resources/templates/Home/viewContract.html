@@ -70,14 +70,17 @@
     <label>Salgsassistant:</label>
     <span th:text="${contract.staff}"></span>
 
-    <a th:href="@{'/deleteContract/'+${contract.id}}">
-        <button class="btn-delete">Slet</button>
-    </a>
+
     <a th:href="@{'/updateContract/'+${contract.id}}">
         <button class="btn-update">Opdater</button>
     </a>
+
     <a th:href="@{'/endContract/'+${contract.id}}">
         <button class="btn-update">Afslut</button>
+    </a>
+
+    <a th:href="@{'/deleteContract/'+${contract.id}}">
+        <button class="btn-delete">Slet</button>
     </a>
     <a th:href="@{/contract}">
         <button class="btn-back">Tilbage</button>

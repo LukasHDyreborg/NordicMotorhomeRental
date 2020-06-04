@@ -16,11 +16,12 @@
     <label>Type</label>
     <span th:text="${season.type}"></span>
 
-    <a th:href="@{'/deleteSeason/'+${season.id}}">
-        <button class="btn-delete">Slet</button>
-    </a>
+
     <a th:href="@{'/updateSeason/'+${season.id}}">
         <button class="btn-update">Opdater</button>
+    </a>
+    <a th:href="@{'/deleteSeason/'+${season.id}}">
+        <button class="btn-delete">Slet</button>
     </a>
     <a th:href="@{/season}">
         <button class="btn-back">Tilbage</button>
