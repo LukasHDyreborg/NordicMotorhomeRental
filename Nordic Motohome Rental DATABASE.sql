@@ -17,7 +17,8 @@ CREATE TABLE customers
     driverLicenseDate DATE NOT NULL
 );
 
-CREATE TABLE motorhomes
+
+CREATE TABLE motorhomes -- Lavet af LHD;
 (
     licensePlate VARCHAR(45) PRIMARY KEY,
     brand VARCHAR(45) NOT NULL,
@@ -36,7 +37,7 @@ CREATE TABLE motorhomes
     awning BOOLEAN NOT NULL
 );
 
-CREATE TABLE economy
+CREATE TABLE economy -- Lavet af LHD;
 (
     licensePlate VARCHAR(45) PRIMARY KEY,
     gasBurners INT NOT NULL,
@@ -45,7 +46,7 @@ CREATE TABLE economy
     ON DELETE CASCADE
 );
 
-CREATE TABLE standard
+CREATE TABLE standard -- Lavet af LHD;
 (
     licensePlate VARCHAR(45) PRIMARY KEY,
     shower BOOLEAN NOT NULL,
@@ -55,7 +56,7 @@ CREATE TABLE standard
     ON DELETE CASCADE
 );
 
-CREATE TABLE luxury
+CREATE TABLE luxury -- Lavet af LHD;
 (
     licensePlate VARCHAR(45) PRIMARY KEY,
     tv BOOLEAN NOT NULL,
@@ -65,7 +66,7 @@ CREATE TABLE luxury
     ON DELETE CASCADE
 );
 
-CREATE TABLE contracts
+CREATE TABLE contracts -- Lavet af LHD & BAWG;
 (
     id INT PRIMARY KEY AUTO_INCREMENT,
     fromDate DATE NOT NULL,

@@ -10,6 +10,8 @@ import org.springframework.stereotype.Repository;
 import java.sql.SQLException;
 import java.util.List;
 
+// Lavet af LHD
+
 @Repository
 public class LuxuryRepository {
     @Autowired

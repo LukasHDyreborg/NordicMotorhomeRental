@@ -91,7 +91,7 @@ public class HomeController {
         }
     }
 
-    //Motorhomes
+    //Motorhomes Lavet af LHD
     @GetMapping("/motorhome")
     public String motorhome(Model model){
         List<Economy> economyList = economyService.fetchAll();
@@ -194,7 +194,7 @@ public class HomeController {
     }
 
 
-    //Contracts
+    //Contracts Lavet af LHD & BAWG
     @GetMapping("/contract")
     public String contract(Model model){
         List<Contract> contractList = contractService.fetchAll();

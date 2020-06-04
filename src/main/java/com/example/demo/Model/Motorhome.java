@@ -3,6 +3,8 @@ package com.example.demo.Model;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+// Lavet af LHD
+
 @Entity
 public class Motorhome {
     @Id

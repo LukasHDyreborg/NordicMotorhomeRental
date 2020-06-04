@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+// LAvet af LHD
+
 @Service
 public class LuxuryService {
     @Autowired

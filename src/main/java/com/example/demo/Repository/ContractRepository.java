@@ -14,6 +14,8 @@ import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 
+// Lavet af BAWG
+
 @Repository
 public class ContractRepository {
     @Autowired

@@ -2,6 +2,8 @@ package com.example.demo.Model;
 
 import javax.persistence.Entity;
 
+// LAvet af LHD
+
 @Entity
 public class Luxury extends Standard {
     private boolean tv;

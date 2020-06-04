@@ -2,6 +2,8 @@ package com.example.demo.Model;
 
 import javax.persistence.Entity;
 
+// Lavet af LHD
+
 @Entity
 public class Economy extends Motorhome {
     private int gasBurners;

@@ -9,6 +9,8 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+// Lavet af LHD
+
 @Repository
 public class StandardRepository {
     @Autowired

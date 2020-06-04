@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+// Lavet af LHD og BAWG
+
 @Service
 public class ContractService {
     @Autowired

@@ -5,6 +5,8 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.util.List;
 
+// Lavet af LHD & BAWG
+
 @Entity
 public class Contract {
     @Id
